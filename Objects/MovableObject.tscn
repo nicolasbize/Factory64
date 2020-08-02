@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="MovableObject" type="Area2D"]
+collision_layer = 2147483650
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]

@@ -1,0 +1,265 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Tiles/FloorTile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Tiles/Selector.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World.gd" type="Script" id=3]
+[ext_resource path="res://UI/TileSelectorModal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tiles/LConveyorTile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/SilverOre.tscn" type="PackedScene" id=6]
+
+[node name="World" type="Node"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Tiles" type="Node2D" parent="."]
+
+[node name="FloorTile" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 4, 12 )
+script = null
+
+[node name="FloorTile2" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 12, 12 )
+script = null
+
+[node name="FloorTile3" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 20, 12 )
+script = null
+
+[node name="FloorTile4" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 28, 12 )
+script = null
+
+[node name="FloorTile5" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 36, 12 )
+script = null
+
+[node name="FloorTile6" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 44, 12 )
+script = null
+
+[node name="FloorTile7" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 52, 12 )
+script = null
+
+[node name="FloorTile8" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 60, 12 )
+script = null
+
+[node name="FloorTile9" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 4, 20 )
+script = null
+
+[node name="FloorTile10" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 12, 20 )
+script = null
+
+[node name="FloorTile11" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 20, 20 )
+script = null
+
+[node name="FloorTile12" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 28, 20 )
+script = null
+
+[node name="FloorTile13" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 36, 20 )
+script = null
+
+[node name="FloorTile14" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 44, 20 )
+script = null
+
+[node name="FloorTile15" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 52, 20 )
+script = null
+
+[node name="FloorTile16" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 60, 20 )
+script = null
+
+[node name="FloorTile17" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 4, 28 )
+script = null
+
+[node name="FloorTile18" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 12, 28 )
+script = null
+
+[node name="FloorTile19" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 20, 28 )
+script = null
+
+[node name="FloorTile20" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 28, 28 )
+script = null
+
+[node name="FloorTile21" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 36, 28 )
+script = null
+
+[node name="FloorTile22" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 44, 28 )
+script = null
+
+[node name="FloorTile23" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 52, 28 )
+script = null
+
+[node name="FloorTile24" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 60, 28 )
+script = null
+
+[node name="FloorTile25" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 4, 36 )
+script = null
+
+[node name="FloorTile26" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 12, 36 )
+script = null
+
+[node name="FloorTile27" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 20, 36 )
+script = null
+
+[node name="FloorTile28" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 28, 36 )
+script = null
+
+[node name="FloorTile29" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 36, 36 )
+script = null
+
+[node name="FloorTile30" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 44, 36 )
+script = null
+
+[node name="FloorTile31" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 52, 36 )
+script = null
+
+[node name="FloorTile32" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 60, 36 )
+script = null
+
+[node name="FloorTile33" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 4, 44 )
+script = null
+
+[node name="FloorTile34" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 12, 44 )
+script = null
+
+[node name="FloorTile35" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 20, 44 )
+script = null
+
+[node name="FloorTile36" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 28, 44 )
+script = null
+
+[node name="FloorTile37" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 36, 44 )
+script = null
+
+[node name="FloorTile38" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 44, 44 )
+script = null
+
+[node name="FloorTile39" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 52, 44 )
+script = null
+
+[node name="FloorTile40" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 60, 44 )
+script = null
+
+[node name="FloorTile41" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 4, 52 )
+script = null
+
+[node name="FloorTile42" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 12, 52 )
+script = null
+
+[node name="FloorTile43" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 20, 52 )
+script = null
+
+[node name="FloorTile44" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 28, 52 )
+script = null
+
+[node name="FloorTile45" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 36, 52 )
+script = null
+
+[node name="FloorTile46" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 44, 52 )
+script = null
+
+[node name="FloorTile47" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 52, 52 )
+script = null
+
+[node name="FloorTile48" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 60, 52 )
+script = null
+
+[node name="FloorTile49" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 4, 60 )
+script = null
+
+[node name="FloorTile50" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 12, 60 )
+script = null
+
+[node name="FloorTile51" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 20, 60 )
+script = null
+
+[node name="FloorTile52" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 28, 60 )
+script = null
+
+[node name="FloorTile53" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 36, 60 )
+script = null
+
+[node name="FloorTile54" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 44, 60 )
+script = null
+
+[node name="FloorTile55" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 52, 60 )
+script = null
+
+[node name="FloorTile56" parent="Tiles" instance=ExtResource( 1 )]
+position = Vector2( 60, 60 )
+script = null
+
+[node name="Selector" parent="." instance=ExtResource( 2 )]
+
+[node name="TileSelectorModal" parent="." instance=ExtResource( 4 )]
+
+[node name="AnimationPlayer" parent="TileSelectorModal" index="0"]
+autoplay = "Hidden"
+
+[node name="LConveyorTile" parent="." instance=ExtResource( 5 )]
+position = Vector2( 20, 28 )
+
+[node name="SilverOre" parent="." instance=ExtResource( 6 )]
+position = Vector2( 19, 25 )
+[connection signal="tile_purchased" from="TileSelectorModal" to="." method="_on_TileSelectorModal_tile_purchased"]
+[connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/CancelButton" to="." method="_on_TileSelectorCancelButton_click"]
+
+[editable path="TileSelectorModal"]
+
+[editable path="LConveyorTile"]

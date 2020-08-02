@@ -1,0 +1,209 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Tiles/Tile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Tiles/lconveyor.png" type="Texture" id=2]
+[ext_resource path="res://Tiles/LConveyorTile.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Disabled-R"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Disabled-T"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Enabled-R"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13, 14, 15, 16, 17 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Enabled-T"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[node name="LConveyorTile" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 9
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Disabled-R"
+anims/Disabled-R = SubResource( 1 )
+anims/Disabled-T = SubResource( 2 )
+anims/Enabled-R = SubResource( 3 )
+anims/Enabled-T = SubResource( 4 )
+
+[node name="AreaDown" type="Area2D" parent="." index="2"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="FlowDown" type="CollisionPolygon2D" parent="AreaDown" index="0"]
+polygon = PoolVector2Array( -2, -4, 2, -4, 2, -3, 3, -3, -2, 2, -2, -4 )
+
+[node name="AreaRight" type="Area2D" parent="." index="3"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="FlowRight" type="CollisionPolygon2D" parent="AreaRight" index="0"]
+polygon = PoolVector2Array( 4, 2, 4, -2, 3, -2, 3, -3, -2, 2 )
+
+[node name="BeltTimer" type="Timer" parent="." index="4"]
+
+[node name="ValidPoints" type="Node2D" parent="." index="5"]
+
+[node name="Position2D" type="Position2D" parent="ValidPoints" index="0"]
+position = Vector2( -2, -4 )
+
+[node name="Position2D2" type="Position2D" parent="ValidPoints" index="1"]
+position = Vector2( -1, -4 )
+
+[node name="Position2D3" type="Position2D" parent="ValidPoints" index="2"]
+position = Vector2( 0, -4 )
+
+[node name="Position2D4" type="Position2D" parent="ValidPoints" index="3"]
+position = Vector2( 1, -4 )
+
+[node name="Position2D5" type="Position2D" parent="ValidPoints" index="4"]
+position = Vector2( -2, -3 )
+
+[node name="Position2D6" type="Position2D" parent="ValidPoints" index="5"]
+position = Vector2( -1, -3 )
+
+[node name="Position2D7" type="Position2D" parent="ValidPoints" index="6"]
+position = Vector2( 0, -3 )
+
+[node name="Position2D8" type="Position2D" parent="ValidPoints" index="7"]
+position = Vector2( 1, -3 )
+
+[node name="Position2D9" type="Position2D" parent="ValidPoints" index="8"]
+position = Vector2( -2, -2 )
+
+[node name="Position2D10" type="Position2D" parent="ValidPoints" index="9"]
+position = Vector2( -1, -2 )
+
+[node name="Position2D11" type="Position2D" parent="ValidPoints" index="10"]
+position = Vector2( 0, -2 )
+
+[node name="Position2D12" type="Position2D" parent="ValidPoints" index="11"]
+position = Vector2( 1, -2 )
+
+[node name="Position2D13" type="Position2D" parent="ValidPoints" index="12"]
+position = Vector2( 2, -2 )
+
+[node name="Position2D14" type="Position2D" parent="ValidPoints" index="13"]
+position = Vector2( -2, -1 )
+
+[node name="Position2D15" type="Position2D" parent="ValidPoints" index="14"]
+position = Vector2( -1, -1 )
+
+[node name="Position2D16" type="Position2D" parent="ValidPoints" index="15"]
+position = Vector2( 0, -1 )
+
+[node name="Position2D17" type="Position2D" parent="ValidPoints" index="16"]
+position = Vector2( 1, -1 )
+
+[node name="Position2D18" type="Position2D" parent="ValidPoints" index="17"]
+position = Vector2( 2, -1 )
+
+[node name="Position2D19" type="Position2D" parent="ValidPoints" index="18"]
+position = Vector2( 3, -1 )
+
+[node name="Position2D20" type="Position2D" parent="ValidPoints" index="19"]
+position = Vector2( -2, 0 )
+
+[node name="Position2D21" type="Position2D" parent="ValidPoints" index="20"]
+position = Vector2( -1, 0 )
+
+[node name="Position2D22" type="Position2D" parent="ValidPoints" index="21"]
+
+[node name="Position2D23" type="Position2D" parent="ValidPoints" index="22"]
+position = Vector2( 1, 0 )
+
+[node name="Position2D24" type="Position2D" parent="ValidPoints" index="23"]
+position = Vector2( 2, 0 )
+
+[node name="Position2D25" type="Position2D" parent="ValidPoints" index="24"]
+position = Vector2( 3, 0 )
+
+[node name="Position2D26" type="Position2D" parent="ValidPoints" index="25"]
+position = Vector2( -2, 1 )
+
+[node name="Position2D27" type="Position2D" parent="ValidPoints" index="26"]
+position = Vector2( -1, 1 )
+
+[node name="Position2D28" type="Position2D" parent="ValidPoints" index="27"]
+position = Vector2( 0, 1 )
+
+[node name="Position2D29" type="Position2D" parent="ValidPoints" index="28"]
+position = Vector2( 1, 1 )
+
+[node name="Position2D30" type="Position2D" parent="ValidPoints" index="29"]
+position = Vector2( 2, 1 )
+
+[node name="Position2D31" type="Position2D" parent="ValidPoints" index="30"]
+position = Vector2( 3, 1 )
+
+[node name="Position2D32" type="Position2D" parent="ValidPoints" index="31"]
+position = Vector2( 4, -1 )
+
+[node name="Position2D35" type="Position2D" parent="ValidPoints" index="32"]
+position = Vector2( 4, -2 )
+
+[node name="Position2D33" type="Position2D" parent="ValidPoints" index="33"]
+position = Vector2( 4, 0 )
+
+[node name="Position2D34" type="Position2D" parent="ValidPoints" index="34"]
+position = Vector2( 4, 1 )
+[connection signal="timeout" from="BeltTimer" to="." method="_on_BeltTimer_timeout"]
