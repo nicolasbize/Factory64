@@ -2,32 +2,8 @@ extends Control
 
 enum {HIDDEN, SHOWING, HIDING, SHOWN}
 var state := HIDDEN
-var current_index = 0
-var items = [{
-	"frame": 4,
-	"label": "extractor"
-}, {
-	"frame": 10,
-	"label": "conveyor"
-}, {
-	"frame": 0,
-	"label": "l section"
-}, {
-	"frame": 16,
-	"label": "t section"
-}, {
-	"frame": 2,
-	"label": "vendor"
-}, {
-	"frame": 34,
-	"label": "burner"
-}, {
-	"frame": 26,
-	"label": "cutter"
-}, {
-	"frame": 18,
-	"label": "factory"
-}]
+var current_type = Constants.TileType.IRON
+
 onready var animation_player = $AnimationPlayer
 onready var left_button = $SelectionPanel/Panel/LeftButton
 onready var right_button = $SelectionPanel/Panel/RightButton
@@ -64,19 +40,19 @@ func is_active():
 	return state != HIDDEN
 
 func refresh_ui():
-	tile_sprite.frame = items[current_index].frame
-	tile_label.text = items[current_index].label
+	tile_sprite.frame = current_type
+	tile_label.text = Constants.get_tile_name(current_type)
 
 func select_previous():
-	current_index -= 1
-	if current_index < 0:
-		current_index = 0
+	current_type -= 1
+	if current_type < 0:
+		current_type = 0
 	refresh_ui() 
 
 func select_next():
-	current_index += 1
-	if current_index > items.size() - 1:
-		current_index = items.size() - 1
+	current_type += 1
+	if current_type > 10:
+		current_type = 10
 	refresh_ui()
 
 func _on_LeftButton_click():
@@ -86,4 +62,4 @@ func _on_RightButton_click():
 	select_next()
 
 func _on_AcceptButton_click():
-	emit_signal("tile_purchased", items[current_index].label)
+	emit_signal("tile_purchased", current_type)

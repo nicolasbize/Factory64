@@ -4,13 +4,12 @@ onready var selector := $Selector
 onready var tile_selector_modal := $TileSelectorModal
 onready var game_tiles = $Tiles
 
-# TEMP
-onready var temp_ore = $SilverOre
-onready var temp_tile = $LConveyorTile
-
 var active_tile_position = null
 
-const ExtractorTile = preload("res://Tiles/ExtractorTile.tscn")
+const SilverExtractorTile = preload("res://Tiles/SilverExtractorTile.tscn")
+const GoldExtractorTile = preload("res://Tiles/GoldExtractorTile.tscn")
+const IronExtractorTile = preload("res://Tiles/IronExtractorTile.tscn")
+const SiliconExtractorTile = preload("res://Tiles/SiliconExtractorTile.tscn")
 const ConveyorTile = preload("res://Tiles/ConveyorTile.tscn")
 const LConveyorTile = preload("res://Tiles/LConveyorTile.tscn")
 const TConveyorTile = preload("res://Tiles/TConveyorBelt.tscn")
@@ -20,8 +19,7 @@ const BurnerTile = preload("res://Tiles/BurnerTile.tscn")
 const CutterTile = preload("res://Tiles/CutterTile.tscn")
 
 func _ready():
-	WorldTiles.add(temp_tile, temp_tile.global_position)
-	WorldObjects.add(temp_ore, temp_ore.global_position)
+	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -54,26 +52,33 @@ func show_tile_menu():
 	tile_selector_modal.show()
 	
 
-func _on_TileSelectorModal_tile_purchased(tile_name):
+func _on_TileSelectorModal_tile_purchased(tile_type):
 	tile_selector_modal.hide()
 	if WorldTiles.can_add(active_tile_position):
 		var tile = null
-		if tile_name == "extractor":
-			tile = ExtractorTile.instance()
-		elif tile_name == "conveyor":
-			tile = ConveyorTile.instance()
-		elif tile_name == "l section":
-			tile = LConveyorTile.instance()
-		elif tile_name == "t section":
-			tile = TConveyorTile.instance()
-		elif tile_name == "vendor":
-			tile = VendorTile.instance()
-		elif tile_name == "burner":
-			tile = BurnerTile.instance()
-		elif tile_name == "cutter":
-			tile = CutterTile.instance()
-		elif tile_name == "factory":
-			tile = FactoryTile.instance()
+		match tile_type:
+			Constants.TileType.SILVER:
+				tile = SilverExtractorTile.instance()
+			Constants.TileType.GOLD:
+				tile = GoldExtractorTile.instance()
+			Constants.TileType.SILICON:
+				tile = SiliconExtractorTile.instance()
+			Constants.TileType.IRON:
+				tile = IronExtractorTile.instance()
+			Constants.TileType.BELT:
+				tile = ConveyorTile.instance()
+			Constants.TileType.LBELT:
+				tile = LConveyorTile.instance()
+			Constants.TileType.TBELT:
+				tile = TConveyorTile.instance()
+			Constants.TileType.FURNACE:
+				tile = BurnerTile.instance()
+			Constants.TileType.CUTTER:
+				tile = CutterTile.instance()
+			Constants.TileType.FACTORY:
+				tile = FactoryTile.instance()
+			Constants.TileType.RESELLER:
+				tile = VendorTile.instance()
 		
 		game_tiles.add_child(tile)
 		tile.global_position = active_tile_position + Vector2.ONE * 4

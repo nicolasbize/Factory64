@@ -5,14 +5,17 @@ var objects = {}
 func add(obj, position):
 	var id = get_id(position)
 	if objects.has(id):
-		print("cannot add object, spot already taken")
+#		print("cannot add object, spot already taken")
 		pass
 	objects[id] = obj
-	print("added object, listing keys:")
-	print(objects.keys())
+#	print("added object, listing keys:")
+#	print(objects.keys())
 
 func get_id(position):
 	return str(position.x) + "," + str(position.y)
+	
+func has_at(position):
+	return objects.has(get_id(position))
 
 func id_to_pos(id):
 	var parts = id.split(",")
@@ -22,18 +25,18 @@ func can_move(obj, new_pos):
 	var next_id = get_id(new_pos)
 	# can't move if an object exists there
 	if objects.has(next_id):
-		print("can't move there, an object is already there")
-		print(get_id(obj.global_position))
-		print(next_id)
-		print("listing existing keys:")
-		print(objects.keys())
+#		print("can't move there, an object is already there")
+#		print(get_id(obj.global_position))
+#		print(next_id)
+#		print("listing existing keys:")
+#		print(objects.keys())
 		return false
 	# can't move there if the tile isn't accepting it
 	var tile = WorldTiles.get_at(new_pos)
 	if tile == null:
-		print("can't move to " + str(new_pos) + ", no tile to accept me at " + WorldTiles.get_id(new_pos))
+#		print("can't move to " + str(new_pos) + ", no tile to accept me at " + WorldTiles.get_id(new_pos))
 		return false
-	return tile.can_accept(obj, new_pos)
+	return tile.is_valid_obj_pos(new_pos)
 
 # check if there are other moveable objects where we want to go
 func move(obj, new_pos):
@@ -56,12 +59,12 @@ func rotate_tile_contents(position, angle):
 			if objects.has(id):
 				objects_to_rotate.append(objects[id])
 				objects.erase(id)
-	print("rotating " + str(objects_to_rotate.size()) + " objects around " + str(pivot) + " by " + str(angle) + " deg")
+#	print("rotating " + str(objects_to_rotate.size()) + " objects around " + str(pivot) + " by " + str(angle) + " deg")
 	for obj in objects_to_rotate:
 		# to do a perfect rotation we need to set the pivot to the center of the pixel
 		var rotation = (obj.global_position - pivot + Vector2(0.5, 0.5)).rotated(deg2rad(angle))
 		var new_pos = rotation + pivot
 		obj.global_position = new_pos - Vector2(0.5, 0.5)
-		print("new pos: " + str(obj.global_position))
+#		print("new pos: " + str(obj.global_position))
 		objects[get_id(obj.global_position)] = obj
 	

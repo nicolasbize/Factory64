@@ -129,8 +129,7 @@ __meta__ = {
 position = Vector2( 28, 10 )
 texture = ExtResource( 10 )
 centered = false
-vframes = 8
-hframes = 8
+hframes = 12
 
 [node name="RightButton" parent="SelectionPanel/Panel" instance=ExtResource( 9 )]
 margin_left = 42.0
