@@ -1,8 +1,15 @@
 extends Node
 
 onready var selector := $Selector
-onready var tile_selector_modal := $TileSelectorModal
+onready var tile_selector_modal := $CanvasLayer/TileSelectorModal
 onready var game_tiles = $Tiles
+onready var cursor = $CanvasLayer/CustomCursor
+onready var camera = $Camera2D
+
+export (bool) var chop_mouse_movement = true
+
+enum Size {Small, Medium, Large}
+export (Size) var size = Size.Small
 
 var active_tile_position = null
 
@@ -20,15 +27,26 @@ const CutterTile = preload("res://Tiles/CutterTile.tscn")
 
 func _ready():
 	randomize()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	update_selector()
+	update_mouse()
 	if not tile_selector_modal.is_active():	
+		update_selector()
 		if Input.is_action_just_pressed("ui_select") and is_valid_tile(selector.position):
 			show_tile_menu()
 		if Input.is_action_just_pressed("reverse") and is_valid_tile(selector.position):
 			WorldTiles.reverse(selector.position)
+
+	
+func update_mouse():
+	# chop on purpose
+	var p = get_viewport().get_mouse_position()
+	if chop_mouse_movement:
+		cursor.global_position = Vector2(floor(p.x), floor(p.y))
+	else:
+		cursor.global_position = p
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and is_valid_tile(selector.position):
@@ -38,14 +56,15 @@ func _input(event):
 			WorldTiles.rotate(selector.position, 90)
 
 func update_selector():
-	var mpos := get_viewport().get_mouse_position()
+	var mpos = camera.global_position + get_viewport().get_mouse_position()
 	var mpos_x = round((mpos.x - 4) / 8) * 8
 	var mpos_y = round((mpos.y - 4) / 8) * 8
-	selector.position = Vector2(mpos_x, mpos_y)
+	selector.global_position = Vector2(mpos_x, mpos_y)
 	selector.visible = is_valid_tile(selector.position)
 
 func is_valid_tile(pos):
-	return pos.y > 1
+	return pos.x > 0 and pos.x < 72 and pos.y > 15 and pos.y < 80
+
 
 func show_tile_menu():
 	active_tile_position = selector.position
@@ -84,6 +103,5 @@ func _on_TileSelectorModal_tile_purchased(tile_type):
 		tile.global_position = active_tile_position + Vector2.ONE * 4
 		WorldTiles.add(tile, active_tile_position)
 
-func _on_TileSelectorCancelButton_click():
+func _on_CancelButton_click():
 	tile_selector_modal.hide()
-

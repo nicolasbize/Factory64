@@ -2,6 +2,7 @@ extends "res://Tiles/Tile.gd"
 
 enum {RIGHT, TOP, LEFT, BOTTOM}
 var possible_directions = []
+var round_robin = 0
 var current_dir = null
 
 export (int) var efficiency = 1 # 1-4, might replace with enum
@@ -44,6 +45,7 @@ func _on_TileTimer_timeout():
 				attempt_send_ore(target_tile, pos)
 	elif current_dir == BOTTOM:
 		target_tile = WorldTiles.get_at(global_position + Vector2(0, 8))
+		
 		if target_tile != null:
 			var spots = []
 			for x in range(-2, 2):
@@ -65,12 +67,12 @@ func refresh_possible_directions():
 		possible_directions.append(TOP)
 	if possible_directions.size() == 0:
 		current_dir = null
-	elif current_dir == null:
-		current_dir = 0
 	else:
-		current_dir += 1
-		if current_dir > possible_directions.size() - 1:
-			current_dir = 0
+		round_robin += 1
+		if round_robin > possible_directions.size() - 1:
+			round_robin = 0
+		current_dir = possible_directions[round_robin]
+
 	
 func attempt_send_ore(tile, pos):
 	if tile.is_valid_obj_pos(pos) and not WorldObjects.has_at(pos):

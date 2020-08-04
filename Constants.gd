@@ -26,3 +26,5 @@ func get_tile_name(type):
 			return "Factory"
 		TileType.RESELLER:
 			return "Reseller"
+
+enum ObjectType {IRON_ORE, SILVER_ORE, SILICON_ORE, GOLD_ORE}

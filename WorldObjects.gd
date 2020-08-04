@@ -49,6 +49,11 @@ func move(obj, new_pos):
 			obj.global_position = id_to_pos(new_id)
 #			print("moved " + id + " to " + new_id)
 
+func destroy(obj):
+	var id = get_id(obj.global_position)
+	if objects.has(id):
+		objects.erase(id)
+
 func rotate_tile_contents(position, angle):
 	# find all the objects within this tile
 	var pivot = position + Vector2(4, 4)

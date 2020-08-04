@@ -1,10 +1,150 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Tiles/Tile.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Tiles/equipment.png" type="Texture" id=2]
+[ext_resource path="res://Tiles/furnace.png" type="Texture" id=2]
+[ext_resource path="res://Tiles/BurnerTile.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Burn"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Disabled"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "LightDown"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 3, 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_LightDown_done"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "LightUp"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_LightUp_done"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Pending"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 3, 3 )
 
 [node name="BurnerTile" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-frame = 34
+vframes = 1
+hframes = 9
+frame = 4
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Burn = SubResource( 5 )
+anims/Disabled = SubResource( 1 )
+anims/LightDown = SubResource( 4 )
+anims/LightUp = SubResource( 3 )
+anims/Pending = SubResource( 2 )
+
+[node name="ValidArea" type="Polygon2D" parent="." index="3"]
+visible = false
+polygon = PoolVector2Array( -3, 2, 3, 2, 3, 4, -3, 4, -3, 2, -3, 2 )
+
+[node name="StorageArea" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StorageArea" index="0"]
+shape = SubResource( 6 )
+
+[node name="BurnTimer" type="Timer" parent="." index="5"]
+wait_time = 5.0
+[connection signal="timeout" from="BurnTimer" to="." method="_on_BurnTimer_timeout"]

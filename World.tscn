@@ -1,257 +1,97 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Tiles/FloorTile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Tiles/grass.png" type="Texture" id=1]
 [ext_resource path="res://Tiles/Selector.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World.gd" type="Script" id=3]
 [ext_resource path="res://UI/TileSelectorModal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/CustomCursor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Camera2D.gd" type="Script" id=6]
+[ext_resource path="res://Tiles/factory-tiles.png" type="Texture" id=7]
 
-[node name="World" type="Node"]
+[sub_resource type="TileSet" id=1]
+0/name = "factory-tiles.png 0"
+0/texture = ExtResource( 7 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 88, 40 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 1
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 0, 3 ), 48, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 56, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27, Vector2( 2, 3 ), 24, Vector2( 3, 0 ), 144, Vector2( 3, 1 ), 146, Vector2( 3, 2 ), 18, Vector2( 3, 3 ), 16, Vector2( 4, 0 ), 176, Vector2( 4, 1 ), 182, Vector2( 4, 2 ), 434, Vector2( 4, 3 ), 50, Vector2( 4, 4 ), 178, Vector2( 5, 0 ), 248, Vector2( 5, 1 ), 255, Vector2( 5, 2 ), 507, Vector2( 5, 3 ), 59, Vector2( 5, 4 ), 251, Vector2( 6, 0 ), 440, Vector2( 6, 1 ), 447, Vector2( 6, 2 ), 510, Vector2( 6, 3 ), 62, Vector2( 6, 4 ), 446, Vector2( 7, 0 ), 152, Vector2( 7, 1 ), 155, Vector2( 7, 2 ), 218, Vector2( 7, 3 ), 26, Vector2( 7, 4 ), 154, Vector2( 8, 0 ), 184, Vector2( 8, 1 ), 191, Vector2( 8, 2 ), 506, Vector2( 8, 3 ), 58, Vector2( 8, 4 ), 186, Vector2( 9, 0 ), 443, Vector2( 9, 1 ), 254, Vector2( 9, 2 ), 442, Vector2( 9, 3 ), 190, Vector2( 10, 2 ), 250, Vector2( 10, 3 ), 187 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 8, 8 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="World" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 64.0
-margin_bottom = 64.0
-color = Color( 0, 0, 0, 1 )
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -200.0
+margin_right = 200.0
+margin_bottom = 200.0
+texture = ExtResource( 1 )
+stretch_mode = 2
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
+[node name="Background" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 8, 8 )
+cell_quadrant_size = 8
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 65536, 0, 0, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 1, 65541, 0, 1, 65542, 0, 1, 65543, 0, 1, 65544, 0, 1, 65545, 0, 2, 131072, 0, 65536, 131073, 0, 65537, 131074, 0, 65537, 131075, 0, 65537, 131076, 0, 65537, 131077, 0, 65537, 131078, 0, 65537, 131079, 0, 65537, 131080, 0, 65537, 131081, 0, 65538, 196608, 0, 65536, 196609, 0, 65537, 196610, 0, 65537, 196611, 0, 65537, 196612, 0, 65537, 196613, 0, 65537, 196614, 0, 65537, 196615, 0, 65537, 196616, 0, 65537, 196617, 0, 65538, 262144, 0, 65536, 262145, 0, 65537, 262146, 0, 65537, 262147, 0, 65537, 262148, 0, 65537, 262149, 0, 65537, 262150, 0, 65537, 262151, 0, 65537, 262152, 0, 65537, 262153, 0, 65538, 327680, 0, 65536, 327681, 0, 65537, 327682, 0, 65537, 327683, 0, 65537, 327684, 0, 65537, 327685, 0, 65537, 327686, 0, 65537, 327687, 0, 65537, 327688, 0, 65537, 327689, 0, 65538, 393216, 0, 65536, 393217, 0, 65537, 393218, 0, 65537, 393219, 0, 65537, 393220, 0, 65537, 393221, 0, 65537, 393222, 0, 65537, 393223, 0, 65537, 393224, 0, 65537, 393225, 0, 65538, 458752, 0, 65536, 458753, 0, 65537, 458754, 0, 65537, 458755, 0, 65537, 458756, 0, 65537, 458757, 0, 65537, 458758, 0, 65537, 458759, 0, 65537, 458760, 0, 65537, 458761, 0, 65538, 524288, 0, 65536, 524289, 0, 65537, 524290, 0, 65537, 524291, 0, 65537, 524292, 0, 65537, 524293, 0, 65537, 524294, 0, 65537, 524295, 0, 65537, 524296, 0, 65537, 524297, 0, 65538, 589824, 0, 65536, 589825, 0, 65537, 589826, 0, 65537, 589827, 0, 65537, 589828, 0, 65537, 589829, 0, 65537, 589830, 0, 65537, 589831, 0, 65537, 589832, 0, 65537, 589833, 0, 65538, 655360, 0, 131072, 655361, 0, 131073, 655362, 0, 131073, 655363, 0, 131073, 655364, 0, 131073, 655365, 0, 131073, 655366, 0, 131073, 655367, 0, 131073, 655368, 0, 131073, 655369, 0, 131074 )
+
 [node name="Tiles" type="Node2D" parent="."]
-
-[node name="FloorTile" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 4, 12 )
-script = null
-
-[node name="FloorTile2" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 12, 12 )
-script = null
-
-[node name="FloorTile3" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 20, 12 )
-script = null
-
-[node name="FloorTile4" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 28, 12 )
-script = null
-
-[node name="FloorTile5" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 36, 12 )
-script = null
-
-[node name="FloorTile6" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 44, 12 )
-script = null
-
-[node name="FloorTile7" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 52, 12 )
-script = null
-
-[node name="FloorTile8" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 60, 12 )
-script = null
-
-[node name="FloorTile9" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 4, 20 )
-script = null
-
-[node name="FloorTile10" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 12, 20 )
-script = null
-
-[node name="FloorTile11" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 20, 20 )
-script = null
-
-[node name="FloorTile12" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 28, 20 )
-script = null
-
-[node name="FloorTile13" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 36, 20 )
-script = null
-
-[node name="FloorTile14" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 44, 20 )
-script = null
-
-[node name="FloorTile15" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 52, 20 )
-script = null
-
-[node name="FloorTile16" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 60, 20 )
-script = null
-
-[node name="FloorTile17" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 4, 28 )
-script = null
-
-[node name="FloorTile18" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 12, 28 )
-script = null
-
-[node name="FloorTile19" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 20, 28 )
-script = null
-
-[node name="FloorTile20" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 28, 28 )
-script = null
-
-[node name="FloorTile21" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 36, 28 )
-script = null
-
-[node name="FloorTile22" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 44, 28 )
-script = null
-
-[node name="FloorTile23" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 52, 28 )
-script = null
-
-[node name="FloorTile24" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 60, 28 )
-script = null
-
-[node name="FloorTile25" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 4, 36 )
-script = null
-
-[node name="FloorTile26" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 12, 36 )
-script = null
-
-[node name="FloorTile27" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 20, 36 )
-script = null
-
-[node name="FloorTile28" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 28, 36 )
-script = null
-
-[node name="FloorTile29" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 36, 36 )
-script = null
-
-[node name="FloorTile30" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 44, 36 )
-script = null
-
-[node name="FloorTile31" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 52, 36 )
-script = null
-
-[node name="FloorTile32" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 60, 36 )
-script = null
-
-[node name="FloorTile33" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 4, 44 )
-script = null
-
-[node name="FloorTile34" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 12, 44 )
-script = null
-
-[node name="FloorTile35" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 20, 44 )
-script = null
-
-[node name="FloorTile36" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 28, 44 )
-script = null
-
-[node name="FloorTile37" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 36, 44 )
-script = null
-
-[node name="FloorTile38" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 44, 44 )
-script = null
-
-[node name="FloorTile39" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 52, 44 )
-script = null
-
-[node name="FloorTile40" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 60, 44 )
-script = null
-
-[node name="FloorTile41" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 4, 52 )
-script = null
-
-[node name="FloorTile42" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 12, 52 )
-script = null
-
-[node name="FloorTile43" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 20, 52 )
-script = null
-
-[node name="FloorTile44" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 28, 52 )
-script = null
-
-[node name="FloorTile45" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 36, 52 )
-script = null
-
-[node name="FloorTile46" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 44, 52 )
-script = null
-
-[node name="FloorTile47" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 52, 52 )
-script = null
-
-[node name="FloorTile48" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 60, 52 )
-script = null
-
-[node name="FloorTile49" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 4, 60 )
-script = null
-
-[node name="FloorTile50" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 12, 60 )
-script = null
-
-[node name="FloorTile51" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 20, 60 )
-script = null
-
-[node name="FloorTile52" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 28, 60 )
-script = null
-
-[node name="FloorTile53" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 36, 60 )
-script = null
-
-[node name="FloorTile54" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 44, 60 )
-script = null
-
-[node name="FloorTile55" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 52, 60 )
-script = null
-
-[node name="FloorTile56" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 60, 60 )
-script = null
-
-[node name="Selector" parent="." instance=ExtResource( 2 )]
 
 [node name="MovingObjects" type="Node2D" parent="."]
 
-[node name="TileSelectorModal" parent="." instance=ExtResource( 4 )]
+[node name="Selector" parent="." instance=ExtResource( 2 )]
 
-[node name="AnimationPlayer" parent="TileSelectorModal" index="0"]
-autoplay = "Hidden"
-[connection signal="tile_purchased" from="TileSelectorModal" to="." method="_on_TileSelectorModal_tile_purchased"]
-[connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/CancelButton" to="." method="_on_TileSelectorCancelButton_click"]
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+limit_left = -8
+limit_top = -8
+limit_right = 88
+limit_bottom = 96
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 6 )
 
-[editable path="TileSelectorModal"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_right = 64.0
+margin_bottom = 8.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileSelectorModal" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="CustomCursor" parent="CanvasLayer" instance=ExtResource( 5 )]
+[connection signal="tile_purchased" from="CanvasLayer/TileSelectorModal" to="." method="_on_TileSelectorModal_tile_purchased"]
+[connection signal="click" from="CanvasLayer/TileSelectorModal/SelectionPanel/Panel/CancelButton" to="." method="_on_CancelButton_click"]
+
+[editable path="CanvasLayer/TileSelectorModal"]
