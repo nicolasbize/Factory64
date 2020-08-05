@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Tiles/Belts/conveyor.png" type="Texture" id=1]
+[ext_resource path="res://Tiles/Belts/BaseConveyorTile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tiles/Belts/Flow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tiles/Belts/BeltTile.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "FlowRight"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[node name="BeltTile" instance=ExtResource( 2 )]
+script = ExtResource( 4 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 1 )
+frame = 1
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/FlowRight = SubResource( 1 )
+
+[node name="ValidArea" parent="." index="3"]
+polygon = PoolVector2Array( -4, -2, 4, -2, 4, 2, -4, 2 )
+
+[node name="Flow" parent="." index="4" instance=ExtResource( 3 )]
+
+[node name="FlowArea" parent="Flow" index="0"]
+polygon = PoolVector2Array( -4, -0.909091, 4, -0.909091, 4, 2.72727, -4, 2.72727 )
+
+[editable path="Flow"]

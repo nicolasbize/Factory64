@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 WorldTiles="*res://WorldTiles.gd"
 WorldObjects="*res://WorldObjects.gd"
 Constants="*res://Constants.gd"
+GlobalBeltTimer="*res://Objects/GlobalBeltTimer.tscn"
 
 [display]
 

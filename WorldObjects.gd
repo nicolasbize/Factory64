@@ -39,7 +39,7 @@ func can_move(obj, new_pos):
 	return tile.is_valid_obj_pos(new_pos)
 
 # check if there are other moveable objects where we want to go
-func move(obj, new_pos):
+func try_move(obj, new_pos):
 	if can_move(obj, new_pos):
 		var id = get_id(obj.global_position)
 		var new_id = get_id(new_pos)

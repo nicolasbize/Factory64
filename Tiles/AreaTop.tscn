@@ -1,6 +1,0 @@
-[gd_scene format=2]
-
-[node name="AreaTop" type="Area2D"]
-
-[node name="FlowTop" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -2, 4, -2, 0, 2, 2, 2, 4, -2, 4, -2, 4 )

@@ -13,17 +13,17 @@ export (Size) var size = Size.Small
 
 var active_tile_position = null
 
-const SilverExtractorTile = preload("res://Tiles/SilverExtractorTile.tscn")
-const GoldExtractorTile = preload("res://Tiles/GoldExtractorTile.tscn")
-const IronExtractorTile = preload("res://Tiles/IronExtractorTile.tscn")
-const SiliconExtractorTile = preload("res://Tiles/SiliconExtractorTile.tscn")
-const ConveyorTile = preload("res://Tiles/ConveyorTile.tscn")
-const LConveyorTile = preload("res://Tiles/LConveyorTile.tscn")
-const TConveyorTile = preload("res://Tiles/TConveyorBelt.tscn")
-const VendorTile = preload("res://Tiles/VendorTile.tscn")
-const FactoryTile = preload("res://Tiles/FactoryTile.tscn")
-const BurnerTile = preload("res://Tiles/BurnerTile.tscn")
-const CutterTile = preload("res://Tiles/CutterTile.tscn")
+const SilverExtractorTile = preload("res://Tiles/Extractors/SilverExtractorTile.tscn")
+const GoldExtractorTile = preload("res://Tiles/Extractors/GoldExtractorTile.tscn")
+const IronExtractorTile = preload("res://Tiles/Extractors/IronExtractorTile.tscn")
+const SiliconExtractorTile = preload("res://Tiles/Extractors/SiliconExtractorTile.tscn")
+const BeltTile = preload("res://Tiles/Belts/BeltTile.tscn")
+const LBeltTile = preload("res://Tiles/Belts/LBeltTile.tscn")
+const TBeltTile = preload("res://Tiles/Belts/TBeltTile.tscn")
+const VendorTile = preload("res://Tiles/Equipment/VendorTile.tscn")
+#const FactoryTile = preload("res://Tiles/Equipment/FactoryTile.tscn")
+const FurnaceTile = preload("res://Tiles/OreProcessing/FurnaceTile.tscn")
+#const CutterTile = preload("res://Tiles/CutterTile.tscn")
 
 func _ready():
 	randomize()
@@ -85,17 +85,19 @@ func _on_TileSelectorModal_tile_purchased(tile_type):
 			Constants.TileType.IRON:
 				tile = IronExtractorTile.instance()
 			Constants.TileType.BELT:
-				tile = ConveyorTile.instance()
+				tile = BeltTile.instance()
 			Constants.TileType.LBELT:
-				tile = LConveyorTile.instance()
+				tile = LBeltTile.instance()
 			Constants.TileType.TBELT:
-				tile = TConveyorTile.instance()
+				tile = TBeltTile.instance()
 			Constants.TileType.FURNACE:
-				tile = BurnerTile.instance()
+				tile = FurnaceTile.instance()
 			Constants.TileType.CUTTER:
-				tile = CutterTile.instance()
+				tile = FurnaceTile.instance()
+#				tile = CutterTile.instance()
 			Constants.TileType.FACTORY:
-				tile = FactoryTile.instance()
+				tile = FurnaceTile.instance()
+#				tile = FactoryTile.instance()
 			Constants.TileType.RESELLER:
 				tile = VendorTile.instance()
 		
