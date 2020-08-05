@@ -23,6 +23,7 @@ const TBeltTile = preload("res://Tiles/Belts/TBeltTile.tscn")
 const VendorTile = preload("res://Tiles/Equipment/VendorTile.tscn")
 #const FactoryTile = preload("res://Tiles/Equipment/FactoryTile.tscn")
 const FurnaceTile = preload("res://Tiles/OreProcessing/FurnaceTile.tscn")
+const WireCutterTile = preload("res://Tiles/OreProcessing/WireCutterTile.tscn")
 #const CutterTile = preload("res://Tiles/CutterTile.tscn")
 
 func _ready():
@@ -93,8 +94,7 @@ func _on_TileSelectorModal_tile_purchased(tile_type):
 			Constants.TileType.FURNACE:
 				tile = FurnaceTile.instance()
 			Constants.TileType.CUTTER:
-				tile = FurnaceTile.instance()
-#				tile = CutterTile.instance()
+				tile = WireCutterTile.instance()
 			Constants.TileType.FACTORY:
 				tile = FurnaceTile.instance()
 #				tile = FactoryTile.instance()

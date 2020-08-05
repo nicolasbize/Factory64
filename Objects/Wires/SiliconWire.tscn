@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Objects/Wires/silicon-wire.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Wires/BaseWire.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/MovableObject.gd" type="Script" id=3]
+
+[node name="SiliconWire" instance=ExtResource( 2 )]
+collision_layer = 2147483650
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 1 )

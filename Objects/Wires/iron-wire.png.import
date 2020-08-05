@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/equipment.png-01407ab2615dd511c7b4170164a50968.stex"
+path="res://.import/iron-wire.png-1f89a5512ceea3c141c2e7d93c355d56.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/equipment.png"
-dest_files=[ "res://.import/equipment.png-01407ab2615dd511c7b4170164a50968.stex" ]
+source_file="res://Objects/Wires/iron-wire.png"
+dest_files=[ "res://.import/iron-wire.png-1f89a5512ceea3c141c2e7d93c355d56.stex" ]
 
 [params]
 
