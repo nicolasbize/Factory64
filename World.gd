@@ -1,10 +1,10 @@
 extends Node
 
 onready var selector := $Selector
-onready var tile_selector_modal := $CanvasLayer/TileSelectorModal
 onready var game_tiles = $Tiles
-onready var cursor = $CanvasLayer/CustomCursor
+onready var cursor = $UI/CustomCursor
 onready var camera = $Camera2D
+onready var ui = $UI
 
 export (bool) var chop_mouse_movement = true
 
@@ -33,9 +33,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	update_mouse()
-	if not tile_selector_modal.is_active():	
+	if not ui.is_active:
 		update_selector()
 		if Input.is_action_just_pressed("ui_select") and is_valid_tile(selector.position):
+			camera.move_to(selector.position)
 			show_tile_menu()
 		if Input.is_action_just_pressed("reverse") and is_valid_tile(selector.position):
 			WorldTiles.reverse(selector.position)
@@ -66,14 +67,15 @@ func update_selector():
 func is_valid_tile(pos):
 	return pos.x > 0 and pos.x < 72 and pos.y > 15 and pos.y < 80
 
-
 func show_tile_menu():
 	active_tile_position = selector.position
-	tile_selector_modal.show()
-	
+	var tile = WorldTiles.get_at(active_tile_position)
+	if tile == null:
+		ui.show_selector_modal()
+	else:
+		ui.show_view_modal(tile)
 
-func _on_TileSelectorModal_tile_purchased(tile_type):
-	tile_selector_modal.hide()
+func _on_UI_create_tile(tile_type):
 	if WorldTiles.can_add(active_tile_position):
 		var tile = null
 		match tile_type:
@@ -104,6 +106,3 @@ func _on_TileSelectorModal_tile_purchased(tile_type):
 		game_tiles.add_child(tile)
 		tile.global_position = active_tile_position + Vector2.ONE * 4
 		WorldTiles.add(tile, active_tile_position)
-
-func _on_CancelButton_click():
-	tile_selector_modal.hide()

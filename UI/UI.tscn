@@ -1,0 +1,235 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://UI/TileSelectorModal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/CustomCursor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/TileViewDialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI.gd" type="Script" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Pending"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TileSelectorModal:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 68 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "SlideDown"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("TileSelectorModal:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20 ), Vector2( 0, 68 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_selector_slide_down_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "SlideLeft"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("TileSelectorModal:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -64, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_selector_slide_left_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("TileSelectorModal:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 64 ), Vector2( 0, 20 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_selector_slide_up_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Pending"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TileViewDialog:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 20 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "SlideLeft"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("TileViewDialog:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 20 ), Vector2( 0, 20 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_view_slide_left_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "SlideRight"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("TileViewDialog:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20 ), Vector2( 64, 20 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_view_slide_right_complete"
+} ]
+}
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource( 6 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 64.0
+margin_bottom = 8.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectorAnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Pending"
+anims/Pending = SubResource( 1 )
+anims/SlideDown = SubResource( 2 )
+anims/SlideLeft = SubResource( 3 )
+anims/SlideUp = SubResource( 4 )
+
+[node name="TileSelectorModal" parent="." instance=ExtResource( 2 )]
+margin_top = 64.0
+margin_bottom = 64.0
+
+[node name="ViewAnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Pending"
+anims/Pending = SubResource( 5 )
+anims/SlideLeft = SubResource( 6 )
+anims/SlideRight = SubResource( 7 )
+
+[node name="TileViewDialog" parent="." instance=ExtResource( 4 )]
+margin_left = 64.0
+margin_top = 20.0
+margin_right = 64.0
+margin_bottom = 20.0
+
+[node name="CustomCursor" parent="." instance=ExtResource( 3 )]
+[connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/CloseButton" to="." method="_on_TileSelectorCloseButton_click"]
+[connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/AcceptButton" to="." method="_on_TileSelectorAcceptButton_click"]
+[connection signal="click" from="TileViewDialog/InfoPanel/CloseButton" to="." method="_on_TileViewCloseButton_click"]
+
+[editable path="TileSelectorModal"]
+
+[editable path="TileViewDialog"]
