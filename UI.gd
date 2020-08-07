@@ -37,6 +37,7 @@ func _on_TileSelectorAcceptButton_click(el):
 # View modal
 func show_view_modal(tile):
 	set_active(true)
+	tile_view_modal.set_tile(tile)
 	view_animator.play("SlideLeft")
 
 func _on_view_slide_left_complete():
@@ -47,4 +48,7 @@ func _on_view_slide_right_complete():
 	view_animator.stop(true)	
 
 func _on_TileViewCloseButton_click(el):
+	view_animator.play("SlideRight")
+	
+func _on_TileDestroyButton_click(el):
 	view_animator.play("SlideRight")

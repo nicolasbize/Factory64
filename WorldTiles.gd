@@ -40,3 +40,9 @@ func get_at(position):
 
 func can_add(position):
 	return not tiles.has(get_id(position))
+
+func destroy(tile):
+	var id = get_id(tile.global_position)
+	if tiles.has(id):
+		tiles.erase(id)
+	

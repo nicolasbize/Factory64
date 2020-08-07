@@ -77,12 +77,12 @@ func store_contents():
 		if item != self:
 			# destroy non-ore items
 			if item.type == null or item.type > Constants.ObjectType.GOLD_ORE:
-				destroy(item)
+				destroy_obj(item)
 			elif contents[item.type] < max_item_count:
 				contents[item.type] += 1
-				destroy(item)
+				destroy_obj(item)
 
-func destroy(item):
+func destroy_obj(item):
 	item.queue_free()
 	WorldObjects.destroy(item)
 

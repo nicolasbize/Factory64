@@ -35,7 +35,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 20 ), Vector2( 0, 68 ) ]
+"values": [ Vector2( 0, 36 ), Vector2( 0, 68 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -66,7 +66,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -64, 0 ) ]
+"values": [ Vector2( 0, 36 ), Vector2( -64, 36 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -96,7 +96,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 64 ), Vector2( 0, 20 ) ]
+"values": [ Vector2( 0, 68 ), Vector2( 0, 36 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -210,8 +210,8 @@ anims/SlideLeft = SubResource( 3 )
 anims/SlideUp = SubResource( 4 )
 
 [node name="TileSelectorModal" parent="." instance=ExtResource( 2 )]
-margin_top = 64.0
-margin_bottom = 64.0
+margin_top = 68.0
+margin_bottom = 68.0
 
 [node name="ViewAnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Pending"
@@ -221,14 +221,17 @@ anims/SlideRight = SubResource( 7 )
 
 [node name="TileViewDialog" parent="." instance=ExtResource( 4 )]
 margin_left = 64.0
-margin_top = 20.0
+margin_top = 36.0
 margin_right = 64.0
-margin_bottom = 20.0
+margin_bottom = 0.0
 
 [node name="CustomCursor" parent="." instance=ExtResource( 3 )]
 [connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/CloseButton" to="." method="_on_TileSelectorCloseButton_click"]
 [connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/AcceptButton" to="." method="_on_TileSelectorAcceptButton_click"]
 [connection signal="click" from="TileViewDialog/InfoPanel/CloseButton" to="." method="_on_TileViewCloseButton_click"]
+[connection signal="click" from="TileViewDialog/InfoPanel/DestroyButton" to="TileViewDialog" method="_on_DestroyButton_click"]
+[connection signal="click" from="TileViewDialog/InfoPanel/DestroyButton" to="." method="_on_TileDestroyButton_click"]
+[connection signal="click" from="TileViewDialog/InfoPanel/ClearButton" to="TileViewDialog" method="_on_ClearButton_click"]
 
 [editable path="TileSelectorModal"]
 

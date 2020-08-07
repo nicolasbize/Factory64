@@ -13,9 +13,15 @@ func add(obj, position):
 
 func get_id(position):
 	return str(position.x) + "," + str(position.y)
-	
+
 func has_at(position):
 	return objects.has(get_id(position))
+
+func get_at(position):
+	if has_at(position):
+		return objects[get_id(position)]
+	else:
+		return null
 
 func id_to_pos(id):
 	var parts = id.split(",")

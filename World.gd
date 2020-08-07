@@ -105,4 +105,5 @@ func _on_UI_create_tile(tile_type):
 		
 		game_tiles.add_child(tile)
 		tile.global_position = active_tile_position + Vector2.ONE * 4
+		tile.type = tile_type
 		WorldTiles.add(tile, active_tile_position)

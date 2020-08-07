@@ -25,6 +25,7 @@ WorldTiles="*res://WorldTiles.gd"
 WorldObjects="*res://WorldObjects.gd"
 Constants="*res://Constants.gd"
 GlobalBeltTimer="*res://Objects/GlobalBeltTimer.tscn"
+GameState="*res://GameState.gd"
 
 [display]
 

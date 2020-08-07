@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cancel-button.png-9e84d25ed99082720dd1aeb884a2525e.stex"
+path="res://.import/visual-queue.png-c0e8e1e4ed75c28720aa159469470a84.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/cancel-button.png"
-dest_files=[ "res://.import/cancel-button.png-9e84d25ed99082720dd1aeb884a2525e.stex" ]
+source_file="res://UI/visual-queue.png"
+dest_files=[ "res://.import/visual-queue.png-c0e8e1e4ed75c28720aa159469470a84.stex" ]
 
 [params]
 

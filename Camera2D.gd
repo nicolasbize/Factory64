@@ -28,4 +28,4 @@ func _process(delta):
 			global_position.y += 1
 
 func move_to(position):
-	target_position = position - Vector2(28, 10)
+	target_position = position - Vector2(28, 18)
