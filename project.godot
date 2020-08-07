@@ -26,11 +26,13 @@ WorldObjects="*res://WorldObjects.gd"
 Constants="*res://Constants.gd"
 GlobalBeltTimer="*res://Objects/GlobalBeltTimer.tscn"
 GameState="*res://GameState.gd"
+Recipe="*res://Recipe.gd"
 
 [display]
 
 window/size/width=64
 window/size/height=64
+window/size/resizable=false
 window/size/always_on_top=true
 window/size/test_width=512
 window/size/test_height=512

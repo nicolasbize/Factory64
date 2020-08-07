@@ -11,6 +11,7 @@ shader_param/grayscale = false
 material = SubResource( 1 )
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
