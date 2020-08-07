@@ -25,9 +25,10 @@ var max_burners_upgrade = 0
 var max_cutters_upgrade = 0
 var max_factories_upgrade = 0
 var max_assemblies_upgrade = 0
-var extractor_speed_upgrade = 0
-var burner_speed_upgrade = 0
-var cutter_speed_upgrade = 0
-var factories_speed_upgrade = 0
-var assemblies_speed_upgrade = 0
-var belt_speed_upgrade = 0
+
+var extractor_power_upgrade = 0
+var burner_power_upgrade = 0
+var cutter_power_upgrade = 0
+var factories_power_upgrade = 0
+var assemblies_power_upgrade = 0
+var belt_power_upgrade = 0

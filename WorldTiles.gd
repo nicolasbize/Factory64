@@ -6,10 +6,21 @@ var tiles = {}
 func add(tile, position):
 	var tile_id = get_id(position)
 	if tiles.has(tile_id):
-#		print("cannot place tile, spot already taken")
 		pass
 	tiles[tile_id] = tile
-#	print("adding tile with id " + tile_id)
+	match tile.type:
+		Constants.TileType.ASSEMBLY:
+			GameState.nb_assemblies += 1
+		Constants.TileType.CUTTER:
+			GameState.nb_cutters += 1
+		Constants.TileType.FACTORY:
+			GameState.nb_factories += 1
+		Constants.TileType.FURNACE:
+			GameState.nb_burners += 1
+		Constants.TileType.GOLD, Constants.TileType.IRON, Constants.TileType.SILICON, Constants.TileType.GOLD:
+			GameState.nb_extractors += 1
+		Constants.TileType.RESELLER:
+			GameState.nb_sellers += 1
 
 func rotate(position, angle):
 	var tile_id = get_id(position)
@@ -45,4 +56,17 @@ func destroy(tile):
 	var id = get_id(tile.global_position)
 	if tiles.has(id):
 		tiles.erase(id)
+	match tile.type:
+		Constants.TileType.ASSEMBLY:
+			GameState.nb_assemblies -= 1
+		Constants.TileType.CUTTER:
+			GameState.nb_cutters -= 1
+		Constants.TileType.FACTORY:
+			GameState.nb_factories -= 1
+		Constants.TileType.FURNACE:
+			GameState.nb_burners -= 1
+		Constants.TileType.GOLD, Constants.TileType.IRON, Constants.TileType.SILICON, Constants.TileType.GOLD:
+			GameState.nb_extractors -= 1
+		Constants.TileType.RESELLER:
+			GameState.nb_sellers -= 1
 	

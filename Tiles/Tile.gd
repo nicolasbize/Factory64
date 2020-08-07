@@ -47,3 +47,18 @@ func destroy():
 	var tile = WorldTiles.get_at(global_position)
 	WorldTiles.destroy(tile)
 	queue_free()
+
+func set_power(pwr):
+	power = pwr
+	match power:
+		Constants.Power.LOWEST:
+			speed = 1
+		Constants.Power.LOW:
+			speed = 0.8
+		Constants.Power.MEDIUM:
+			speed = 0.6
+		Constants.Power.HIGH:
+			speed = 0.4
+		Constants.Power.HIGHEST:
+			speed = 0.2
+	print("speed set to " + str(speed))

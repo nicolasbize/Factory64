@@ -81,25 +81,39 @@ func _on_UI_create_tile(tile_type):
 		match tile_type:
 			Constants.TileType.SILVER:
 				tile = SilverExtractorTile.instance()
+				tile.set_power(GameState.extractor_power_upgrade)
 			Constants.TileType.GOLD:
 				tile = GoldExtractorTile.instance()
+				tile.set_power(GameState.extractor_power_upgrade)
 			Constants.TileType.SILICON:
 				tile = SiliconExtractorTile.instance()
+				tile.set_power(GameState.extractor_power_upgrade)
 			Constants.TileType.IRON:
 				tile = IronExtractorTile.instance()
+				tile.set_power(GameState.extractor_power_upgrade)
 			Constants.TileType.BELT:
 				tile = BeltTile.instance()
+				tile.set_power(GameState.belt_power_upgrade)
 			Constants.TileType.LBELT:
 				tile = LBeltTile.instance()
+				tile.set_power(GameState.belt_power_upgrade)
 			Constants.TileType.TBELT:
 				tile = TBeltTile.instance()
+				tile.set_power(GameState.belt_power_upgrade)
 			Constants.TileType.FURNACE:
 				tile = FurnaceTile.instance()
+				tile.set_power(GameState.burner_power_upgrade)
 			Constants.TileType.CUTTER:
 				tile = WireCutterTile.instance()
+				tile.set_power(GameState.cutter_power_upgrade)
 			Constants.TileType.FACTORY:
 				tile = FurnaceTile.instance()
 #				tile = FactoryTile.instance()
+				tile.set_power(GameState.factory_power_upgrade)
+			Constants.TileType.ASSEMBLY:
+				tile = FurnaceTile.instance()
+#				tile = FactoryTile.instance()
+				tile.set_power(GameState.assembly_power_upgrade + 1)
 			Constants.TileType.RESELLER:
 				tile = VendorTile.instance()
 		

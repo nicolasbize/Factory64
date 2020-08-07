@@ -11,6 +11,7 @@ func _process(delta):
 	animationPlayer.play("Enabled")
 
 func _on_TileTimer_timeout():
+	tile_timer.start(speed)
 	var target_tile = null
 	if direction == Facing.RIGHT:
 		target_tile = WorldTiles.get_at(global_position + Vector2(8, 0))
@@ -19,9 +20,8 @@ func _on_TileTimer_timeout():
 			for y in range(-2, 2):
 				spots.append(global_position + Vector2(4, y))
 			spots.shuffle()
-			spots = spots.slice(0, efficiency - 1)
-			for pos in spots:
-				attempt_send_ore(target_tile, pos)
+			attempt_send_ore(target_tile, spots[0])
+				
 	elif direction == Facing.LEFT:
 		target_tile = WorldTiles.get_at(global_position + Vector2(-8, 0))
 		if target_tile != null:
@@ -29,9 +29,7 @@ func _on_TileTimer_timeout():
 			for y in range(-2, 2):
 				spots.append(global_position + Vector2(-4, y))
 			spots.shuffle()
-			spots = spots.slice(0, efficiency - 1)
-			for pos in spots:
-				attempt_send_ore(target_tile, pos)
+			attempt_send_ore(target_tile, spots[0])
 	elif direction == Facing.UP:
 		target_tile = WorldTiles.get_at(global_position + Vector2(0, -8))
 		if target_tile != null:
@@ -39,9 +37,7 @@ func _on_TileTimer_timeout():
 			for x in range(-2, 2):
 				spots.append(global_position + Vector2(x, -5))
 			spots.shuffle()
-			spots = spots.slice(0, efficiency - 1)
-			for pos in spots:
-				attempt_send_ore(target_tile, pos)
+			attempt_send_ore(target_tile, spots[0])
 	elif direction == Facing.DOWN:
 		target_tile = WorldTiles.get_at(global_position + Vector2(0, 8))
 		if target_tile != null:
@@ -49,9 +45,7 @@ func _on_TileTimer_timeout():
 			for x in range(-2, 2):
 				spots.append(global_position + Vector2(x, 4))
 			spots.shuffle()
-			spots = spots.slice(0, efficiency - 1)
-			for pos in spots:
-				attempt_send_ore(target_tile, pos)
+			attempt_send_ore(target_tile, spots[0])
 				
 
 func attempt_send_ore(tile, pos):

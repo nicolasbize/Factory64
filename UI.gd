@@ -15,6 +15,7 @@ func set_active(value):
 # Selector
 func show_selector_modal():
 	set_active(true)
+	tile_selector_modal.refresh_ui()
 	selector_animator.play("SlideUp")
 
 func _on_selector_slide_up_complete():
@@ -31,8 +32,9 @@ func _on_TileSelectorCloseButton_click(el):
 	selector_animator.play("SlideDown")
 
 func _on_TileSelectorAcceptButton_click(el):
-	selector_animator.play("SlideDown")
-	emit_signal("create_tile", tile_selector_modal.current_type)
+	if not tile_selector_modal.is_disabled:
+		selector_animator.play("SlideDown")
+		emit_signal("create_tile", tile_selector_modal.current_type)
 
 # View modal
 func show_view_modal(tile):
