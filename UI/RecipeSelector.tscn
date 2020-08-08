@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/ClickableButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/right-button.png" type="Texture" id=2]
+[ext_resource path="res://UI/left-button.png" type="Texture" id=3]
+[ext_resource path="res://UI/RecipeIngredient.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/RecipeSelector.gd" type="Script" id=6]
+[ext_resource path="res://UI/recipe-transform.png" type="Texture" id=7]
+
+[node name="RecipeSelector" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -6.0
+margin_bottom = -53.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftButton" parent="." instance=ExtResource( 1 )]
+margin_top = 1.0
+margin_right = 7.0
+margin_bottom = 11.0
+texture = ExtResource( 3 )
+
+[node name="RightButton" parent="." instance=ExtResource( 1 )]
+margin_left = 51.0
+margin_top = 1.0
+margin_right = 58.0
+margin_bottom = 11.0
+texture = ExtResource( 2 )
+
+[node name="TransformSprite" type="Sprite" parent="."]
+position = Vector2( 39, 6 )
+texture = ExtResource( 7 )
+
+[node name="RecipeIngredient1" parent="." instance=ExtResource( 4 )]
+margin_left = 27.0
+margin_right = 35.0
+
+[node name="RecipeIngredient2" parent="." instance=ExtResource( 4 )]
+margin_left = 18.0
+margin_right = 26.0
+
+[node name="RecipeIngredient3" parent="." instance=ExtResource( 4 )]
+margin_left = 9.0
+margin_right = 17.0
+
+[node name="Output" parent="." instance=ExtResource( 4 )]
+margin_left = 41.0
+margin_right = 49.0
+
+[node name="TrackerSprite" parent="Output" index="2"]
+visible = false
+
+[node name="ProgressSprite" parent="Output" index="3"]
+visible = false
+[connection signal="click" from="LeftButton" to="." method="_on_LeftButton_click"]
+[connection signal="click" from="RightButton" to="." method="_on_RightButton_click"]
+
+[editable path="RecipeIngredient1"]
+
+[editable path="RecipeIngredient2"]
+
+[editable path="RecipeIngredient3"]
+
+[editable path="Output"]

@@ -30,5 +30,4 @@ var extractor_power_upgrade = 0
 var burner_power_upgrade = 0
 var cutter_power_upgrade = 0
 var factories_power_upgrade = 0
-var assemblies_power_upgrade = 0
 var belt_power_upgrade = 0

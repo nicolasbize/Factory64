@@ -21,10 +21,10 @@ const BeltTile = preload("res://Tiles/Belts/BeltTile.tscn")
 const LBeltTile = preload("res://Tiles/Belts/LBeltTile.tscn")
 const TBeltTile = preload("res://Tiles/Belts/TBeltTile.tscn")
 const VendorTile = preload("res://Tiles/Equipment/VendorTile.tscn")
-#const FactoryTile = preload("res://Tiles/Equipment/FactoryTile.tscn")
+const FactoryTile = preload("res://Tiles/Equipment/FactoryTile.tscn")
+const AssemblyTile = preload("res://Tiles/Equipment/AssemblyTile.tscn")
 const FurnaceTile = preload("res://Tiles/OreProcessing/FurnaceTile.tscn")
 const WireCutterTile = preload("res://Tiles/OreProcessing/WireCutterTile.tscn")
-#const CutterTile = preload("res://Tiles/CutterTile.tscn")
 
 func _ready():
 	randomize()
@@ -107,13 +107,9 @@ func _on_UI_create_tile(tile_type):
 				tile = WireCutterTile.instance()
 				tile.set_power(GameState.cutter_power_upgrade)
 			Constants.TileType.FACTORY:
-				tile = FurnaceTile.instance()
-#				tile = FactoryTile.instance()
-				tile.set_power(GameState.factory_power_upgrade)
+				tile = FactoryTile.instance()
 			Constants.TileType.ASSEMBLY:
-				tile = FurnaceTile.instance()
-#				tile = FactoryTile.instance()
-				tile.set_power(GameState.assembly_power_upgrade + 1)
+				tile = AssemblyTile.instance()
 			Constants.TileType.RESELLER:
 				tile = VendorTile.instance()
 		
