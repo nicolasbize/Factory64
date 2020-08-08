@@ -51,13 +51,13 @@ func set_tile(tile):
 		recipe_selector.visible = true
 		power_meter.visible = false
 		if tile.type == Constants.TileType.FACTORY:
-			recipe_selector.init([ \
-				Constants.ObjectType.BATTERY, \
-				Constants.ObjectType.CAPACITOR \
-			])
+			recipe_selector.init(Constants.FactoryOutputs)
+		elif tile.type == Constants.TileType.ASSEMBLY:
+			recipe_selector.init(Constants.AssemblyOutputs)
 
 func _on_ClearButton_click(el):
 	active_tile.clear()
 
 func _on_DestroyButton_click(el):
+	active_tile.clear()
 	active_tile.destroy()

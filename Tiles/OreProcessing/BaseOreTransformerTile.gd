@@ -8,6 +8,26 @@ const SilverWire = preload("res://Objects/Wires/SilverWire.tscn")
 const IronWire = preload("res://Objects/Wires/IronWire.tscn")
 const SiliconWire = preload("res://Objects/Wires/SiliconWire.tscn")
 const GoldWire = preload("res://Objects/Wires/GoldWire.tscn")
+const Battery = preload("res://Objects/Components/Battery.tscn")
+const Capacitor = preload("res://Objects/Components/Capacitor.tscn")
+const Chip = preload("res://Objects/Components/Chip.tscn")
+const Circuit = preload("res://Objects/Components/Circuit.tscn")
+const Diode = preload("res://Objects/Components/Diode.tscn")
+const Inductor = preload("res://Objects/Components/Inductor.tscn")
+const Relay = preload("res://Objects/Components/Relay.tscn")
+const Resistor = preload("res://Objects/Components/Resistor.tscn")
+const Transistor = preload("res://Objects/Components/Transistor.tscn")
+const Computer = preload("res://Objects/Products/Computer.tscn")
+const CPU = preload("res://Objects/Products/CPU.tscn")
+const Fan = preload("res://Objects/Products/Fan.tscn")
+const GPU = preload("res://Objects/Products/GPU.tscn")
+const Monitor = preload("res://Objects/Products/Monitor.tscn")
+const Motherboard = preload("res://Objects/Products/Motherboard.tscn")
+const Phone = preload("res://Objects/Products/Phone.tscn")
+const PSU = preload("res://Objects/Products/PSU.tscn")
+const Radio = preload("res://Objects/Products/Radio.tscn")
+const Memory = preload("res://Objects/Products/Memory.tscn")
+const Speaker = preload("res://Objects/Products/Speaker.tscn")
 
 onready var storage_area = $StorageArea
 onready var process_timer = $ProcessTimer
@@ -111,6 +131,46 @@ func create_item_from_object_type(obj_type):
 			created_item = GoldWire.instance()
 		Constants.ObjectType.IRON_WIRE:
 			created_item = IronWire.instance()
+		Constants.ObjectType.BATTERY:
+			created_item = Battery.instance()
+		Constants.ObjectType.CAPACITOR:
+			created_item = Capacitor.instance()
+		Constants.ObjectType.CHIP:
+			created_item = Chip.instance()
+		Constants.ObjectType.CIRCUIT:
+			created_item = Circuit.instance()
+		Constants.ObjectType.DIODE:
+			created_item = Diode.instance()
+		Constants.ObjectType.INDUCTOR:
+			created_item = Inductor.instance()
+		Constants.ObjectType.RELAY:
+			created_item = Relay.instance()
+		Constants.ObjectType.RESISTOR:
+			created_item = Resistor.instance()
+		Constants.ObjectType.TRANSISTOR:
+			created_item = Transistor.instance()
+		Constants.ObjectType.COMPUTER:
+			created_item = Computer.instance()
+		Constants.ObjectType.CPU:
+			created_item = CPU.instance()
+		Constants.ObjectType.FAN:
+			created_item = Fan.instance()
+		Constants.ObjectType.GPU:
+			created_item = GPU.instance()
+		Constants.ObjectType.MONITOR:
+			created_item = Monitor.instance()
+		Constants.ObjectType.MOTHERBOARD:
+			created_item = Motherboard.instance()
+		Constants.ObjectType.PHONE:
+			created_item = Phone.instance()
+		Constants.ObjectType.PSU:
+			created_item = PSU.instance()
+		Constants.ObjectType.RADIO:
+			created_item = Radio.instance()
+		Constants.ObjectType.MEMORY:
+			created_item = Memory.instance()
+		Constants.ObjectType.SPEAKER:
+			created_item = Speaker.instance()
 	created_item.set_type(obj_type)
 	return created_item
 	

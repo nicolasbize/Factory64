@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Objects/Products/gpu.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Products/Computer.tscn" type="PackedScene" id=2]
+
+[node name="GPU" instance=ExtResource( 2 )]
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 1 )

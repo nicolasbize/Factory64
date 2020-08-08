@@ -29,13 +29,6 @@ func _ready():
 	sprite_els = [ingredient1_sprite, ingredient2_sprite, ingredient3_sprite]
 	tracker_els = [tracker1, tracker2, tracker3]
 	progress_els = [progress1, progress2, progress3]
-	init([ \
-	Constants.ObjectType.BATTERY, Constants.ObjectType.CAPACITOR, \
-#	Constants.ObjectType.CHIP, Constants.ObjectType.CIRCUIT, \
-#	Constants.ObjectType.DIODE, Constants.ObjectType.INDUCTOR, \
-#	Constants.ObjectType.RELAY, Constants.ObjectType.RESISTOR, \
-#	Constants.ObjectType.TRANSISTOR \
-	])
 
 func init(output_types):
 	recipes = []

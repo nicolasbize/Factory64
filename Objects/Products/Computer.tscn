@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Objects/Products/computer.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Components/BaseComponent.tscn" type="PackedScene" id=2]
+
+[node name="Computer" instance=ExtResource( 2 )]
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 1 )
+offset = Vector2( -1, -5 )
