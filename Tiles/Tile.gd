@@ -61,7 +61,6 @@ func set_power(pwr):
 			speed = 0.4
 		Constants.Power.HIGHEST:
 			speed = 0.2
-	print("speed set to " + str(speed))
 
 func is_upgradable():
 	return type != Constants.TileType.FACTORY and type != Constants.TileType.ASSEMBLY

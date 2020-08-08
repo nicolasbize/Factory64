@@ -173,3 +173,4 @@ __meta__ = {
 [connection signal="click" from="InfoPanel/PowerMeter/Lvl-3Button" to="." method="_on_LvlButton_click"]
 [connection signal="click" from="InfoPanel/PowerMeter/Lvl-4Button" to="." method="_on_LvlButton_click"]
 [connection signal="click" from="InfoPanel/PowerMeter/Lvl-5Button" to="." method="_on_LvlButton_click"]
+[connection signal="change_recipe" from="InfoPanel/RecipeSelector" to="." method="_on_RecipeSelector_change_recipe"]

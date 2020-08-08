@@ -16,7 +16,7 @@ onready var output_sprite = $Output/ObjectSprite
 
 var recipes = []
 var current_index = 0
-var current_storage = {}
+var current_storage = []
 var item_els = []
 var sprite_els = []
 var tracker_els = []
@@ -29,12 +29,15 @@ func _ready():
 	sprite_els = [ingredient1_sprite, ingredient2_sprite, ingredient3_sprite]
 	tracker_els = [tracker1, tracker2, tracker3]
 	progress_els = [progress1, progress2, progress3]
+	current_storage = []
+	for i in range(Constants.ObjectType.size()):
+		current_storage.append(0)
 
 func init(output_types):
 	recipes = []
 	recipes += output_types
 	current_index = 0
-	refresh_ui({})
+	refresh_ui(current_storage)
 	
 func refresh_ui(storage):
 	current_storage = storage
@@ -48,8 +51,10 @@ func refresh_ui(storage):
 		var ingredient = ingredients[i]
 		var type = ingredient.get("type")
 		sprite_els[i].frame = type
-		tracker_els[i].scale.x = ingredient.get("quantity")
-		progress_els[i].scale.x = storage.get(type) if storage.has(type) else 0
+		var required_quantity = ingredient.get("quantity")
+		var current_quantity = min(storage[type], required_quantity)
+		tracker_els[i].scale.x = required_quantity
+		progress_els[i].scale.x = current_quantity
 
 
 func _on_LeftButton_click(el):
@@ -57,11 +62,15 @@ func _on_LeftButton_click(el):
 	if current_index < 0:
 		current_index = 0
 	refresh_ui(current_storage)
-	emit_signal("change_recipe", current_index)
+	emit_signal("change_recipe", recipes[current_index])
 
 func _on_RightButton_click(el):
 	current_index += 1
 	if current_index > recipes.size() - 1:
 		current_index = recipes.size() - 1
 	refresh_ui(current_storage)
-	emit_signal("change_recipe", current_index)
+	emit_signal("change_recipe", recipes[current_index])
+
+func set_recipe(recipe):
+	current_index = recipes.find(recipe)
+	refresh_ui(current_storage)

@@ -20,14 +20,25 @@ var max_assemblies = 3
 var max_sellers = 3
 
 # lab upgrades
-var max_extractors_upgrade = 0
-var max_burners_upgrade = 0
-var max_cutters_upgrade = 0
-var max_factories_upgrade = 0
-var max_assemblies_upgrade = 0
-
 var extractor_power_upgrade = 0
 var burner_power_upgrade = 0
 var cutter_power_upgrade = 0
 var factories_power_upgrade = 0
 var belt_power_upgrade = 0
+var assembly_power_upgrade = 0
+var factory_power_upgrade = 0
+
+func boost_game():
+	max_extractors = 30
+	max_burners = 30
+	max_cutters = 30
+	max_factories = 30
+	max_assemblies = 30
+	max_sellers = 30
+	extractor_power_upgrade = 4
+	burner_power_upgrade = 4
+	cutter_power_upgrade = 4
+	factories_power_upgrade = 4
+	belt_power_upgrade = 4
+	assembly_power_upgrade = 4
+	factory_power_upgrade = 4

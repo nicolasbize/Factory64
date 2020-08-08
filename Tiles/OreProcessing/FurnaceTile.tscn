@@ -14,5 +14,8 @@ frame = 5
 [node name="ValidArea" parent="." index="3"]
 polygon = PoolVector2Array( -4, -3, -2, -3, -2, 3, -4, 3 )
 
+[node name="CollisionShape2D" parent="StorageArea" index="0"]
+position = Vector2( -1, 0 )
+
 [node name="ProcessTimer" parent="." index="5"]
 wait_time = 5.0

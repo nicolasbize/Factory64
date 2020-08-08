@@ -29,6 +29,7 @@ const WireCutterTile = preload("res://Tiles/OreProcessing/WireCutterTile.tscn")
 func _ready():
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	GameState.boost_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

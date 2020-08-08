@@ -26,6 +26,8 @@ func _on_LvlButton_click(button):
 			active_tile.set_power(Constants.Power.HIGHEST)
 
 func set_tile(tile):
+	if tile != null:
+		tile.disconnect("storage_change", self, "_on_storage_change")
 	active_tile = tile
 	if tile.is_upgradable():
 		tick.rect_position = Vector2(37, 6) + Vector2.RIGHT * 5 * tile.power
@@ -54,6 +56,11 @@ func set_tile(tile):
 			recipe_selector.init(Constants.FactoryOutputs)
 		elif tile.type == Constants.TileType.ASSEMBLY:
 			recipe_selector.init(Constants.AssemblyOutputs)
+		recipe_selector.set_recipe(tile.active_recipe)
+		tile.connect("storage_change", self, "_on_storage_change")
+		
+func _on_storage_change(contents):
+	recipe_selector.refresh_ui(contents)
 
 func _on_ClearButton_click(el):
 	active_tile.clear()
@@ -61,3 +68,6 @@ func _on_ClearButton_click(el):
 func _on_DestroyButton_click(el):
 	active_tile.clear()
 	active_tile.destroy()
+
+func _on_RecipeSelector_change_recipe(type):
+	active_tile.active_recipe = type

@@ -29,19 +29,20 @@ const Radio = preload("res://Objects/Products/Radio.tscn")
 const Memory = preload("res://Objects/Products/Memory.tscn")
 const Speaker = preload("res://Objects/Products/Speaker.tscn")
 
+enum {PENDING, POWERUP, BUSY, POWERDOWN }
+
 onready var storage_area = $StorageArea
 onready var process_timer = $ProcessTimer
 
 var max_item_count = 10
 var currently_processing = null
 var currently_stored = null
-export (int) var process_speed = 5
-
-# array of quantity per object types
-var contents = []
-
-enum {PENDING, POWERUP, BUSY, POWERDOWN }
 var status = PENDING
+var contents = [] # array of quantity per object types
+export (int) var process_speed = 5
+export (bool) var destroy_invalid_inputs = true
+
+signal storage_change(storage)
 
 func _ready():
 	for i in range(Constants.ObjectType.size()):
@@ -177,6 +178,7 @@ func create_item_from_object_type(obj_type):
 func expulse(item, pos):
 	var main = get_tree().current_scene.find_node("MovingObjects", false, false)
 	main.add_child(item)
+	main.move_child(item, 0)
 	item.global_position = pos
 	WorldObjects.add(item, pos)
 	currently_stored = null
@@ -187,13 +189,15 @@ func store_contents():
 		if item != self:
 			# destroy non-ore items
 			if item.type == null or should_destroy_item(item):
+				print("should destroy")
 				destroy_obj(item)
 			elif contents[item.type] < max_item_count:
 				contents[item.type] += 1
+				emit_signal("storage_change", contents)
 				destroy_obj(item)
 
 func should_destroy_item(item):
-	return not get_list_valid_inputs().has(item.type)
+	return (not get_list_valid_inputs().has(item.type)) and destroy_invalid_inputs
 
 func destroy_obj(item):
 	item.queue_free()
@@ -201,7 +205,7 @@ func destroy_obj(item):
 
 func _on_PowerUp_done():
 	status = BUSY
-	process_timer.start(process_speed)
+	process_timer.start(process_speed - get_tile_upgrade() - power)
 
 func _on_PowerDown_done():
 	status = PENDING
@@ -218,6 +222,9 @@ func get_list_valid_inputs():
 		for input_type in Recipe.book.get(output):
 			input_types.append(input_type.get("type"))
 	return input_types
+
+func get_tile_upgrade():
+	return 0
 
 func get_list_valid_outputs():
 	print("not implemented by parent class")	
