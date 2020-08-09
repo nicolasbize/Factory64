@@ -3,7 +3,7 @@ extends Node
 const MAX_UPGRADES = 5
 
 # stats
-var money = 0
+var money = 100000
 var nb_extractors = 0
 var nb_burners = 0
 var nb_cutters = 0
@@ -28,6 +28,8 @@ var belt_power_upgrade = 0
 var assembly_power_upgrade = 0
 var factory_power_upgrade = 0
 
+signal money_change
+
 func boost_game():
 	max_extractors = 30
 	max_burners = 30
@@ -42,3 +44,7 @@ func boost_game():
 	belt_power_upgrade = 4
 	assembly_power_upgrade = 4
 	factory_power_upgrade = 4
+
+func income(cash):
+	money += cash
+	emit_signal("money_change")

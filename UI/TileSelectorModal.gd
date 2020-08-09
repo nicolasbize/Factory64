@@ -44,7 +44,7 @@ func refresh_ui():
 	if is_disabled:
 		animation_player.play("Disabled")
 	else:
-		animation_player.play("Enabled")		
+		animation_player.play("Enabled")
 			
 func _on_LeftButton_click(el):
 	current_type -= 1
@@ -54,6 +54,6 @@ func _on_LeftButton_click(el):
 
 func _on_RightButton_click(el):
 	current_type += 1
-	if current_type > Constants.TileType.keys().size():
+	if current_type > Constants.TileType.keys().size() - 1:
 		current_type = Constants.TileType.keys().size() - 1
 	refresh_ui()

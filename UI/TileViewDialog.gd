@@ -29,6 +29,8 @@ func set_tile(tile):
 	if tile != null:
 		tile.disconnect("storage_change", self, "_on_storage_change")
 	active_tile = tile
+	recipe_selector.visible = false
+	power_meter.visible = false	
 	if tile.is_upgradable():
 		tick.rect_position = Vector2(37, 6) + Vector2.RIGHT * 5 * tile.power
 		var upgraded = 0

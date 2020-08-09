@@ -102,9 +102,9 @@ func get_next_open_spot():
 	if direction == Facing.RIGHT:
 		spot = global_position + Vector2.RIGHT * 4
 	elif direction == Facing.LEFT:
-		spot = global_position + Vector2.LEFT * 4
+		spot = global_position + Vector2.LEFT * 5
 	elif direction == Facing.UP:
-		spot = global_position + Vector2.UP * 4
+		spot = global_position + Vector2.UP * 5
 	else:
 		spot = global_position + Vector2.DOWN * 4	
 	target_tile = WorldTiles.get_at(spot)

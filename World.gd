@@ -34,7 +34,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	update_mouse()
-	if not ui.is_active:
+	if mouse_over_top_bar():
+		selector.visible = false
+	elif not ui.is_active:
 		update_selector()
 		if Input.is_action_just_pressed("ui_select") and is_valid_tile(selector.position):
 			camera.move_to(selector.position)
@@ -42,6 +44,8 @@ func _process(delta):
 		if Input.is_action_just_pressed("reverse") and is_valid_tile(selector.position):
 			WorldTiles.reverse(selector.position)
 
+func mouse_over_top_bar():
+	return get_viewport().get_mouse_position().y < 9
 	
 func update_mouse():
 	# chop on purpose

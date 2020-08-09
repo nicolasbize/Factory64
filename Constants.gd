@@ -1,6 +1,7 @@
 extends Node
 
 enum TileType {IRON, SILVER, SILICON, GOLD, BELT, LBELT, TBELT, FURNACE, CUTTER, FACTORY, ASSEMBLY, RESELLER}
+var TileCosts=[30,   30,     30,      30,   0,    0,     0,     80,      80,     100,     200,      200]
 
 enum Power {LOWEST, LOW, MEDIUM, HIGH, HIGHEST}
 
@@ -11,6 +12,14 @@ enum ObjectType {IRON_ORE, SILVER_ORE, SILICON_ORE, GOLD_ORE,
 				 DIODE, RELAY, BATTERY, CIRCUIT,
 				 FAN, CHIP, SPEAKER, MEMORY,
 				 PSU, CPU, GPU, MONITOR, RADIO, MOTHERBOARD, PHONE, COMPUTER }
+var ObjectPrices = [0, 0, 0, 0,
+					10, 10, 10, 10,
+					10, 10, 10, 10,
+					100, 120, 150, 180,
+					250, 300, 350, 400,
+					700, 900, 1200, 1300,
+					1500, 1750, 2000, 2500, 3000, 3600, 4500, 8000]
+
 
 var FurnaceOutputs = [
 	ObjectType.IRON_PLATE,

@@ -41,7 +41,6 @@ tracks/0/keys = {
 
 [node name="LBeltTile" instance=ExtResource( 4 )]
 script = ExtResource( 2 )
-speed = 1.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
