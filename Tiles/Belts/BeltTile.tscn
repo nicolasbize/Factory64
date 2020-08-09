@@ -38,6 +38,7 @@ polygon = PoolVector2Array( -4, -2, 4, -2, 4, 2, -4, 2 )
 [node name="Flow" parent="." index="4" instance=ExtResource( 3 )]
 
 [node name="FlowArea" parent="Flow" index="0"]
+visible = false
 polygon = PoolVector2Array( -4, -0.909091, 4, -0.909091, 4, 2.72727, -4, 2.72727 )
 
 [editable path="Flow"]

@@ -82,23 +82,23 @@ var book = {
 		"quantity": 1
 	}, {
 		"type": Constants.ObjectType.RESISTOR,
-		"quantity": 1
+		"quantity": 3
 	}],
 	Constants.ObjectType.CIRCUIT: [{
 		"type": Constants.ObjectType.SILICON_PLATE,
-		"quantity": 2
+		"quantity": 5
 	}, {
 		"type": Constants.ObjectType.CAPACITOR,
-		"quantity": 2
+		"quantity": 3
 	}],
 	
 	# 2x assembly with components only
 	Constants.ObjectType.FAN: [{
-		"type": Constants.ObjectType.RELAY,
-		"quantity": 3
+		"type": Constants.ObjectType.DIODE,
+		"quantity": 1
 	}, {
-		"type": Constants.ObjectType.BATTERY,
-		"quantity": 2
+		"type": Constants.ObjectType.RELAY,
+		"quantity": 1
 	}],
 	Constants.ObjectType.CHIP: [{
 		"type": Constants.ObjectType.BATTERY,
@@ -168,10 +168,10 @@ var book = {
 		"quantity": 4
 	}, {
 		"type": Constants.ObjectType.SPEAKER,
-		"quantity": 2
+		"quantity": 6
 	}, {
 		"type": Constants.ObjectType.PSU,
-		"quantity": 2
+		"quantity": 3
 	}],	
 	Constants.ObjectType.MOTHERBOARD: [{
 		"type": Constants.ObjectType.CIRCUIT,
@@ -181,7 +181,7 @@ var book = {
 		"quantity": 5
 	}, {
 		"type": Constants.ObjectType.CPU,
-		"quantity": 4
+		"quantity": 2
 	}],	
 	Constants.ObjectType.PHONE: [{
 		"type": Constants.ObjectType.BATTERY,
@@ -191,16 +191,16 @@ var book = {
 		"quantity": 4
 	}, {
 		"type": Constants.ObjectType.RADIO,
-		"quantity": 3
+		"quantity": 2
 	}],	
 	Constants.ObjectType.COMPUTER: [{
 		"type": Constants.ObjectType.GPU,
-		"quantity": 6
+		"quantity": 1
 	}, {
 		"type": Constants.ObjectType.MONITOR,
-		"quantity": 2
+		"quantity": 1
 	}, {
 		"type": Constants.ObjectType.MOTHERBOARD,
-		"quantity": 4
+		"quantity": 1
 	}]
 }

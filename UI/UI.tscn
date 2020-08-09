@@ -314,8 +314,8 @@ margin_bottom = -1.0
 [connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/CloseButton" to="." method="_on_TileSelectorCloseButton_click"]
 [connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/AcceptButton" to="." method="_on_TileSelectorAcceptButton_click"]
 [connection signal="click" from="TileViewDialog/InfoPanel/CloseButton" to="." method="_on_TileViewCloseButton_click"]
-[connection signal="click" from="TileViewDialog/InfoPanel/DestroyButton" to="." method="_on_TileDestroyButton_click"]
 [connection signal="click" from="TileViewDialog/InfoPanel/DestroyButton" to="TileViewDialog" method="_on_DestroyButton_click"]
+[connection signal="click" from="TileViewDialog/InfoPanel/DestroyButton" to="." method="_on_TileDestroyButton_click"]
 [connection signal="click" from="TileViewDialog/InfoPanel/ClearButton" to="TileViewDialog" method="_on_ClearButton_click"]
 
 [editable path="TileSelectorModal"]

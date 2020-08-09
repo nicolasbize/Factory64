@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Utils="*res://Utils.gd"
 WorldTiles="*res://WorldTiles.gd"
 WorldObjects="*res://WorldObjects.gd"
 Constants="*res://Constants.gd"

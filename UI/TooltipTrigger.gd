@@ -3,18 +3,24 @@ extends Control
 enum {DEFAULT, HOVER, PRESS}
 var state = DEFAULT
 var ui = null
+var cursor = null
 
 export(String, MULTILINE) var tooltip_text
 
 func _ready():
 	ui = get_tree().current_scene.find_node("UI")
+	cursor = ui.find_node("CustomCursor")
 
 func _on_TooltipTrigger_mouse_entered():
-	state = HOVER
+	if tooltip_text != "":
+		state = HOVER
+		cursor.set_help()
 
 func _on_TooltipTrigger_mouse_exited():
-	state = DEFAULT
-	ui.hide_tooltip()
+	if tooltip_text != "":
+		state = DEFAULT
+		ui.hide_tooltip()
+		cursor.leave_help()
 
 func _on_TooltipTrigger_gui_input(event):
 	if event is InputEventMouseButton:

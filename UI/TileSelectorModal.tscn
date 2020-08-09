@@ -173,6 +173,12 @@ texture = ExtResource( 11 )
 centered = false
 vframes = 12
 
+[node name="TooltipTrigger" parent="SelectionPanel/Panel/VisualQueue" instance=ExtResource( 12 )]
+margin_left = -1.0
+margin_top = 0.0
+margin_right = 31.0
+margin_bottom = 7.0
+
 [node name="RightButton" parent="SelectionPanel/Panel" instance=ExtResource( 9 )]
 margin_left = 25.0
 margin_top = 4.0
@@ -217,6 +223,7 @@ anims/Disabled = SubResource( 3 )
 anims/Enabled = SubResource( 4 )
 [connection signal="click" from="SelectionPanel/Panel/LeftButton" to="." method="_on_LeftButton_click"]
 [connection signal="frame_changed" from="SelectionPanel/Panel/TileSprite" to="." method="_on_TileSprite_frame_changed"]
+[connection signal="frame_changed" from="SelectionPanel/Panel/VisualQueue" to="." method="_on_VisualQueue_frame_changed"]
 [connection signal="click" from="SelectionPanel/Panel/RightButton" to="." method="_on_RightButton_click"]
 
 [editable path="SelectionPanel/Panel/TileSprite/TooltipTrigger"]

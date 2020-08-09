@@ -16,11 +16,11 @@ signal game_tick
 
 func _ready():
 	timer.start(SECS_BETWEEN_MONTHS)
-	money.text = get_money_str(GameState.money)
+	money.text = Utils.usd_to_str(GameState.money)
 	GameState.connect("money_change", self, "refresh_money")
 
 func refresh_money():
-	money.text = get_money_str(GameState.money)
+	money.text = Utils.usd_to_str(GameState.money)
 
 func _on_GameTimer_timeout():
 	current_month += 1
@@ -47,22 +47,6 @@ func update_money():
 		money_trend.visible = false	
 	refresh_money()
 	
-func get_money_str(amount):
-	amount = abs(float(amount))
-	if amount < 1e3:
-		return "$" + str(amount)
-	elif amount < 1e5:
-		return "$" + str(amount / 1e3).left(4) + "K"
-	elif amount < 1e6:
-		return "$" + str(amount / 1e3).left(3) + "K"
-	elif amount < 1e8:
-		return "$" + str(amount / 1e6).left(4) + "M"
-	elif amount < 1e9:
-		return "$" + str(amount / 1e6).left(3) + "M"
-	elif amount < 1e11:
-		return "$" + str(amount / 1e9).left(4) + "B"
-	elif amount < 1e12:
-		return "$" + str(amount / 1e9).left(3) + "B"
 
 func pay_factory_cost():
 	var cost = 0
