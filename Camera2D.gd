@@ -3,6 +3,7 @@ extends Camera2D
 export(int) var speed = 10
 
 var target_position = null
+var drag_start = null
 
 func _process(delta):
 	if target_position != null:
@@ -26,6 +27,13 @@ func _process(delta):
 			global_position.y -= 1
 		if Input.is_action_pressed("ui_down") and global_position.y < limit_bottom - 64:
 			global_position.y += 1
+		if Input.is_action_just_pressed("drag"):
+			drag_start = global_position + get_viewport().get_mouse_position()
+		if Input.is_action_just_released("drag"):
+			drag_start = null
+		if drag_start != null:
+			var p = drag_start - get_viewport().get_mouse_position()
+			global_position = Vector2(floor(p.x), floor(p.y))
 
 func move_to(position):
 	target_position = position - Vector2(28, 18)

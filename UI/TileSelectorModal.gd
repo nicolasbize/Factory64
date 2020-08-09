@@ -9,6 +9,7 @@ onready var visual_queue = $SelectionPanel/Panel/VisualQueue
 onready var quantity_label = $SelectionPanel/Panel/QuantityLabel
 onready var selection_panel = $SelectionPanel
 onready var animation_player = $AnimationPlayer
+onready var tile_tooltip = $SelectionPanel/Panel/TileSprite/TooltipTrigger
 
 var is_disabled = false
 
@@ -57,3 +58,6 @@ func _on_RightButton_click(el):
 	if current_type > Constants.TileType.keys().size() - 1:
 		current_type = Constants.TileType.keys().size() - 1
 	refresh_ui()
+
+func _on_TileSprite_frame_changed():
+	tile_tooltip.tooltip_text = Constants.TileTooltips[current_type]

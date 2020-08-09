@@ -24,11 +24,11 @@ func enable():
 
 func _on_ClickableButton_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.pressed and state == HOVER:
+		if event.pressed and state == HOVER and event.button_index == BUTTON_LEFT:
 			if move_on_click:
 				rect_global_position.y += 1
 			state = PRESS
-		elif event.pressed == false and state == PRESS:
+		elif event.pressed == false and state == PRESS and event.button_index == BUTTON_LEFT:
 			if move_on_click:
 				rect_global_position.y -= 1
 			state = HOVER

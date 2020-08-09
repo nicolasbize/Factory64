@@ -34,7 +34,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	update_mouse()
-	if mouse_over_top_bar():
+	if mouse_over_top_bar() or cursor.is_dragging:
 		selector.visible = false
 	elif not ui.is_active:
 		update_selector()
@@ -53,7 +53,7 @@ func update_mouse():
 	if chop_mouse_movement:
 		cursor.global_position = Vector2(floor(p.x), floor(p.y))
 	else:
-		cursor.global_position = p
+		cursor.global_position = p	
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and is_valid_tile(selector.position):

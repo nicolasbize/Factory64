@@ -4,10 +4,14 @@ onready var tile_selector_modal = $TileSelectorModal
 onready var tile_view_modal = $TileViewDialog
 onready var selector_animator = $SelectorAnimationPlayer
 onready var view_animator = $ViewAnimationPlayer
+onready var tooltip_animator = $TooltipAnimator
+onready var tooltip_text = $Tooltip/ColorRect/ColorRect/TooltipText
+onready var custom_cursor = $CustomCursor
 
 signal create_tile(tile_type)
 
 var is_active = false setget set_active
+var tooltip_visible = false
 
 func set_active(value):
 	is_active = value
@@ -54,3 +58,22 @@ func _on_TileViewCloseButton_click(el):
 	
 func _on_TileDestroyButton_click(el):
 	view_animator.play("SlideRight")
+
+
+# Tooltip
+func show_tooltip(text):
+	if not tooltip_visible:
+		tooltip_text.text = text
+		tooltip_animator.play("SlideDown")
+		tooltip_visible = true
+
+func hide_tooltip():
+	if tooltip_visible:
+		tooltip_visible = false
+		tooltip_animator.play("SlideUp")
+
+func _on_tooltip_slide_down_complete():
+	tooltip_animator.stop(true)
+	
+func _on_tooltip_slide_up_complete():
+	tooltip_animator.stop(true)

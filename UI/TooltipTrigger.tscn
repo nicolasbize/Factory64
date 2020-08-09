@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/TooltipTrigger.gd" type="Script" id=1]
+
+[node name="TooltipTrigger" type="Control"]
+margin_left = 11.0
+margin_top = 16.0
+margin_right = 51.0
+margin_bottom = 56.0
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="gui_input" from="." to="." method="_on_TooltipTrigger_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_TooltipTrigger_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_TooltipTrigger_mouse_exited"]
