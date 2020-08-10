@@ -5,18 +5,18 @@ extends Node
 enum TileType {NONE=-1, IRON, SILVER, SILICON, GOLD, BELT, LBELT, TBELT, FURNACE, CUTTER, FACTORY, ASSEMBLY, RESELLER}
 var TileCosts := [30,   30,     30,      30,   0,    0,     0,     80,      80,     100,     200,      200]
 var TileTooltips := [
-	"Extracts iron.\nCost: $%d/mo" % [TileCosts[TileType.IRON]],
-	"Extracts silver.\nCost: $%d/mo" % [TileCosts[TileType.SILVER]],
-	"Extracts silicon.\nCost: $%d/mo" % [TileCosts[TileType.SILICON]],
-	"Extracts gold.\nCost: $%d/mo" % [TileCosts[TileType.GOLD]],
+	"Extracts iron.",
+	"Extracts silver.",
+	"Extracts silicon.",
+	"Extracts gold.",
 	"Straight conveyor belt",
 	"L-turn conveyor belt",
 	"T-turn conveyor belt",
-	"Turns ore into plates.\nCost: $%d/mo" % [TileCosts[TileType.FURNACE]],
-	"Turns ore into wires.\nCost: $%d/mo" % [TileCosts[TileType.CUTTER]],
-	"Creates components.\nCost: $%d/mo" % [TileCosts[TileType.FACTORY]],
-	"Assembles products.\nCost: $%d/mo" % [TileCosts[TileType.ASSEMBLY]],
-	"Sells items.\nCost: $%d/mo" % [TileCosts[TileType.RESELLER]],
+	"Turns ore into plates.",
+	"Turns ore into wires.",
+	"Creates components.",
+	"Assembles products.",
+	"Sells items.",
 ]
 var TileProcessTooltips := [
 	"In: none\nOut: Iron ore",

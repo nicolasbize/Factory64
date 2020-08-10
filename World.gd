@@ -30,8 +30,6 @@ var active_tile_position: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-#	WorldObjects.init(80, 80)
-#	GameState.boost_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -72,7 +70,7 @@ func update_selector() -> void:
 	selector.visible = is_valid_tile(selector.position)
 
 func is_valid_tile(pos: Vector2) -> bool:
-	return pos.x > 0 and pos.x < 80 and pos.y > 15 and pos.y < 80
+	return pos.x > 0 and pos.x < 160 and pos.y > 15 and pos.y < 160
 
 func show_tile_menu() -> void:
 	active_tile_position = selector.position

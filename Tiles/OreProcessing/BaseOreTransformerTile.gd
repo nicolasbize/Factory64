@@ -37,7 +37,7 @@ onready var storage_area := $StorageArea
 enum Status { PENDING, POWERUP, BUSY, POWERDOWN }
 
 export (bool) var destroy_invalid_inputs := true
-export (int) var process_speed: int = 5
+export (int) var base_process_speed: float = 2.5
 
 var contents := [] # array of quantity per object types
 var currently_processing: int = Constants.ObjectType.NONE
@@ -45,7 +45,7 @@ var currently_stored: int = Constants.ObjectType.NONE
 var max_item_count: int = 10
 var status : int = Status.PENDING
 
-signal storage_change(storage)
+signal storage_change(tile, storage)
 
 func _ready() -> void:
 	for _i in range(Constants.ObjectType.size()):
@@ -81,7 +81,7 @@ func _on_TileTimer_timeout() -> void:
 func get_recipe_match() -> int:
 	var outputs := get_list_valid_outputs()
 	for output_type in outputs:
-		var ingredients : int = Recipe.book.get(output_type)
+		var ingredients : Array = Recipe.book.get(output_type)
 		var has_all_ingredients := true
 		for ingredient in ingredients:
 			var required_type : int = ingredient.get("type")
@@ -93,7 +93,7 @@ func get_recipe_match() -> int:
 	return Constants.ObjectType.NONE
 
 func use_ingredients_for_recipe(type: int) -> void:
-	var ingredients : int = Recipe.book.get(type)
+	var ingredients : Array = Recipe.book.get(type)
 	for ingredient in ingredients:
 		var required_type : int = ingredient.get("type")
 		var required_quantity : int = ingredient.get("quantity")
@@ -191,10 +191,11 @@ func store_contents() -> void:
 		if item != self:
 			# destroy non-ore items
 			if item.type == null or should_destroy_item(item):
+				print("destroying a " + item.name)
 				destroy_obj(item)
-			elif contents[item.type] < max_item_count:
+			elif get_list_valid_inputs().has(item.type) and contents[item.type] < max_item_count:
 				contents[item.type] += 1
-				emit_signal("storage_change", contents)
+				emit_signal("storage_change", self, contents)
 				destroy_obj(item)
 
 func should_destroy_item(item: MovableObject) -> bool:
@@ -206,7 +207,8 @@ func destroy_obj(item: MovableObject) -> void:
 
 func _on_PowerUp_done() -> void:
 	status = Status.BUSY
-	process_timer.start(process_speed - get_tile_upgrade() - power)
+	#(str(get_tile_speed()))
+	process_timer.start(get_tile_speed())
 
 func _on_PowerDown_done() -> void:
 	status = Status.PENDING
@@ -223,10 +225,6 @@ func get_list_valid_inputs() -> Array:
 		for input_type in Recipe.book.get(output):
 			input_types.append(input_type.get("type"))
 	return input_types
-
-# Abstract
-func get_tile_upgrade() -> int:
-	return 0 # no upgrade by default
 
 # Virtual
 func get_list_valid_outputs() -> Array:

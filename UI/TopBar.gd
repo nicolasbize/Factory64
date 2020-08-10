@@ -51,7 +51,9 @@ func update_money() -> void:
 	refresh_money()
 	
 func pay_factory_cost() -> void:
-	var cost := 0
-	for tile in WorldTiles.tiles.values():
-		cost += Constants.TileCosts[tile.type] * tile.speed
-	GameState.money -= cost
+	var nb_machines := GameState.get_nb_machines()
+	if nb_machines > 10:
+		var cost := 0
+		for i in range(GameState.get_nb_machines() - 9):
+			cost += i
+		GameState.money -= cost

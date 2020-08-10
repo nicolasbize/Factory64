@@ -3,6 +3,7 @@ class_name TileSelectorModal
 extends Control
 
 onready var animation_player := $AnimationPlayer
+onready var item_price := $SelectionPanel/Panel/AcceptButton/ItemPrice
 onready var left_button := $SelectionPanel/Panel/LeftButton
 onready var quantity_label := $SelectionPanel/Panel/QuantityLabel
 onready var queue_tooltip := $SelectionPanel/Panel/VisualQueue/TooltipTrigger
@@ -23,9 +24,15 @@ func refresh_ui() -> void:
 	visual_queue.frame = current_type
 	quantity_label.visible = true
 	is_disabled = false
+	var price := GameState.get_next_price()
+	if price == 0:
+		item_price.text = "Free"
+	else:
+		item_price.text = "$%d/mo" % [price]
 	match current_type:
 		Constants.TileType.BELT, Constants.TileType.LBELT, Constants.TileType.TBELT:
 			quantity_label.visible = false
+			item_price.text = "Free"
 		Constants.TileType.ASSEMBLY:
 			quantity_label.text = "%d/%d" % [GameState.nb_assemblies, GameState.max_assemblies]
 			is_disabled = GameState.nb_assemblies == GameState.max_assemblies
@@ -57,8 +64,8 @@ func _on_LeftButton_click(_el: ClickableButton) -> void:
 
 func _on_RightButton_click(_el: ClickableButton) -> void:
 	current_type += 1
-	if current_type > Constants.TileType.keys().size() - 1:
-		current_type = Constants.TileType.keys().size() - 1
+	if current_type > Constants.TileType.RESELLER:
+		current_type = Constants.TileType.RESELLER
 	refresh_ui()
 
 func _on_TileSprite_frame_changed() -> void:

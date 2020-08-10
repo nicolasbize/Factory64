@@ -19,7 +19,7 @@ func _on_global_belt_timer() -> void:
 
 func _on_TileTimer_timeout() -> void:
 	move_objects()
-	tile_timer.start(speed)
+	tile_timer.start(get_tile_speed())
 
 func move_objects() -> void:
 	for flow in flow_areas:

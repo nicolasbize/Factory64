@@ -2,6 +2,8 @@
 class_name Tile
 extends Node2D
 
+const BASE_SPEED = 0.5
+
 onready var animationPlayer := $AnimationPlayer
 onready var items := $Items
 onready var sprite := $Sprite
@@ -11,11 +13,10 @@ enum Facing {RIGHT, DOWN, LEFT, UP}
 
 var direction : int = Facing.RIGHT
 var power : int = Constants.Power.LOWEST
-var speed := 1.0
 var type : int = Constants.TileType.NONE
 
 func _ready() -> void:
-	tile_timer.start(speed)
+	tile_timer.start(get_tile_speed())
 
 func rotate(angle: float) -> void:
 	rotation = fmod(rotation + deg2rad(angle), 2 * PI)
@@ -52,19 +53,11 @@ func destroy() -> void:
 	WorldTiles.destroy(tile)
 	queue_free()
 
+func get_tile_speed() -> float:
+	return BASE_SPEED - power * 0.1
+
 func set_power(pwr: int) -> void:
 	power = pwr
-	match power:
-		Constants.Power.LOWEST:
-			speed = 1
-		Constants.Power.LOW:
-			speed = 0.8
-		Constants.Power.MEDIUM:
-			speed = 0.6
-		Constants.Power.HIGH:
-			speed = 0.4
-		Constants.Power.HIGHEST:
-			speed = 0.2
 
 func is_upgradable() -> bool:
 	return type != Constants.TileType.FACTORY and \

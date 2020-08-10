@@ -7,7 +7,7 @@ func _process(_delta: float) -> void:
 	animationPlayer.play("Enabled")
 
 func _on_TileTimer_timeout() -> void:
-	tile_timer.start(speed)
+	tile_timer.start(get_tile_speed())
 	var target_tile: Tile = null
 	if direction == Facing.RIGHT:
 		target_tile = WorldTiles.get_at(global_position + Vector2(8, 0))

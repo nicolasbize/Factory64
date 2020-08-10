@@ -12,5 +12,5 @@ func _ready() -> void:
 func get_list_valid_outputs() -> Array:
 	return [active_recipe]
 
-func get_tile_upgrade() -> int:
-	return GameState.factory_power_upgrade
+func get_tile_speed() -> float:
+	return BASE_SPEED - GameState.assembly_power_upgrade * 0.1

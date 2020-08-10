@@ -61,11 +61,13 @@ func set_tile(tile: Tile) -> void:
 		elif tile.type == Constants.TileType.ASSEMBLY:
 			recipe_selector.init(Constants.AssemblyOutputs)
 		recipe_selector.set_recipe(tile.active_recipe)
+		recipe_selector.refresh_ui(tile.contents)
 		if tile.connect("storage_change", self, "_on_storage_change") != OK:
 			push_error("TileViewDialog could not connect to the tile storage")
 		
-func _on_storage_change(contents: Array) -> void:
-	recipe_selector.refresh_ui(contents)
+func _on_storage_change(tile: Tile, contents: Array) -> void:
+	if tile == active_tile:
+		recipe_selector.refresh_ui(contents)
 
 func _on_ClearButton_click(_el: ClickableButton) -> void:
 	active_tile.clear()
