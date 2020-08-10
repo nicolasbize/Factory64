@@ -69,3 +69,10 @@ func set_power(pwr: int) -> void:
 func is_upgradable() -> bool:
 	return type != Constants.TileType.FACTORY and \
 		type != Constants.TileType.ASSEMBLY
+
+func add_item(item: MovableObject) -> void:
+	items.add_child(item)
+	items.move_child(item, 0)
+
+func remove_item(item: MovableObject) -> void:
+	items.remove_child(item)

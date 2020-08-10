@@ -1,8 +1,10 @@
+## Game constants.
+## Autoloaded
 extends Node
 
-enum TileType {IRON, SILVER, SILICON, GOLD, BELT, LBELT, TBELT, FURNACE, CUTTER, FACTORY, ASSEMBLY, RESELLER}
-var TileCosts=[30,   30,     30,      30,   0,    0,     0,     80,      80,     100,     200,      200]
-var TileTooltips = [
+enum TileType {NONE=-1, IRON, SILVER, SILICON, GOLD, BELT, LBELT, TBELT, FURNACE, CUTTER, FACTORY, ASSEMBLY, RESELLER}
+var TileCosts := [30,   30,     30,      30,   0,    0,     0,     80,      80,     100,     200,      200]
+var TileTooltips := [
 	"Extracts iron.\nCost: $%d/mo" % [TileCosts[TileType.IRON]],
 	"Extracts silver.\nCost: $%d/mo" % [TileCosts[TileType.SILVER]],
 	"Extracts silicon.\nCost: $%d/mo" % [TileCosts[TileType.SILICON]],
@@ -16,7 +18,7 @@ var TileTooltips = [
 	"Assembles products.\nCost: $%d/mo" % [TileCosts[TileType.ASSEMBLY]],
 	"Sells items.\nCost: $%d/mo" % [TileCosts[TileType.RESELLER]],
 ]
-var TileProcessTooltips = [
+var TileProcessTooltips := [
 	"In: none\nOut: Iron ore",
 	"In: none\nOut: Silver ore",
 	"In: none\nOut: Silicon ore",
@@ -30,15 +32,16 @@ var TileProcessTooltips = [
 ]
 
 enum Power {LOWEST, LOW, MEDIUM, HIGH, HIGHEST}
-
-enum ObjectType {IRON_ORE, SILVER_ORE, SILICON_ORE, GOLD_ORE,
+enum ObjectSize {SMALL, MEDIUM, LARGE}
+enum ObjectType {NONE=-1, IRON_ORE, SILVER_ORE, SILICON_ORE, GOLD_ORE,
 				 IRON_PLATE, SILVER_PLATE, SILICON_PLATE, GOLD_PLATE,
 				 IRON_WIRE, SILVER_WIRE, SILICON_WIRE, GOLD_WIRE,
 				 RESISTOR, CAPACITOR, TRANSISTOR, INDUCTOR,
 				 DIODE, RELAY, BATTERY, CIRCUIT,
 				 FAN, CHIP, SPEAKER, MEMORY,
 				 PSU, CPU, GPU, MONITOR, RADIO, MOTHERBOARD, PHONE, COMPUTER }
-var ObjectPrices = [0, 0, 0, 0,
+var ObjectPrices := [
+					0, 0, 0, 0,
 					10, 10, 10, 10,
 					10, 10, 10, 10,
 					50, 50, 60, 60,
@@ -46,7 +49,7 @@ var ObjectPrices = [0, 0, 0, 0,
 					320, 500, 500, 1000,
 					3000, 7500, 11500, 14000,
 					16500, 27500, 47000, 70000]
-var ItemTooltips = [
+var ItemTooltips := [
 	"Iron ore\nPrice: %s" % [Utils.usd_to_str(ObjectPrices[ObjectType.IRON_ORE])],
 	"Silver ore\nPrice: %s" % [Utils.usd_to_str(ObjectPrices[ObjectType.SILVER_ORE])],
 	"Silicon ore\nPrice: %s" % [Utils.usd_to_str(ObjectPrices[ObjectType.SILICON_ORE])],
@@ -82,20 +85,20 @@ var ItemTooltips = [
 
 ]
 
-var FurnaceOutputs = [
+var FurnaceOutputs := [
 	ObjectType.IRON_PLATE,
 	ObjectType.SILVER_PLATE,
 	ObjectType.SILICON_PLATE,
 	ObjectType.GOLD_PLATE
 ]
-var WireCutterOuputs = [
+var WireCutterOuputs := [
 	ObjectType.IRON_WIRE,
 	ObjectType.SILVER_WIRE,
 	ObjectType.SILICON_WIRE,
 	ObjectType.GOLD_WIRE
 ]
 
-var FactoryOutputs = [
+var FactoryOutputs := [
 	ObjectType.RESISTOR,
 	ObjectType.CAPACITOR,
 	ObjectType.TRANSISTOR,
@@ -110,7 +113,7 @@ var FactoryOutputs = [
 	ObjectType.MEMORY
 ]
 
-var AssemblyOutputs = [
+var AssemblyOutputs := [
 	ObjectType.PSU,
 	ObjectType.CPU,
 	ObjectType.GPU,

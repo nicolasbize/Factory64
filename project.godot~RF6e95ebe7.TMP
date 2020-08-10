@@ -100,7 +100,7 @@ _global_script_classes=[ {
 "path": "res://Tiles/Extractors/SiliconExtractorTile.gd"
 }, {
 "base": "Node2D",
-"class": "SilverExtractorTile",
+"class": "SilverEXtractorTile",
 "language": "GDScript",
 "path": "res://Tiles/Extractors/SilverExtractorTile.gd"
 }, {
@@ -168,7 +168,7 @@ _global_script_class_icons={
 "RecipeIngredient": "",
 "RecipeSelector": "",
 "SiliconExtractorTile": "",
-"SilverExtractorTile": "",
+"SilverEXtractorTile": "",
 "TBeltTile": "",
 "Tile": "",
 "TileSelectorModal": "",

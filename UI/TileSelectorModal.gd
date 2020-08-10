@@ -1,23 +1,24 @@
+## Modal screen to select a tile to place in the factory
+class_name TileSelectorModal
 extends Control
 
-var current_type = Constants.TileType.IRON
+onready var animation_player := $AnimationPlayer
+onready var left_button := $SelectionPanel/Panel/LeftButton
+onready var quantity_label := $SelectionPanel/Panel/QuantityLabel
+onready var queue_tooltip := $SelectionPanel/Panel/VisualQueue/TooltipTrigger
+onready var right_button := $SelectionPanel/Panel/RightButton
+onready var selection_panel := $SelectionPanel
+onready var tile_sprite := $SelectionPanel/Panel/TileSprite
+onready var tile_tooltip := $SelectionPanel/Panel/TileSprite/TooltipTrigger
+onready var visual_queue := $SelectionPanel/Panel/VisualQueue
 
-onready var left_button = $SelectionPanel/Panel/LeftButton
-onready var right_button = $SelectionPanel/Panel/RightButton
-onready var tile_sprite = $SelectionPanel/Panel/TileSprite
-onready var visual_queue = $SelectionPanel/Panel/VisualQueue
-onready var quantity_label = $SelectionPanel/Panel/QuantityLabel
-onready var selection_panel = $SelectionPanel
-onready var animation_player = $AnimationPlayer
-onready var tile_tooltip = $SelectionPanel/Panel/TileSprite/TooltipTrigger
-onready var queue_tooltip = $SelectionPanel/Panel/VisualQueue/TooltipTrigger
+var current_type : int = Constants.TileType.IRON
+var is_disabled := false
 
-var is_disabled = false
-
-func _ready():
+func _ready() -> void:
 	refresh_ui()
 
-func refresh_ui():
+func refresh_ui() -> void:
 	tile_sprite.frame = current_type
 	visual_queue.frame = current_type
 	quantity_label.visible = true
@@ -48,20 +49,20 @@ func refresh_ui():
 	else:
 		animation_player.play("Enabled")
 			
-func _on_LeftButton_click(el):
+func _on_LeftButton_click(_el: ClickableButton) -> void:
 	current_type -= 1
 	if current_type < 0:
 		current_type = 0
 	refresh_ui() 
 
-func _on_RightButton_click(el):
+func _on_RightButton_click(_el: ClickableButton) -> void:
 	current_type += 1
 	if current_type > Constants.TileType.keys().size() - 1:
 		current_type = Constants.TileType.keys().size() - 1
 	refresh_ui()
 
-func _on_TileSprite_frame_changed():
+func _on_TileSprite_frame_changed() -> void:
 	tile_tooltip.tooltip_text = Constants.TileTooltips[current_type]
 
-func _on_VisualQueue_frame_changed():
+func _on_VisualQueue_frame_changed() -> void:
 	queue_tooltip.tooltip_text = Constants.TileProcessTooltips[current_type]

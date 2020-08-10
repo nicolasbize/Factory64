@@ -1,40 +1,42 @@
+## Main Game class, should not be instanced
 extends Node
 
-onready var selector := $Selector
-onready var game_tiles = $Tiles
-onready var cursor = $UI/CustomCursor
-onready var camera = $Camera2D
-onready var ui = $UI
-
-export (bool) var chop_mouse_movement = true
-
-enum Size {Small, Medium, Large}
-export (Size) var size = Size.Small
-
-var active_tile_position = null
-
-const SilverExtractorTile = preload("res://Tiles/Extractors/SilverExtractorTile.tscn")
+const AssemblyTile = preload("res://Tiles/Equipment/AssemblyTile.tscn")
+const BeltTile = preload("res://Tiles/Belts/BeltTile.tscn")
+const FactoryTile = preload("res://Tiles/Equipment/FactoryTile.tscn")
+const FurnaceTile = preload("res://Tiles/OreProcessing/FurnaceTile.tscn")
 const GoldExtractorTile = preload("res://Tiles/Extractors/GoldExtractorTile.tscn")
 const IronExtractorTile = preload("res://Tiles/Extractors/IronExtractorTile.tscn")
-const SiliconExtractorTile = preload("res://Tiles/Extractors/SiliconExtractorTile.tscn")
-const BeltTile = preload("res://Tiles/Belts/BeltTile.tscn")
 const LBeltTile = preload("res://Tiles/Belts/LBeltTile.tscn")
+const SiliconExtractorTile = preload("res://Tiles/Extractors/SiliconExtractorTile.tscn")
+const SilverExtractorTile = preload("res://Tiles/Extractors/SilverExtractorTile.tscn")
 const TBeltTile = preload("res://Tiles/Belts/TBeltTile.tscn")
 const VendorTile = preload("res://Tiles/Equipment/VendorTile.tscn")
-const FactoryTile = preload("res://Tiles/Equipment/FactoryTile.tscn")
-const AssemblyTile = preload("res://Tiles/Equipment/AssemblyTile.tscn")
-const FurnaceTile = preload("res://Tiles/OreProcessing/FurnaceTile.tscn")
 const WireCutterTile = preload("res://Tiles/OreProcessing/WireCutterTile.tscn")
 
-func _ready():
+onready var camera := $Camera2D
+onready var cursor := $UI/CustomCursor
+onready var game_tiles := $Tiles
+onready var selector := $Selector
+onready var ui := $UI
+
+enum Size {Small, Medium, Large}
+
+export (bool) var is_pixel_perfect_mouse := true
+export (Size) var size := Size.Small
+
+var active_tile_position: Vector2 = Vector2.ZERO
+
+func _ready() -> void:
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	GameState.boost_game()
+#	WorldObjects.init(80, 80)
+#	GameState.boost_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta: float) -> void:
 	update_mouse()
-	if mouse_over_top_bar() or cursor.is_dragging:
+	if is_mouse_over_top_bar() or cursor.is_dragging:
 		selector.visible = false
 	elif not ui.is_active:
 		update_selector()
@@ -44,35 +46,35 @@ func _process(delta):
 		if Input.is_action_just_pressed("reverse") and is_valid_tile(selector.position):
 			WorldTiles.reverse(selector.position)
 
-func mouse_over_top_bar():
+func is_mouse_over_top_bar() -> bool:
 	return get_viewport().get_mouse_position().y < 9
 	
-func update_mouse():
+func update_mouse() -> void:
 	# chop on purpose
 	var p = get_viewport().get_mouse_position()
-	if chop_mouse_movement:
+	if is_pixel_perfect_mouse:
 		cursor.global_position = Vector2(floor(p.x), floor(p.y))
 	else:
 		cursor.global_position = p	
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and is_valid_tile(selector.position):
 		if event.button_index == BUTTON_WHEEL_UP :
 			WorldTiles.rotate(selector.position, -90)
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			WorldTiles.rotate(selector.position, 90)
 
-func update_selector():
+func update_selector() -> void:
 	var mpos = camera.global_position + get_viewport().get_mouse_position()
 	var mpos_x = round((mpos.x - 4) / 8) * 8
 	var mpos_y = round((mpos.y - 4) / 8) * 8
 	selector.global_position = Vector2(mpos_x, mpos_y)
 	selector.visible = is_valid_tile(selector.position)
 
-func is_valid_tile(pos):
-	return pos.x > 0 and pos.x < 72 and pos.y > 15 and pos.y < 80
+func is_valid_tile(pos: Vector2) -> bool:
+	return pos.x > 0 and pos.x < 80 and pos.y > 15 and pos.y < 80
 
-func show_tile_menu():
+func show_tile_menu() -> void:
 	active_tile_position = selector.position
 	var tile = WorldTiles.get_at(active_tile_position)
 	if tile == null:
@@ -80,7 +82,7 @@ func show_tile_menu():
 	else:
 		ui.show_view_modal(tile)
 
-func _on_UI_create_tile(tile_type):
+func _on_UI_create_tile(tile_type: int) -> void:
 	if WorldTiles.can_add(active_tile_position):
 		var tile = null
 		match tile_type:

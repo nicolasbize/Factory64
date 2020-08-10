@@ -12,7 +12,7 @@ var current_dir = null
 
 export (int) var efficiency = 1 # 1-4, might replace with enum
 
-func _process(delta):
+func _process(_delta):
 	animationPlayer.play(\"Enabled\")
 
 func _on_TileTimer_timeout():
@@ -63,7 +63,7 @@ func attempt_send_ore(tile, pos):
 	if tile.is_valid_obj_pos(pos) and not WorldObjects.has_at(pos):
 		create_ore(pos)
 		
-func create_ore(pos):
+func create_ore(_pos):
 	# get parent to implement this
 	pass
 "

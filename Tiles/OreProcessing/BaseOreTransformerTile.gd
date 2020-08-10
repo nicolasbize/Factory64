@@ -1,104 +1,107 @@
+## Transforms a series of inputs into a specific output
+class_name BaseOreTransformerTile
 extends "res://Tiles/Belts/BaseConveyorTile.gd"
 
-const SilverPlate = preload("res://Objects/Plates/SilverPlate.tscn")
-const IronPlate = preload("res://Objects/Plates/IronPlate.tscn")
-const SiliconPlate = preload("res://Objects/Plates/SiliconPlate.tscn")
-const GoldPlate = preload("res://Objects/Plates/GoldPlate.tscn")
-const SilverWire = preload("res://Objects/Wires/SilverWire.tscn")
-const IronWire = preload("res://Objects/Wires/IronWire.tscn")
-const SiliconWire = preload("res://Objects/Wires/SiliconWire.tscn")
-const GoldWire = preload("res://Objects/Wires/GoldWire.tscn")
-const Battery = preload("res://Objects/Components/Battery.tscn")
-const Capacitor = preload("res://Objects/Components/Capacitor.tscn")
-const Chip = preload("res://Objects/Components/Chip.tscn")
-const Circuit = preload("res://Objects/Components/Circuit.tscn")
-const Diode = preload("res://Objects/Components/Diode.tscn")
-const Inductor = preload("res://Objects/Components/Inductor.tscn")
-const Relay = preload("res://Objects/Components/Relay.tscn")
-const Resistor = preload("res://Objects/Components/Resistor.tscn")
-const Transistor = preload("res://Objects/Components/Transistor.tscn")
-const Computer = preload("res://Objects/Products/Computer.tscn")
-const CPU = preload("res://Objects/Products/CPU.tscn")
-const Fan = preload("res://Objects/Products/Fan.tscn")
-const GPU = preload("res://Objects/Products/GPU.tscn")
-const Monitor = preload("res://Objects/Products/Monitor.tscn")
-const Motherboard = preload("res://Objects/Products/Motherboard.tscn")
-const Phone = preload("res://Objects/Products/Phone.tscn")
-const PSU = preload("res://Objects/Products/PSU.tscn")
-const Radio = preload("res://Objects/Products/Radio.tscn")
-const Memory = preload("res://Objects/Products/Memory.tscn")
-const Speaker = preload("res://Objects/Products/Speaker.tscn")
+const Battery := preload("res://Objects/Components/Battery.tscn")
+const Capacitor := preload("res://Objects/Components/Capacitor.tscn")
+const Chip := preload("res://Objects/Components/Chip.tscn")
+const Circuit := preload("res://Objects/Components/Circuit.tscn")
+const Computer := preload("res://Objects/Products/Computer.tscn")
+const CPU := preload("res://Objects/Products/CPU.tscn")
+const Diode := preload("res://Objects/Components/Diode.tscn")
+const Fan := preload("res://Objects/Products/Fan.tscn")
+const GoldPlate := preload("res://Objects/Plates/GoldPlate.tscn")
+const GoldWire := preload("res://Objects/Wires/GoldWire.tscn")
+const GPU := preload("res://Objects/Products/GPU.tscn")
+const Inductor := preload("res://Objects/Components/Inductor.tscn")
+const IronPlate := preload("res://Objects/Plates/IronPlate.tscn")
+const IronWire := preload("res://Objects/Wires/IronWire.tscn")
+const Memory := preload("res://Objects/Products/Memory.tscn")
+const Monitor := preload("res://Objects/Products/Monitor.tscn")
+const Motherboard := preload("res://Objects/Products/Motherboard.tscn")
+const Phone := preload("res://Objects/Products/Phone.tscn")
+const PSU := preload("res://Objects/Products/PSU.tscn")
+const Radio := preload("res://Objects/Products/Radio.tscn")
+const Relay := preload("res://Objects/Components/Relay.tscn")
+const Resistor := preload("res://Objects/Components/Resistor.tscn")
+const SiliconPlate := preload("res://Objects/Plates/SiliconPlate.tscn")
+const SiliconWire := preload("res://Objects/Wires/SiliconWire.tscn")
+const SilverPlate := preload("res://Objects/Plates/SilverPlate.tscn")
+const SilverWire := preload("res://Objects/Wires/SilverWire.tscn")
+const Speaker := preload("res://Objects/Products/Speaker.tscn")
+const Transistor: = preload("res://Objects/Components/Transistor.tscn")
 
-enum {PENDING, POWERUP, BUSY, POWERDOWN }
+onready var process_timer := $ProcessTimer
+onready var storage_area := $StorageArea
 
-onready var storage_area = $StorageArea
-onready var process_timer = $ProcessTimer
+enum Status { PENDING, POWERUP, BUSY, POWERDOWN }
 
-var max_item_count = 10
-var currently_processing = null
-var currently_stored = null
-var status = PENDING
-var contents = [] # array of quantity per object types
-export (int) var process_speed = 5
-export (bool) var destroy_invalid_inputs = true
+export (bool) var destroy_invalid_inputs := true
+export (int) var process_speed: int = 5
+
+var contents := [] # array of quantity per object types
+var currently_processing: int = Constants.ObjectType.NONE
+var currently_stored: int = Constants.ObjectType.NONE
+var max_item_count: int = 10
+var status : int = Status.PENDING
 
 signal storage_change(storage)
 
-func _ready():
-	for i in range(Constants.ObjectType.size()):
+func _ready() -> void:
+	for _i in range(Constants.ObjectType.size()):
 		contents.append(0)
 
-func _process(delta):
-	if status == PENDING:
+func _process(_delta: float) -> void:
+	if status == Status.PENDING:
 		animationPlayer.play("Pending")
-	elif status == POWERUP:
+	elif status == Status.POWERUP:
 		animationPlayer.play("PowerUp")
-	elif status == POWERDOWN:
+	elif status == Status.POWERDOWN:
 		animationPlayer.play("PowerDown")
-	elif status == BUSY:
+	elif status == Status.BUSY:
 		animationPlayer.play("Busy")
 
-func _on_TileTimer_timeout():
-	if status == PENDING:
+func _on_TileTimer_timeout() -> void:
+	if status == Status.PENDING:
 		store_contents()
 
-	if currently_stored != null:
+	if currently_stored != Constants.ObjectType.NONE:
 		# can we dispose of it?
-		var spot = get_next_open_spot()
-		if spot != null:
-			var item = create_item_from_object_type(currently_stored)
+		var spot := get_next_open_spot()
+		if spot != Vector2.ZERO:
+			var item := create_item_from_object_type(currently_stored)
 			expulse(item, spot)
 	else:
-		var type_to_create = get_recipe_match()
-		if type_to_create != null:
+		var type_to_create := get_recipe_match()
+		if type_to_create != Constants.ObjectType.NONE:
 			use_ingredients_for_recipe(type_to_create)
 			currently_processing = type_to_create
-			status = POWERUP
+			status = Status.POWERUP
 
-func get_recipe_match():
-	var outputs = get_list_valid_outputs()
+func get_recipe_match() -> int:
+	var outputs := get_list_valid_outputs()
 	for output_type in outputs:
-		var ingredients = Recipe.book.get(output_type)
-		var has_all_ingredients = true
+		var ingredients : int = Recipe.book.get(output_type)
+		var has_all_ingredients := true
 		for ingredient in ingredients:
-			var required_type = ingredient.get("type")
-			var required_quantity = ingredient.get("quantity")
+			var required_type : int = ingredient.get("type")
+			var required_quantity : int = ingredient.get("quantity")
 			if contents[required_type] < required_quantity:
 				has_all_ingredients = false
 		if has_all_ingredients:
 			return output_type
-	return null
+	return Constants.ObjectType.NONE
 
-func use_ingredients_for_recipe(type):
-	var ingredients = Recipe.book.get(type)
+func use_ingredients_for_recipe(type: int) -> void:
+	var ingredients : int = Recipe.book.get(type)
 	for ingredient in ingredients:
-		var required_type = ingredient.get("type")
-		var required_quantity = ingredient.get("quantity")
+		var required_type : int = ingredient.get("type")
+		var required_quantity : int = ingredient.get("quantity")
 		contents[required_type] -= required_quantity
 
-func get_next_open_spot():
-	var target_tile = null
-	var spot = null
+func get_next_open_spot() -> Vector2:
+	var target_tile : Tile = null
+	var spot := Vector2.ZERO
 	if direction == Facing.RIGHT:
 		spot = global_position + Vector2.RIGHT * 4
 	elif direction == Facing.LEFT:
@@ -110,11 +113,10 @@ func get_next_open_spot():
 	target_tile = WorldTiles.get_at(spot)
 	if target_tile != null and target_tile.is_valid_obj_pos(spot) and not WorldObjects.has_at(spot):
 		return spot
-	else:
-		return null
+	return Vector2.ZERO
 
-func create_item_from_object_type(obj_type):
-	var created_item = null
+func create_item_from_object_type(obj_type: int) -> Node:
+	var created_item : MovableObject = null
 	match obj_type:
 		Constants.ObjectType.SILVER_PLATE:
 			created_item = SilverPlate.instance()
@@ -175,56 +177,58 @@ func create_item_from_object_type(obj_type):
 	created_item.set_type(obj_type)
 	return created_item
 	
-func expulse(item, pos):
-	var main = get_tree().current_scene.find_node("MovingObjects", false, false)
+func expulse(item: MovableObject, pos: Vector2) -> void:
+	var main := get_tree().current_scene.find_node("MovingObjects", false, false)
 	main.add_child(item)
 	main.move_child(item, 0)
 	item.global_position = pos
 	WorldObjects.add(item, pos)
-	currently_stored = null
+	currently_stored = Constants.ObjectType.NONE
 
-func store_contents():
-	var items = storage_area.get_overlapping_areas()
+func store_contents() -> void:
+	var items : Array = storage_area.get_overlapping_areas()
 	for item in items:
 		if item != self:
 			# destroy non-ore items
 			if item.type == null or should_destroy_item(item):
-				print("should destroy")
 				destroy_obj(item)
 			elif contents[item.type] < max_item_count:
 				contents[item.type] += 1
 				emit_signal("storage_change", contents)
 				destroy_obj(item)
 
-func should_destroy_item(item):
+func should_destroy_item(item: MovableObject) -> bool:
 	return (not get_list_valid_inputs().has(item.type)) and destroy_invalid_inputs
 
-func destroy_obj(item):
+func destroy_obj(item: MovableObject) -> void:
 	item.queue_free()
 	WorldObjects.destroy(item)
 
-func _on_PowerUp_done():
-	status = BUSY
+func _on_PowerUp_done() -> void:
+	status = Status.BUSY
 	process_timer.start(process_speed - get_tile_upgrade() - power)
 
-func _on_PowerDown_done():
-	status = PENDING
+func _on_PowerDown_done() -> void:
+	status = Status.PENDING
 	currently_stored = currently_processing
-	currently_processing = null
+	currently_processing = Constants.ObjectType.NONE
 
-func _on_ProcessTimer_timeout():
-	status = POWERDOWN
+func _on_ProcessTimer_timeout() -> void:
+	status = Status.POWERDOWN
 	process_timer.stop()
 
-func get_list_valid_inputs():
-	var input_types = []
+func get_list_valid_inputs() -> Array:
+	var input_types := []
 	for output in get_list_valid_outputs():
 		for input_type in Recipe.book.get(output):
 			input_types.append(input_type.get("type"))
 	return input_types
 
-func get_tile_upgrade():
-	return 0
+# Abstract
+func get_tile_upgrade() -> int:
+	return 0 # no upgrade by default
 
-func get_list_valid_outputs():
-	print("not implemented by parent class")	
+# Virtual
+func get_list_valid_outputs() -> Array:
+	push_error("valid outputs must be defined by inheritance")
+	return []

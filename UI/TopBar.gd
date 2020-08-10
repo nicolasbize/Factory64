@@ -1,28 +1,31 @@
+## Bar at the top of the UI
+class_name TopBar
 extends Control
 
 const SECS_BETWEEN_MONTHS = 5
 
+onready var date = $Date
 onready var money = $Money
 onready var money_trend = $MoneyTrend
-onready var date = $Date
 onready var timer = $GameTimer
 
-var current_month = 0
-var current_year = 70
-var months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-var prev_tick_money = GameState.money
+var current_month := 0
+var current_year := 70
+var months := ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+var prev_tick_money := GameState.money
 
 signal game_tick
 
-func _ready():
+func _ready() -> void:
 	timer.start(SECS_BETWEEN_MONTHS)
 	money.text = Utils.usd_to_str(GameState.money)
-	GameState.connect("money_change", self, "refresh_money")
+	if GameState.connect("money_change", self, "refresh_money") != OK:
+		push_error("TopBar could not connect to GameState")
 
-func refresh_money():
+func refresh_money() -> void:
 	money.text = Utils.usd_to_str(GameState.money)
 
-func _on_GameTimer_timeout():
+func _on_GameTimer_timeout() -> void:
 	current_month += 1
 	if current_month == months.size():
 		current_month = 0
@@ -35,7 +38,7 @@ func _on_GameTimer_timeout():
 	timer.start(SECS_BETWEEN_MONTHS)
 	emit_signal("game_tick")
 
-func update_money():
+func update_money() -> void:
 	money_trend.visible = true
 	if GameState.money > prev_tick_money:
 		money_trend.frame = 0
@@ -47,9 +50,8 @@ func update_money():
 		money_trend.visible = false	
 	refresh_money()
 	
-
-func pay_factory_cost():
-	var cost = 0
+func pay_factory_cost() -> void:
+	var cost := 0
 	for tile in WorldTiles.tiles.values():
 		cost += Constants.TileCosts[tile.type] * tile.speed
 	GameState.money -= cost

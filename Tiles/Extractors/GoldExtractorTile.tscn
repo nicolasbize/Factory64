@@ -40,7 +40,6 @@ tracks/0/keys = {
 
 [node name="GoldExtractorTile" instance=ExtResource( 3 )]
 script = ExtResource( 1 )
-speed = 1.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
@@ -49,3 +48,5 @@ frame = 7
 [node name="AnimationPlayer" parent="." index="1"]
 anims/Disabled = SubResource( 1 )
 anims/Enabled = SubResource( 2 )
+
+[node name="Items" type="Node2D" parent="." index="3"]

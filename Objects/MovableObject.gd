@@ -1,15 +1,18 @@
+## An item that can be moved around in the game
+class_name MovableObject
 extends Area2D
 
-var rng = RandomNumberGenerator.new()
-var type = null
+onready var sprite := $Sprite
 
-onready var sprite = $Sprite
+var size : int = Constants.ObjectSize.SMALL
+var type : int = Constants.ObjectType.NONE
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+func _ready() -> void:
 	rng.randomize()
-	var v = rng.randf_range(0.8, 1)
+	var v := rng.randf_range(0.8, 1)
 	sprite.modulate = Color(v, v, v)
 
-func set_type(t):
-	type = t
+func set_type(object_type: int) -> void:
+	type = object_type

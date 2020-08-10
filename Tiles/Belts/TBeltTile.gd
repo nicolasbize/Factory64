@@ -1,18 +1,21 @@
+## A T-shape conveyor belt tile
+class_name TBeltTile
 extends "res://Tiles/Belts/BaseConveyorTile.gd"
 
-onready var flow = $Flow
-onready var flow2 = $Flow2
-onready var flow3 = $Flow3
+onready var flow := $Flow
+onready var flow2 := $Flow2
+onready var flow3 := $Flow3
 
 enum FlowDir {Right, Top, Bottom}
-var flow_dir = FlowDir.Right
 
-func _ready():
+var flow_dir : int = FlowDir.Right
+
+func _ready() -> void:
 	flow_areas.append(flow)
 	flow_areas.append(flow2)
 	flow_areas.append(flow3)
 	
-func _process(delta):
+func _process(_delta: float) -> void:
 	if is_anim_playing:
 		match flow_dir:
 			FlowDir.Right:
@@ -22,10 +25,10 @@ func _process(delta):
 			FlowDir.Bottom:
 				animationPlayer.play("FlowDown")
 
-# this reverse goes 3 ways
-func reverse():
+# When being reversed, this can go 3 ways
+func reverse() -> void:
 	flow_dir += 1
-	if flow_dir > 2:
+	if flow_dir > FlowDir.size() - 1:
 		flow_dir = 0
 	match flow_dir:
 		FlowDir.Right:

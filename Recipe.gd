@@ -1,6 +1,8 @@
+## List of recipes
+## Autoloaded
 extends Node
 
-var book = {
+var book: Dictionary = {
 	Constants.ObjectType.SILVER_PLATE: [{
 		"type": Constants.ObjectType.SILVER_ORE,
 		"quantity": 10
