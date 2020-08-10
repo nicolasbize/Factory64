@@ -5,7 +5,6 @@ extends Node2D
 const BASE_SPEED = 0.5
 
 onready var animationPlayer := $AnimationPlayer
-onready var items := $Items
 onready var sprite := $Sprite
 onready var tile_timer := $TileTimer
 

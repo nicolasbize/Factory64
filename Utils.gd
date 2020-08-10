@@ -19,11 +19,3 @@ func usd_to_str(amount: float) -> String:
 	elif amount < 1e12:
 		return "$" + str(amount / 1e9).left(3) + "B"
 	return "31337"
-
-func create_map(w: int, h: int) -> Array:
-	var map = []
-	for x in range(w):
-		var col = []
-		col.resize(h)
-		map.append(col)
-	return map

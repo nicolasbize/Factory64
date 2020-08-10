@@ -25,10 +25,18 @@ func id_to_pos(id: String) -> Vector2:
 	return Vector2(int(parts[0]), int(parts[1]))
 
 func can_move(obj: MovableObject, new_pos: Vector2) -> bool:
-	var next_id := get_id(new_pos)
-	# can't move if an object exists there
-	if objects.has(next_id):
-		return false
+	var movement = new_pos - obj.global_position
+	var next_ids = [get_id(new_pos)]
+	if obj.type > Constants.ObjectType.GOLD_ORE:
+		next_ids.append(get_id(new_pos + movement))
+	for next_id in next_ids:
+		if objects.has(next_id):
+			return false
+
+#	var next_id := get_id(new_pos)
+#	# can't move if an object exists there
+#	if objects.has(next_id):
+#		return false
 	# can't move there if the tile isn't accepting it
 	var tile := WorldTiles.get_at(new_pos)
 	if tile == null:
@@ -37,14 +45,16 @@ func can_move(obj: MovableObject, new_pos: Vector2) -> bool:
 	return tile.is_valid_obj_pos(new_pos)
 
 # check if there are other moveable objects where we want to go
-func try_move(obj: MovableObject, new_pos: Vector2) -> void:
+func try_move(obj: MovableObject, new_pos: Vector2) -> bool:
 	if can_move(obj, new_pos):
 		var id := get_id(obj.global_position)
 		var new_id := get_id(new_pos)
 		if objects.has(id):
 			objects.erase(id)
 			objects[new_id] = obj
-			obj.global_position = id_to_pos(new_id)
+		return true
+	else:
+		return false
 #			print("moved " + id + " to " + new_id)
 
 func destroy(obj: MovableObject) -> void:

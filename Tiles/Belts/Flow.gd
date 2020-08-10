@@ -17,5 +17,5 @@ func move_objects() -> void:
 			var new_loc : Vector2 = obj.global_position + movement
 			new_loc = Vector2(round(new_loc.x), round(new_loc.y))
 			
-			if WorldObjects.try_move(obj, new_loc):
+			if WorldObjects.try_move(obj, new_loc) == true:
 				obj.global_position = new_loc
