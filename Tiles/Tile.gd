@@ -59,5 +59,9 @@ func set_power(pwr: int) -> void:
 	power = pwr
 
 func is_upgradable() -> bool:
-	return type != Constants.TileType.FACTORY and \
-		type != Constants.TileType.ASSEMBLY
+	return [
+		Constants.TileType.ASSEMBLY,
+		Constants.TileType.CUTTER,
+		Constants.TileType.FACTORY,
+		Constants.TileType.FURNACE,
+	].find(type) > -1

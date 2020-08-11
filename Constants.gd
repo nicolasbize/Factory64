@@ -85,6 +85,15 @@ var ItemTooltips := [
 
 ]
 
+enum UpgradeType {EXTRACTORS, PROCESSORS, ASSEMBLERS, FACTORY}
+var UpgradePrices = [
+	[1500, 3000, 10000, 50000], # extractors
+	[1500, 3000, 10000, 50000], # processors
+	[1500, 3000, 10000, 50000], # assemblers
+	[20000, 50000, 100000, 200000], # factory
+]
+
+
 var FurnaceOutputs := [
 	ObjectType.IRON_PLATE,
 	ObjectType.SILVER_PLATE,

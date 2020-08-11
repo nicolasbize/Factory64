@@ -33,14 +33,9 @@ func can_move(obj: MovableObject, new_pos: Vector2) -> bool:
 		if objects.has(next_id):
 			return false
 
-#	var next_id := get_id(new_pos)
-#	# can't move if an object exists there
-#	if objects.has(next_id):
-#		return false
 	# can't move there if the tile isn't accepting it
 	var tile := WorldTiles.get_at(new_pos)
 	if tile == null:
-#		print("can't move to " + str(new_pos) + ", no tile to accept me at " + WorldTiles.get_id(new_pos))
 		return false
 	return tile.is_valid_obj_pos(new_pos)
 
@@ -49,18 +44,16 @@ func try_move(obj: MovableObject, new_pos: Vector2) -> bool:
 	if can_move(obj, new_pos):
 		var id := get_id(obj.global_position)
 		var new_id := get_id(new_pos)
-		if objects.has(id):
-			objects.erase(id)
+		if objects.has(id) and objects.erase(id):
 			objects[new_id] = obj
 		return true
 	else:
 		return false
-#			print("moved " + id + " to " + new_id)
 
 func destroy(obj: MovableObject) -> void:
 	var id = get_id(obj.global_position)
-	if objects.has(id):
-		objects.erase(id)
+	if objects.has(id) and not objects.erase(id):
+		push_error("could not destroy an item while destroying it")
 
 func rotate_tile_contents(position: Vector2, angle: float) -> void:
 	# find all the objects within this tile
@@ -71,7 +64,8 @@ func rotate_tile_contents(position: Vector2, angle: float) -> void:
 			var id := get_id(Vector2(x, y))
 			if objects.has(id):
 				objects_to_rotate.append(objects[id])
-				objects.erase(id)
+				if not objects.erase(id):
+					push_error("could not destroy an object while rotating it")
 	for obj in objects_to_rotate:
 		# to do a perfect rotation we need to set the pivot to the center of the pixel
 		var rotation : Vector2 = (obj.global_position - pivot + Vector2(0.5, 0.5)).rotated(deg2rad(angle))

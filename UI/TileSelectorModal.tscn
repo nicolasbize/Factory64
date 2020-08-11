@@ -17,7 +17,7 @@
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 8 )
-shader_param/grayscale = false
+shader_param/grayscale = true
 
 [sub_resource type="Animation" id=3]
 resource_name = "Disabled"
@@ -193,8 +193,10 @@ margin_top = 16.0
 margin_right = 61.0
 margin_bottom = 25.0
 texture = ExtResource( 7 )
+move_on_click = false
 
 [node name="ItemPrice" type="Label" parent="SelectionPanel/Panel/AcceptButton"]
+modulate = Color( 0.662745, 0.662745, 0.662745, 1 )
 margin_left = -1.0
 margin_top = -4.0
 margin_right = 25.0
@@ -211,6 +213,7 @@ __meta__ = {
 margin_left = 38.0
 margin_right = 60.0
 margin_bottom = 17.0
+custom_colors/font_color = Color( 0.027451, 0.227451, 0.313726, 1 )
 text = "0/3"
 align = 1
 __meta__ = {

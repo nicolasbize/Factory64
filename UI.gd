@@ -3,6 +3,8 @@ class_name UI
 extends CanvasLayer
 
 onready var custom_cursor := $CustomCursor
+onready var lab = $Lab
+onready var lab_animator := $LabAnimationPlayer
 onready var selector_animator := $SelectorAnimationPlayer
 onready var tile_selector_modal := $TileSelectorModal
 onready var tile_view_modal := $TileViewDialog
@@ -61,7 +63,26 @@ func _on_TileViewCloseButton_click(_el: ClickableButton) -> void:
 func _on_TileDestroyButton_click(_el: ClickableButton) -> void:
 	view_animator.play("SlideRight")
 
+# Lab
+func show_lab() -> void:
+	set_active(true)
+	lab.refresh()
+	lab_animator.play("SlideRight")
 
+func _on_lab_slide_left_complete() -> void:
+	lab_animator.stop(true)
+
+func _on_lab_slide_right_complete() -> void:
+	set_active(false)
+	lab_animator.stop(true)
+
+func _on_Lab_Close_click(_el: ClickableButton) -> void:
+	lab_animator.play("SlideLeft")
+
+func _on_UpgradeButton_click(_el: ClickableButton) -> void:
+	show_lab()
+	
+	
 # Tooltip
 func show_tooltip(text: String) -> void:
 	if not tooltip_visible:
@@ -79,3 +100,5 @@ func _on_tooltip_slide_down_complete() -> void:
 	
 func _on_tooltip_slide_up_complete() -> void:
 	tooltip_animator.stop(true)
+
+

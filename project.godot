@@ -139,6 +139,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI.gd"
 }, {
+"base": "Control",
+"class": "UpgradePanel",
+"language": "GDScript",
+"path": "res://UI/UpgradePanel.gd"
+}, {
 "base": "Node2D",
 "class": "VendorTile",
 "language": "GDScript",
@@ -176,6 +181,7 @@ _global_script_class_icons={
 "TooltipTrigger": "",
 "TopBar": "",
 "UI": "",
+"UpgradePanel": "",
 "VendorTile": "",
 "WireCutterTile": ""
 }

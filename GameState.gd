@@ -5,7 +5,7 @@ extends Node
 const MAX_UPGRADES := 5
 
 # stats
-var money := 1000
+var money := 10000
 var nb_extractors := 0
 var nb_burners := 0
 var nb_cutters := 0
@@ -22,26 +22,26 @@ var max_assemblies := 5
 var max_sellers := 3
 
 # lab upgrades
-var extractor_power_upgrade := 4
-var burner_power_upgrade := 4
-var cutter_power_upgrade := 4
-var belt_power_upgrade := 4
-var assembly_power_upgrade := 4
+var upgrades := {
+	Constants.UpgradeType.EXTRACTORS: 0,
+	Constants.UpgradeType.PROCESSORS: 0,
+	Constants.UpgradeType.ASSEMBLERS: 0,
+	Constants.UpgradeType.FACTORY: 0,	
+}
 
 signal money_change
+signal upgraded
 
-func boost_game() -> void:
-	max_extractors = 30
-	max_burners = 30
-	max_cutters = 30
-	max_factories = 30
-	max_assemblies = 30
-	max_sellers = 30
-	extractor_power_upgrade = 4
-	burner_power_upgrade = 0
-	cutter_power_upgrade = 0
-	belt_power_upgrade = 4
-	assembly_power_upgrade = 4
+func upgrade(type: int) -> void:
+	if upgrades[type] < 5:
+		upgrades[type] += 1
+	max_extractors = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 10
+	max_burners = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 10
+	max_cutters = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 10
+	max_factories = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 10
+	max_assemblies = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 5
+	max_sellers = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 3
+	emit_signal("upgraded", type, upgrades[type])
 
 func get_nb_machines() -> int:
 	return nb_extractors + nb_burners + nb_cutters + nb_factories + \

@@ -6,6 +6,7 @@ onready var flow := $Flow
 
 func _ready() -> void:
 	flow_areas.append(flow)
+	power = Constants.Power.HIGHEST
 	
 func _process(_delta: float) -> void:
 	if is_anim_playing:

@@ -39,21 +39,17 @@ func set_tile(tile: Tile) -> void:
 		power_meter.visible = true
 		recipe_selector.visible = false
 		match tile.type:
-			Constants.TileType.BELT, Constants.TileType.LBELT, Constants.TileType.TBELT:
-				upgraded = GameState.belt_power_upgrade
-			Constants.TileType.CUTTER:
-				upgraded = GameState.cutter_power_upgrade
-			Constants.TileType.FURNACE:
-				upgraded = GameState.burner_power_upgrade
+			Constants.TileType.CUTTER, Constants.TileType.FURNACE:
+				upgraded = GameState.upgrades[Constants.UpgradeType.PROCESSORS]
 			Constants.TileType.GOLD, Constants.TileType.IRON, Constants.TileType.SILICON, Constants.TileType.SILVER:
-				upgraded = GameState.extractor_power_upgrade
+				upgraded = GameState.upgrades[Constants.UpgradeType.EXTRACTORS]
 		var buttons = [lvl_2_button, lvl_3_button, lvl_4_button, lvl_5_button]
 		for i in buttons.size():
 			if i < upgraded:
 				buttons[i].enable()
 			else:
 				buttons[i].disable()
-	else:
+	elif tile.type == Constants.TileType.FACTORY or tile.type == Constants.TileType.ASSEMBLY:
 		recipe_selector.visible = true
 		power_meter.visible = false
 		if tile.type == Constants.TileType.FACTORY:

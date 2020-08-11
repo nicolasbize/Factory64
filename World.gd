@@ -30,6 +30,7 @@ var active_tile_position: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	GameState.connect("upgraded", self, "_on_upgrade_purchased")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -86,31 +87,28 @@ func _on_UI_create_tile(tile_type: int) -> void:
 		match tile_type:
 			Constants.TileType.SILVER:
 				tile = SilverExtractorTile.instance()
-				tile.set_power(GameState.extractor_power_upgrade)
+				tile.set_power(GameState.upgrades[Constants.UpgradeType.EXTRACTORS])
 			Constants.TileType.GOLD:
 				tile = GoldExtractorTile.instance()
-				tile.set_power(GameState.extractor_power_upgrade)
+				tile.set_power(GameState.upgrades[Constants.UpgradeType.EXTRACTORS])
 			Constants.TileType.SILICON:
 				tile = SiliconExtractorTile.instance()
-				tile.set_power(GameState.extractor_power_upgrade)
+				tile.set_power(GameState.upgrades[Constants.UpgradeType.EXTRACTORS])
 			Constants.TileType.IRON:
 				tile = IronExtractorTile.instance()
-				tile.set_power(GameState.extractor_power_upgrade)
+				tile.set_power(GameState.upgrades[Constants.UpgradeType.EXTRACTORS])
 			Constants.TileType.BELT:
 				tile = BeltTile.instance()
-				tile.set_power(GameState.belt_power_upgrade)
 			Constants.TileType.LBELT:
 				tile = LBeltTile.instance()
-				tile.set_power(GameState.belt_power_upgrade)
 			Constants.TileType.TBELT:
 				tile = TBeltTile.instance()
-				tile.set_power(GameState.belt_power_upgrade)
 			Constants.TileType.FURNACE:
 				tile = FurnaceTile.instance()
-				tile.set_power(GameState.burner_power_upgrade)
+				tile.set_power(GameState.upgrades[Constants.UpgradeType.PROCESSORS])
 			Constants.TileType.CUTTER:
 				tile = WireCutterTile.instance()
-				tile.set_power(GameState.cutter_power_upgrade)
+				tile.set_power(GameState.upgrades[Constants.UpgradeType.PROCESSORS])
 			Constants.TileType.FACTORY:
 				tile = FactoryTile.instance()
 			Constants.TileType.ASSEMBLY:
@@ -122,3 +120,20 @@ func _on_UI_create_tile(tile_type: int) -> void:
 		tile.global_position = active_tile_position + Vector2.ONE * 4
 		tile.type = tile_type
 		WorldTiles.add(tile, active_tile_position)
+
+func _on_upgrade_purchased(type, level):
+	match type:
+		Constants.UpgradeType.ASSEMBLERS:
+			for tile in WorldTiles.tiles:
+				if tile.type == Constants.TileType.ASSEMBLY or \
+				tile.type == Constants.TileType.FACTORY:
+					tile.set_power(level)
+		Constants.UpgradeType.EXTRACTORS:
+			for tile in WorldTiles.tiles:
+				if tile.type == Constants.TileType.GOLD or \
+				tile.type == Constants.TileType.IRON or \
+				tile.type == Constants.TileType.SILICON or \
+				tile.type == Constants.TileType.SILVER:
+					tile.set_power(level)
+#		Constants.UpgradeType.PROCESSORS:
+			 

@@ -57,3 +57,4 @@ func pay_factory_cost() -> void:
 		for i in range(GameState.get_nb_machines() - 9):
 			cost += i
 		GameState.money -= cost
+

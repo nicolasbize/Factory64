@@ -14,6 +14,7 @@ func _ready() -> void:
 	flow_areas.append(flow)
 	flow_areas.append(flow2)
 	flow_areas.append(flow3)
+	power = Constants.Power.HIGHEST
 	
 func _process(_delta: float) -> void:
 	if is_anim_playing:
