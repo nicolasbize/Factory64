@@ -17,6 +17,7 @@ one_shot = true
 
 [node name="Music1" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 1 )
+volume_db = -5.0
 
 [node name="Music2" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 2 )
