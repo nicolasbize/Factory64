@@ -18,6 +18,10 @@ var is_disabled := false
 
 func _ready() -> void:
 	refresh_ui()
+	GameState.connect("upgraded", self, "_on_upgrade")
+
+func _on_upgrade(_type, _level) -> void:
+	refresh_ui()
 
 func refresh_ui() -> void:
 	tile_sprite.frame = current_type

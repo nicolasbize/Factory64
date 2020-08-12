@@ -82,12 +82,13 @@ func is_valid_tile(pos: Vector2) -> bool:
 	return pos.x > world_start.x and pos.x < world_end.x and pos.y > world_start.y and pos.y < world_end.y
 
 func show_tile_menu() -> void:
-	active_tile_position = selector.position
-	var tile = WorldTiles.get_at(active_tile_position)
-	if tile == null:
-		ui.show_selector_modal()
-	else:
-		ui.show_view_modal(tile)
+	if not ui.showing_upgrades:
+		active_tile_position = selector.position
+		var tile = WorldTiles.get_at(active_tile_position)
+		if tile == null:
+			ui.show_selector_modal()
+		else:
+			ui.show_view_modal(tile)
 
 func _on_UI_create_tile(tile_type: int) -> void:
 	if WorldTiles.can_add(active_tile_position):

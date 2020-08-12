@@ -5,7 +5,7 @@ extends Node
 const MAX_UPGRADES := 5
 
 # stats
-var money := 1000000
+var money := 100000
 var nb_extractors := 0
 var nb_burners := 0
 var nb_cutters := 0
