@@ -77,6 +77,7 @@ func _on_TileTimer_timeout() -> void:
 			use_ingredients_for_recipe(type_to_create)
 			currently_processing = type_to_create
 			status = Status.POWERUP
+	tile_timer.start(get_tile_speed())
 
 func get_recipe_match() -> int:
 	var outputs := get_list_valid_outputs()

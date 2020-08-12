@@ -16,6 +16,11 @@ const WireCutterTile = preload("res://Tiles/OreProcessing/WireCutterTile.tscn")
 
 onready var camera := $Camera2D
 onready var cursor := $UI/CustomCursor
+onready var factory_base := $"Factory-Base"
+onready var factory_upgrade_1 := $"Factory-Upgrade-1"
+onready var factory_upgrade_2 := $"Factory-Upgrade-2"
+onready var factory_upgrade_3 := $"Factory-Upgrade-3"
+onready var factory_upgrade_4 := $"Factory-Upgrade-4"
 onready var game_tiles := $Tiles
 onready var selector := $Selector
 onready var ui := $UI
@@ -26,11 +31,14 @@ export (bool) var is_pixel_perfect_mouse := true
 export (Size) var size := Size.Small
 
 var active_tile_position: Vector2 = Vector2.ZERO
+var world_start := Vector2(0, 15)
+var world_end := Vector2.ZERO
 
 func _ready() -> void:
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	GameState.connect("upgraded", self, "_on_upgrade_purchased")
+	refresh_world_tiles()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -71,7 +79,7 @@ func update_selector() -> void:
 	selector.visible = is_valid_tile(selector.position)
 
 func is_valid_tile(pos: Vector2) -> bool:
-	return pos.x > 0 and pos.x < 160 and pos.y > 15 and pos.y < 160
+	return pos.x > world_start.x and pos.x < world_end.x and pos.y > world_start.y and pos.y < world_end.y
 
 func show_tile_menu() -> void:
 	active_tile_position = selector.position
@@ -123,10 +131,10 @@ func _on_UI_create_tile(tile_type: int) -> void:
 
 func _on_upgrade_purchased(type, level):
 	match type:
-		Constants.UpgradeType.ASSEMBLERS:
+		Constants.UpgradeType.PROCESSORS:
 			for tile in WorldTiles.tiles.values():
-				if tile.type == Constants.TileType.ASSEMBLY or \
-				tile.type == Constants.TileType.FACTORY:
+				if tile.type == Constants.TileType.FURNACE or \
+				tile.type == Constants.TileType.CUTTER:
 					tile.set_power(level)
 		Constants.UpgradeType.EXTRACTORS:
 			for tile in WorldTiles.tiles.values():
@@ -135,5 +143,16 @@ func _on_upgrade_purchased(type, level):
 				tile.type == Constants.TileType.SILICON or \
 				tile.type == Constants.TileType.SILVER:
 					tile.set_power(level)
-#		Constants.UpgradeType.PROCESSORS:
+		Constants.UpgradeType.FACTORY:
+			refresh_world_tiles()
 			 
+func refresh_world_tiles():
+	var upgrade : int = GameState.upgrades[Constants.UpgradeType.FACTORY]
+	var worlds := [factory_base, factory_upgrade_1, factory_upgrade_2, factory_upgrade_3, factory_upgrade_4]
+	for i in range(worlds.size()):
+		worlds[i].visible = i == upgrade
+	var size_x := (20 + 5*upgrade) * 8
+	var size_y := (16 + 5*upgrade) * 8
+	world_end = Vector2(size_x, size_y)
+	camera.limit_right = (200 + 40 * upgrade)
+	camera.limit_bottom = (160 + 40 * upgrade)

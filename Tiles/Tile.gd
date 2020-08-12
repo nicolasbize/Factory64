@@ -64,8 +64,6 @@ func is_upgradable() -> bool:
 		Constants.TileType.SILVER,
 		Constants.TileType.SILICON,
 		Constants.TileType.IRON,
-		Constants.TileType.ASSEMBLY,
 		Constants.TileType.CUTTER,
-		Constants.TileType.FACTORY,
 		Constants.TileType.FURNACE,
 	].find(type) > -1
