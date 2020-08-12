@@ -13,6 +13,7 @@ onready var tooltip_text := $Tooltip/ColorRect/ColorRect/TooltipText
 onready var view_animator := $ViewAnimationPlayer
 
 var is_active := false setget set_active
+var showing_upgrades := false
 var tooltip_visible := false
 
 signal create_tile(tile_type)
@@ -65,15 +66,15 @@ func _on_TileDestroyButton_click(_el: ClickableButton) -> void:
 
 # Lab
 func show_lab() -> void:
-	set_active(true)
+	showing_upgrades = true
 	lab.refresh()
 	lab_animator.play("SlideRight")
 
 func _on_lab_slide_left_complete() -> void:
+	showing_upgrades = false
 	lab_animator.stop(true)
 
 func _on_lab_slide_right_complete() -> void:
-	set_active(false)
 	lab_animator.stop(true)
 
 func _on_Lab_Close_click(_el: ClickableButton) -> void:

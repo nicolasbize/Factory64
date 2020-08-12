@@ -1,15 +1,61 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/UpgradePanel.gd" type="Script" id=1]
 [ext_resource path="res://UI/buy-button.png" type="Texture" id=2]
 [ext_resource path="res://UI/expand-icon.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/bitmap_font.tres" type="DynamicFont" id=4]
-[ext_resource path="res://UI/ClickableButton.gd" type="Script" id=5]
-[ext_resource path="res://UI/Grayscale.shader" type="Shader" id=6]
+[ext_resource path="res://UI/ClickableButton.tscn" type="PackedScene" id=5]
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 6 )
-shader_param/grayscale = false
+[sub_resource type="Animation" id=3]
+resource_name = "Disable"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.690196, 0.690196, 0.690196, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Enable"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.905882, 1, 0.882353, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Pending"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.905882, 1, 0.882353, 1 ) ]
+}
 
 [node name="UpgradePanel" type="Control"]
 margin_right = 64.0
@@ -19,18 +65,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PurchaseButton" type="TextureRect" parent="."]
-material = SubResource( 3 )
-margin_left = 35.0
-margin_top = -1.90735e-06
-margin_right = 59.0
-margin_bottom = 9.0
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 29, 5 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Pending"
+anims/Disable = SubResource( 3 )
+anims/Enable = SubResource( 2 )
+anims/Pending = SubResource( 4 )
+
+[node name="PurchaseButton" parent="." instance=ExtResource( 5 )]
+margin_left = 34.0
+margin_top = 1.0
+margin_right = 58.0
+margin_bottom = 10.0
 texture = ExtResource( 2 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-move_on_click = false
 
 [node name="Price" type="Label" parent="PurchaseButton"]
 margin_left = 1.0
@@ -38,14 +88,10 @@ margin_top = 1.0
 margin_right = 23.0
 margin_bottom = 7.0
 custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.905882, 1, 0.882353, 1 )
 text = "$10K"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Icon" type="Sprite" parent="."]
-position = Vector2( 29, 5 )
-texture = ExtResource( 3 )
 [connection signal="click" from="PurchaseButton" to="." method="_on_PurchaseButton_click"]

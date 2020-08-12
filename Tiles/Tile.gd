@@ -60,6 +60,10 @@ func set_power(pwr: int) -> void:
 
 func is_upgradable() -> bool:
 	return [
+		Constants.TileType.GOLD,
+		Constants.TileType.SILVER,
+		Constants.TileType.SILICON,
+		Constants.TileType.IRON,
 		Constants.TileType.ASSEMBLY,
 		Constants.TileType.CUTTER,
 		Constants.TileType.FACTORY,

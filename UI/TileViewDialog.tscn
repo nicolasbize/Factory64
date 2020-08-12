@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://UI/close-button.png" type="Texture" id=1]
 [ext_resource path="res://UI/Grayscale.shader" type="Shader" id=2]
@@ -16,10 +16,12 @@
 [ext_resource path="res://UI/RecipeSelector.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/grayscale = false
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/grayscale = false
 
@@ -28,6 +30,24 @@ shader = ExtResource( 2 )
 shader_param/grayscale = false
 
 [sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/grayscale = false
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 2 )
+shader_param/grayscale = false
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 2 )
+shader_param/grayscale = false
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/grayscale = false
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/grayscale = false
 
@@ -50,6 +70,7 @@ __meta__ = {
 }
 
 [node name="CloseButton" parent="InfoPanel" instance=ExtResource( 6 )]
+material = SubResource( 1 )
 margin_left = 53.0
 margin_top = -3.0
 margin_right = 60.0
@@ -72,6 +93,7 @@ __meta__ = {
 }
 
 [node name="Lvl-1Button" parent="InfoPanel/PowerMeter" instance=ExtResource( 6 )]
+material = SubResource( 2 )
 margin_left = 36.0
 margin_top = 7.0
 margin_right = 41.0
@@ -80,7 +102,7 @@ texture = ExtResource( 9 )
 move_on_click = false
 
 [node name="Lvl-2Button" parent="InfoPanel/PowerMeter" instance=ExtResource( 6 )]
-material = SubResource( 1 )
+material = SubResource( 3 )
 margin_left = 41.0
 margin_top = 7.0
 margin_right = 46.0
@@ -89,7 +111,7 @@ texture = ExtResource( 10 )
 move_on_click = false
 
 [node name="Lvl-3Button" parent="InfoPanel/PowerMeter" instance=ExtResource( 6 )]
-material = SubResource( 2 )
+material = SubResource( 4 )
 margin_left = 46.0
 margin_top = 7.0
 margin_right = 51.0
@@ -98,7 +120,7 @@ texture = ExtResource( 11 )
 move_on_click = false
 
 [node name="Lvl-4Button" parent="InfoPanel/PowerMeter" instance=ExtResource( 6 )]
-material = SubResource( 3 )
+material = SubResource( 5 )
 margin_left = 51.0
 margin_top = 7.0
 margin_right = 56.0
@@ -107,7 +129,7 @@ texture = ExtResource( 12 )
 move_on_click = false
 
 [node name="Lvl-5Button" parent="InfoPanel/PowerMeter" instance=ExtResource( 6 )]
-material = SubResource( 4 )
+material = SubResource( 6 )
 margin_left = 56.0
 margin_top = 7.0
 margin_right = 61.0
@@ -132,6 +154,7 @@ margin_right = -3.0
 margin_bottom = -24.0
 
 [node name="DestroyButton" parent="InfoPanel" instance=ExtResource( 6 )]
+material = SubResource( 7 )
 margin_left = 3.0
 margin_top = 16.0
 margin_right = 27.0
@@ -151,6 +174,7 @@ __meta__ = {
 }
 
 [node name="ClearButton" parent="InfoPanel" instance=ExtResource( 6 )]
+material = SubResource( 8 )
 margin_left = 36.0
 margin_top = 16.0
 margin_right = 61.0

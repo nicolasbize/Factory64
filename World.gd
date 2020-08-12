@@ -35,7 +35,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	update_mouse()
-	if is_mouse_over_top_bar() or cursor.is_dragging:
+	if (is_mouse_over_top_bar() or cursor.is_dragging or ui.showing_upgrades) and active_tile_position == Vector2.ZERO:
 		selector.visible = false
 	elif not ui.is_active:
 		update_selector()
@@ -124,12 +124,12 @@ func _on_UI_create_tile(tile_type: int) -> void:
 func _on_upgrade_purchased(type, level):
 	match type:
 		Constants.UpgradeType.ASSEMBLERS:
-			for tile in WorldTiles.tiles:
+			for tile in WorldTiles.tiles.values():
 				if tile.type == Constants.TileType.ASSEMBLY or \
 				tile.type == Constants.TileType.FACTORY:
 					tile.set_power(level)
 		Constants.UpgradeType.EXTRACTORS:
-			for tile in WorldTiles.tiles:
+			for tile in WorldTiles.tiles.values():
 				if tile.type == Constants.TileType.GOLD or \
 				tile.type == Constants.TileType.IRON or \
 				tile.type == Constants.TileType.SILICON or \

@@ -5,7 +5,7 @@ extends Node
 const MAX_UPGRADES := 5
 
 # stats
-var money := 10000
+var money := 1000000
 var nb_extractors := 0
 var nb_burners := 0
 var nb_cutters := 0
@@ -33,6 +33,10 @@ signal money_change
 signal upgraded
 
 func upgrade(type: int) -> void:
+	var level = upgrades[type]
+	var price : int = Constants.UpgradePrices[type][level]
+	money -= price
+	emit_signal("money_change")
 	if upgrades[type] < 5:
 		upgrades[type] += 1
 	max_extractors = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 10

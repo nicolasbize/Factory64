@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://UI/game_theme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/ClickableButton.tscn" type="PackedScene" id=2]
@@ -7,174 +7,27 @@
 [ext_resource path="res://UI/equipment.png" type="Texture" id=5]
 [ext_resource path="res://UI/Lab.gd" type="Script" id=6]
 [ext_resource path="res://UI/UpgradePanel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/Grayscale.shader" type="Shader" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Disabled"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PurchaseButton:material:shader_param/grayscale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.678431, 0.678431, 0.678431, 1 ) ]
-}
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/grayscale = false
 
-[sub_resource type="Animation" id=2]
-resource_name = "Enabled"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.866667, 0.945098, 0.847059, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PurchaseButton:material:shader_param/grayscale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/grayscale = false
 
-[sub_resource type="Animation" id=3]
-resource_name = "Disabled"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PurchaseButton:material:shader_param/grayscale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.678431, 0.678431, 0.678431, 1 ) ]
-}
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/grayscale = false
 
-[sub_resource type="Animation" id=4]
-resource_name = "Enabled"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.866667, 0.945098, 0.847059, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PurchaseButton:material:shader_param/grayscale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "Disabled"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PurchaseButton:material:shader_param/grayscale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.678431, 0.678431, 0.678431, 1 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "Enabled"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PurchaseButton/Price:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.866667, 0.945098, 0.847059, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PurchaseButton:material:shader_param/grayscale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/grayscale = false
 
 [node name="Lab" type="Control"]
 anchor_right = 1.0
@@ -211,26 +64,26 @@ __meta__ = {
 }
 
 [node name="Close" parent="." instance=ExtResource( 2 )]
+material = SubResource( 4 )
 margin_left = 54.0
 margin_top = 2.0
 margin_right = 61.0
-margin_bottom = 9.0
 texture = ExtResource( 4 )
 
 [node name="ExtractorUpgrade" parent="." instance=ExtResource( 7 )]
 margin_left = 2.0
-margin_top = 11.0
-margin_right = 66.0
-margin_bottom = 21.0
+margin_top = 10.0
+margin_right = 62.0
+margin_bottom = 20.0
+mouse_filter = 1
 
-[node name="Icon" parent="ExtractorUpgrade" index="1"]
+[node name="Icon" parent="ExtractorUpgrade" index="0"]
 texture = ExtResource( 5 )
 hframes = 12
 frame = 3
 
-[node name="AnimationPlayer" parent="ExtractorUpgrade" index="2"]
-anims/Disabled = SubResource( 1 )
-anims/Enabled = SubResource( 2 )
+[node name="PurchaseButton" parent="ExtractorUpgrade" index="2"]
+material = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="ExtractorUpgrade"]
 position = Vector2( 21, 5 )
@@ -251,19 +104,19 @@ hframes = 12
 
 [node name="ProcessorUpgrade" parent="." instance=ExtResource( 7 )]
 margin_left = 2.0
-margin_top = 22.0
-margin_right = 66.0
-margin_bottom = 32.0
+margin_top = 21.0
+margin_right = 62.0
+margin_bottom = 31.0
+mouse_filter = 1
 upgrade_type = 1
 
-[node name="Icon" parent="ProcessorUpgrade" index="1"]
+[node name="Icon" parent="ProcessorUpgrade" index="0"]
 texture = ExtResource( 5 )
 hframes = 12
 frame = 8
 
-[node name="AnimationPlayer" parent="ProcessorUpgrade" index="2"]
-anims/Disabled = SubResource( 3 )
-anims/Enabled = SubResource( 4 )
+[node name="PurchaseButton" parent="ProcessorUpgrade" index="2"]
+material = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="ProcessorUpgrade"]
 position = Vector2( 19, 5 )
@@ -273,19 +126,19 @@ frame = 7
 
 [node name="AssemblyUpgrade" parent="." instance=ExtResource( 7 )]
 margin_left = 2.0
-margin_top = 33.0
-margin_right = 66.0
-margin_bottom = 43.0
+margin_top = 32.0
+margin_right = 62.0
+margin_bottom = 42.0
+mouse_filter = 1
 upgrade_type = 2
 
-[node name="Icon" parent="AssemblyUpgrade" index="1"]
+[node name="Icon" parent="AssemblyUpgrade" index="0"]
 texture = ExtResource( 5 )
 hframes = 12
 frame = 10
 
-[node name="AnimationPlayer" parent="AssemblyUpgrade" index="2"]
-anims/Disabled = SubResource( 5 )
-anims/Enabled = SubResource( 6 )
+[node name="PurchaseButton" parent="AssemblyUpgrade" index="2"]
+material = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="AssemblyUpgrade"]
 position = Vector2( 19, 5 )
@@ -295,9 +148,10 @@ frame = 9
 
 [node name="FactoryUpgrade" parent="." instance=ExtResource( 7 )]
 margin_left = 2.0
-margin_top = 44.0
-margin_right = 66.0
-margin_bottom = 54.0
+margin_top = 43.0
+margin_right = 62.0
+margin_bottom = 53.0
+mouse_filter = 1
 upgrade_type = 3
 
 [editable path="ExtractorUpgrade"]
