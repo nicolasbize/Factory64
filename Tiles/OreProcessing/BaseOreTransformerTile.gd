@@ -48,6 +48,7 @@ var status : int = Status.PENDING
 signal storage_change(tile, storage)
 
 func _ready() -> void:
+	is_operational = false
 	for _i in range(Constants.ObjectType.size()):
 		contents.append(0)
 
@@ -208,8 +209,8 @@ func destroy_obj(item: MovableObject) -> void:
 
 func _on_PowerUp_done() -> void:
 	status = Status.BUSY
-	#(str(get_tile_speed()))
 	process_timer.start(get_tile_speed())
+	operating_sound.play()
 
 func _on_PowerDown_done() -> void:
 	status = Status.PENDING

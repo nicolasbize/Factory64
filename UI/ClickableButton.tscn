@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/ClickableButton.gd" type="Script" id=1]
 [ext_resource path="res://UI/Grayscale.shader" type="Shader" id=2]
+[ext_resource path="res://Sounds/click.wav" type="AudioStream" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -16,6 +17,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 [connection signal="gui_input" from="." to="." method="_on_ClickableButton_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_ClickableButton_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_ClickableButton_mouse_exited"]

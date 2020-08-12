@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tile-destroy.wav-ef7ca720fc6dc68a8ed0055ab2dd7eba.sample"
+
+[deps]
+
+source_file="res://Sounds/tile-destroy.wav"
+dest_files=[ "res://.import/tile-destroy.wav-ef7ca720fc6dc68a8ed0055ab2dd7eba.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

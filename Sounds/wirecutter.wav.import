@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wirecutter.wav-48a8927a69ffcee3b209ed69b8e49e53.sample"
+
+[deps]
+
+source_file="res://Sounds/wirecutter.wav"
+dest_files=[ "res://.import/wirecutter.wav-48a8927a69ffcee3b209ed69b8e49e53.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

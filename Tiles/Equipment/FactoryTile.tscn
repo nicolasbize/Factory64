@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tiles/OreProcessing/BaseOreTransformerTile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tiles/Equipment/factory.png" type="Texture" id=2]
 [ext_resource path="res://Tiles/Equipment/FactoryTile.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/assembly.wav" type="AudioStream" id=4]
 
 [node name="FactoryTile" instance=ExtResource( 1 )]
 z_index = 1
@@ -10,9 +11,17 @@ script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
+hframes = 9
 
 [node name="ValidArea" parent="." index="3"]
 polygon = PoolVector2Array( -2, -4, 2, -4, 2, 4, -2, 4 )
 
 [node name="CollisionShape2D" parent="StorageArea" index="0"]
 visible = false
+
+[node name="OperatingSound" parent="." index="6"]
+stream = ExtResource( 4 )
+volume_db = 0.0
+bus = "Master"
+[connection signal="timeout" from="TileTimer" to="." method="_on_TileTimer_timeout"]
+[connection signal="timeout" from="AudioTimer" to="." method="_on_AudioTimer_timeout"]

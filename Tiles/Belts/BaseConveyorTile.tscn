@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Tiles/Tile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tiles/Belts/BaseConveyorTile.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/belt.wav" type="AudioStream" id=3]
 
 [node name="BaseConveyorTile" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="ValidArea" type="Polygon2D" parent="." index="3"]
 visible = false
+
+[node name="OperatingSound" parent="." index="4"]
+stream = ExtResource( 3 )
+volume_db = -5.0
+bus = "Belts"

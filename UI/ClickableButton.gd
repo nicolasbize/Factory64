@@ -7,6 +7,8 @@ enum State {DEFAULT, HOVER, PRESS}
 export (bool) var move_on_click = true
 export (bool) var disabled = false
 
+onready var click_sound := $ClickSound
+
 var state = State.DEFAULT
 
 signal click(el)
@@ -37,6 +39,7 @@ func _on_ClickableButton_gui_input(event: InputEvent) -> void:
 			state = State.HOVER
 			if not disabled:
 				emit_signal("click", self)
+				click_sound.play()
 
 func _on_ClickableButton_mouse_entered() -> void:
 	state = State.HOVER

@@ -12,4 +12,5 @@ func store_contents() -> void:
 			# destroy non-ore items
 			if item.type != null:
 				GameState.income(Constants.ObjectPrices[item.type])
+				operating_sound.play()
 			destroy_obj(item)

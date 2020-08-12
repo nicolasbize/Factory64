@@ -10,6 +10,7 @@ var is_reverse := false
 var flow_areas := []
 
 func _ready() -> void:
+	is_operational = true
 	if global_belt_timer.connect("timeout", self, "_on_global_belt_timer") != OK:
 		push_error("Tile could not subscribe to global timer event")
 	

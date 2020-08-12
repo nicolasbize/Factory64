@@ -44,12 +44,10 @@ func _on_TileTimer_timeout() -> void:
 				
 func attempt_send_ore(tile: Tile, pos: Vector2) -> void:
 	if tile.is_valid_obj_pos(pos) and not WorldObjects.has_at(pos):
+		is_operational = true
 		create_ore(pos)
-#		var ore := create_ore(pos)
-#		var main = get_tree().current_scene.find_node("MovingObjects", false, false)
-#		main.add_item(ore)
-#		ore.global_position = pos
-#		WorldObjects.add(ore, pos)
+	else:
+		is_operational = false
 
 
 ## VIRTUAL

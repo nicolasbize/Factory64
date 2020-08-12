@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Tiles/Tile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sounds/extractor.wav" type="AudioStream" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://Tiles/Tile.gd\"
@@ -9,6 +10,7 @@ enum {RIGHT, TOP, LEFT, BOTTOM}
 var possible_directions = []
 var round_robin = 0
 var current_dir = null
+var has_sent_ore = false
 
 export (int) var efficiency = 1 # 1-4, might replace with enum
 
@@ -60,9 +62,15 @@ func _on_TileTimer_timeout():
 				
 
 func attempt_send_ore(tile, pos):
+	print(\"WTF\")
 	if tile.is_valid_obj_pos(pos) and not WorldObjects.has_at(pos):
 		create_ore(pos)
-		
+		is_operational = true
+		print(\"here!\")
+	else:
+		print(\"oh oh\")
+		is_operational = false
+
 func create_ore(_pos):
 	# get parent to implement this
 	pass
@@ -70,3 +78,6 @@ func create_ore(_pos):
 
 [node name="ExtractorTile" instance=ExtResource( 1 )]
 script = SubResource( 1 )
+
+[node name="OperatingSound" parent="." index="3"]
+stream = ExtResource( 2 )

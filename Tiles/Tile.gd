@@ -5,6 +5,10 @@ extends Node2D
 const BASE_SPEED = 0.5
 
 onready var animationPlayer := $AnimationPlayer
+onready var audio_timer := $AudioTimer
+onready var destroy_sound := $DestroyTileSound
+onready var operating_sound := $OperatingSound
+onready var place_sound := $PlaceTileSound
 onready var sprite := $Sprite
 onready var tile_timer := $TileTimer
 
@@ -13,9 +17,12 @@ enum Facing {RIGHT, DOWN, LEFT, UP}
 var direction : int = Facing.RIGHT
 var power : int = Constants.Power.LOWEST
 var type : int = Constants.TileType.NONE
+var is_operational : bool = false
 
 func _ready() -> void:
 	tile_timer.start(get_tile_speed())
+	audio_timer.start()
+	place_sound.play()
 
 func rotate(angle: float) -> void:
 	rotation = fmod(rotation + deg2rad(angle), 2 * PI)
@@ -67,3 +74,12 @@ func is_upgradable() -> bool:
 		Constants.TileType.CUTTER,
 		Constants.TileType.FURNACE,
 	].find(type) > -1
+
+func _on_AudioTimer_timeout() -> void:
+	if is_operational:
+		operating_sound.play()
+	else:
+		operating_sound.stop()
+
+func _on_Tile_tree_exiting():
+	destroy_sound.play()
