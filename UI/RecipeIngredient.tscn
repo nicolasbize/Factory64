@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://UI/RecipeIngredient.gd" type="Script" id=1]
 [ext_resource path="res://UI/TooltipTrigger.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/item-recipe.png" type="Texture" id=4]
 [ext_resource path="res://UI/objects.png" type="Texture" id=5]
@@ -9,7 +8,6 @@
 [node name="RecipeIngredient" type="Control"]
 margin_right = 8.0
 margin_bottom = 10.0
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -25,12 +23,6 @@ centered = false
 vframes = 4
 hframes = 8
 
-[node name="TooltipTrigger" parent="ObjectSprite" instance=ExtResource( 2 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 6.0
-margin_bottom = 6.0
-
 [node name="TrackerSprite" type="Sprite" parent="."]
 position = Vector2( 1, 0 )
 scale = Vector2( 3, 1 )
@@ -43,4 +35,8 @@ position = Vector2( 1, 0 )
 scale = Vector2( 2, 1 )
 texture = ExtResource( 6 )
 centered = false
+
+[node name="TooltipTrigger" parent="." instance=ExtResource( 2 )]
+margin_right = 8.0
+margin_bottom = 10.0
 [connection signal="frame_changed" from="ObjectSprite" to="." method="_on_ObjectSprite_frame_changed"]

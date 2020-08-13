@@ -5,7 +5,9 @@ extends Control
 const SECS_BETWEEN_MONTHS = 5
 
 onready var date = $Date
+onready var date_tooltip = $Date/DateTooltip
 onready var money = $Money
+onready var money_tooltip = $Money/MoneyTooltip
 onready var money_trend = $MoneyTrend
 onready var timer = $GameTimer
 
@@ -13,17 +15,27 @@ var current_month := 0
 var current_year := 70
 var months := ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 var prev_tick_money := GameState.money
+var months_before_retirement := 50 * 12
 
 signal game_tick
 
 func _ready() -> void:
 	timer.start(SECS_BETWEEN_MONTHS)
-	money.text = Utils.usd_to_str(GameState.money)
+	refresh_money()
+	refresh_date()
 	if GameState.connect("money_change", self, "refresh_money") != OK:
 		push_error("TopBar could not connect to GameState")
 
 func refresh_money() -> void:
 	money.text = Utils.usd_to_str(GameState.money)
+	money_tooltip.tooltip_text = "$" + str(GameState.money) + "\nReach 1M to win"
+
+func refresh_date() -> void:
+	date.text = months[current_month] + str(current_year)
+	months_before_retirement -= 1
+	var years_left := months_before_retirement / 12
+	var months_left := months_before_retirement - years_left * 12	
+	date_tooltip.tooltip_text = "%d yr %d mo before retirement!" % [years_left, months_left]
 
 func _on_GameTimer_timeout() -> void:
 	current_month += 1
@@ -32,7 +44,7 @@ func _on_GameTimer_timeout() -> void:
 		current_year += 1
 	if current_year == 100:
 		current_year = 0
-	date.text = months[current_month] + str(current_year)
+	refresh_date()
 	pay_factory_cost()
 	update_money()
 	timer.start(SECS_BETWEEN_MONTHS)

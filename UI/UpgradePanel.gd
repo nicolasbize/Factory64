@@ -5,6 +5,7 @@ extends Control
 onready var animation_player = $AnimationPlayer
 onready var price = $PurchaseButton/Price
 onready var purchase_button = $PurchaseButton
+onready var purchase_tooltip = $PurchaseButton/PurchaseTooltip
 
 export (Constants.UpgradeType) var upgrade_type: int
 
@@ -20,9 +21,11 @@ func refresh() -> void:
 		if GameState.money < cost:
 			animation_player.play("Disable")
 			purchase_button.disable()
+			purchase_tooltip.tooltip_text = "Not enough funds"
 		else:
 			animation_player.play("Enable")
 			purchase_button.enable()
+			purchase_tooltip.tooltip_text = "Click to purchase"			
 
 func _on_PurchaseButton_click(_el: InputEvent) -> void:
 	GameState.upgrade(upgrade_type)

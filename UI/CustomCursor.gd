@@ -16,8 +16,3 @@ func _process(_delta: float) -> void:
 		is_dragging = false
 		texture = default_cursor
 		
-func set_help() -> void:
-	texture = help_cursor
-
-func leave_help() -> void:
-	texture = default_cursor

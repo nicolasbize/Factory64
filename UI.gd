@@ -2,14 +2,11 @@
 class_name UI
 extends CanvasLayer
 
-onready var custom_cursor := $CustomCursor
 onready var lab = $Lab
 onready var lab_animator := $LabAnimationPlayer
 onready var selector_animator := $SelectorAnimationPlayer
 onready var tile_selector_modal := $TileSelectorModal
 onready var tile_view_modal := $TileViewDialog
-onready var tooltip_animator := $TooltipAnimator
-onready var tooltip_text := $Tooltip/ColorRect/ColorRect/TooltipText
 onready var view_animator := $ViewAnimationPlayer
 
 var is_active := false setget set_active
@@ -83,23 +80,3 @@ func _on_Lab_Close_click(_el: ClickableButton) -> void:
 func _on_UpgradeButton_click(_el: ClickableButton) -> void:
 	show_lab()
 	
-	
-# Tooltip
-func show_tooltip(text: String) -> void:
-	if not tooltip_visible:
-		tooltip_text.text = text
-		tooltip_animator.play("SlideDown")
-		tooltip_visible = true
-
-func hide_tooltip() -> void:
-	if tooltip_visible:
-		tooltip_visible = false
-		tooltip_animator.play("SlideUp")
-
-func _on_tooltip_slide_down_complete() -> void:
-	tooltip_animator.stop(true)
-	
-func _on_tooltip_slide_up_complete() -> void:
-	tooltip_animator.stop(true)
-
-

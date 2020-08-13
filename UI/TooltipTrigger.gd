@@ -6,24 +6,19 @@ enum Status {DEFAULT, HOVER, PRESS}
 
 export(String, MULTILINE) var tooltip_text
 
-var cursor : CustomCursor = null
 var state : int = Status.DEFAULT
-var ui : UI = null
+var ui : TopUI = null
 
 func _ready() -> void:
-	ui = get_tree().current_scene.find_node("UI")
-	cursor = ui.find_node("CustomCursor")
+	ui = get_tree().current_scene.find_node("TopUI")
 
 func _on_TooltipTrigger_mouse_entered() -> void:
 	if tooltip_text != "":
 		state = Status.HOVER
-		cursor.set_help()
 
 func _on_TooltipTrigger_mouse_exited() -> void:
-	if tooltip_text != "":
-		state = Status.DEFAULT
-		ui.hide_tooltip()
-		cursor.leave_help()
+	state = Status.DEFAULT
+	ui.hide_tooltip()
 
 func _on_TooltipTrigger_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

@@ -4,9 +4,13 @@ extends Control
 
 onready var lvl_1_button := $"InfoPanel/PowerMeter/Lvl-1Button"
 onready var lvl_2_button := $"InfoPanel/PowerMeter/Lvl-2Button"
+onready var lvl_2_tooltip := $"InfoPanel/PowerMeter/Lvl-2Button/TooltipTrigger"
 onready var lvl_3_button := $"InfoPanel/PowerMeter/Lvl-3Button"
+onready var lvl_3_tooltip := $"InfoPanel/PowerMeter/Lvl-3Button/TooltipTrigger"
 onready var lvl_4_button := $"InfoPanel/PowerMeter/Lvl-4Button"
+onready var lvl_4_tooltip := $"InfoPanel/PowerMeter/Lvl-4Button/TooltipTrigger"
 onready var lvl_5_button := $"InfoPanel/PowerMeter/Lvl-5Button"
+onready var lvl_5_tooltip := $"InfoPanel/PowerMeter/Lvl-5Button/TooltipTrigger"
 onready var power_meter := $InfoPanel/PowerMeter
 onready var recipe_selector := $InfoPanel/RecipeSelector
 onready var tick := $InfoPanel/PowerMeter/Tick
@@ -44,11 +48,15 @@ func set_tile(tile: Tile) -> void:
 			Constants.TileType.GOLD, Constants.TileType.IRON, Constants.TileType.SILICON, Constants.TileType.SILVER:
 				upgraded = GameState.upgrades[Constants.UpgradeType.EXTRACTORS]
 		var buttons = [lvl_2_button, lvl_3_button, lvl_4_button, lvl_5_button]
+		var tooltips = [lvl_2_tooltip, lvl_3_tooltip, lvl_4_tooltip, lvl_5_tooltip]
+		var tip_texts = ["Low speed", "Normal speed", "Fast speed", "Fastest speed"]
 		for i in buttons.size():
 			if i < upgraded:
 				buttons[i].enable()
+				tooltips[i].tooltip_text = tip_texts[i]
 			else:
 				buttons[i].disable()
+				tooltips[i].tooltip_text = tip_texts[i] + "\nUpgrade to unlock"
 	elif tile.type == Constants.TileType.FACTORY or tile.type == Constants.TileType.ASSEMBLY:
 		recipe_selector.visible = true
 		power_meter.visible = false

@@ -12,6 +12,7 @@ onready var selection_panel := $SelectionPanel
 onready var tile_sprite := $SelectionPanel/Panel/TileSprite
 onready var tile_tooltip := $SelectionPanel/Panel/TileSprite/TooltipTrigger
 onready var visual_queue := $SelectionPanel/Panel/VisualQueue
+onready var ok_tooltip := $SelectionPanel/Panel/AcceptButton/TooltipTrigger
 
 var current_type : int = Constants.TileType.IRON
 var is_disabled := false
@@ -57,8 +58,10 @@ func refresh_ui() -> void:
 			is_disabled = GameState.nb_sellers == GameState.max_sellers
 	if is_disabled:
 		animation_player.play("Disabled")
+		ok_tooltip.tooltip_text = "You need to upgrade your factory."
 	else:
 		animation_player.play("Enabled")
+		ok_tooltip.tooltip_text = "Click to Build."
 			
 func _on_LeftButton_click(_el: ClickableButton) -> void:
 	current_type -= 1

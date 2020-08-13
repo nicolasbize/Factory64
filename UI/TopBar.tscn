@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/top-bar.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/bitmap_font.tres" type="DynamicFont" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://UI/upgrade-btn.png" type="Texture" id=5]
 [ext_resource path="res://UI/options-btn.png" type="Texture" id=6]
 [ext_resource path="res://UI/TopBar.gd" type="Script" id=7]
+[ext_resource path="res://UI/TooltipTrigger.tscn" type="PackedScene" id=8]
 
 [node name="TopBar" type="Control"]
 anchor_right = 1.0
@@ -36,6 +37,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DateTooltip" parent="Date" instance=ExtResource( 8 )]
+margin_left = -1.0
+margin_right = 20.0
+
 [node name="Money" type="Label" parent="."]
 margin_left = 16.0
 margin_right = 38.0
@@ -48,6 +53,10 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MoneyTooltip" parent="Money" instance=ExtResource( 8 )]
+margin_right = 25.0
+margin_bottom = 6.0
 
 [node name="MoneyTrend" type="Sprite" parent="."]
 visible = false
@@ -63,12 +72,22 @@ margin_right = 6.0
 margin_bottom = 6.0
 texture = ExtResource( 5 )
 
+[node name="TooltipTrigger" parent="UpgradeButton" instance=ExtResource( 8 )]
+margin_right = 5.0
+margin_bottom = 5.0
+tooltip_text = "Factory upgrades"
+
 [node name="OptionsButton" parent="." instance=ExtResource( 3 )]
 margin_left = 8.0
 margin_top = 1.0
 margin_right = 13.0
 margin_bottom = 6.0
 texture = ExtResource( 6 )
+
+[node name="TooltipTrigger" parent="OptionsButton" instance=ExtResource( 8 )]
+margin_right = 5.0
+margin_bottom = 5.0
+tooltip_text = "Game options"
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 5.0

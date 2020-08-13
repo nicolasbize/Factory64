@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/game_theme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/ClickableButton.tscn" type="PackedScene" id=2]
@@ -8,23 +8,9 @@
 [ext_resource path="res://UI/Lab.gd" type="Script" id=6]
 [ext_resource path="res://UI/UpgradePanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Grayscale.shader" type="Shader" id=8]
-
-[sub_resource type="ShaderMaterial" id=4]
-resource_local_to_scene = true
-shader = ExtResource( 8 )
-shader_param/grayscale = false
+[ext_resource path="res://UI/TooltipTrigger.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
-resource_local_to_scene = true
-shader = ExtResource( 8 )
-shader_param/grayscale = false
-
-[sub_resource type="ShaderMaterial" id=2]
-resource_local_to_scene = true
-shader = ExtResource( 8 )
-shader_param/grayscale = false
-
-[sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 8 )
 shader_param/grayscale = false
@@ -63,46 +49,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Close" parent="." instance=ExtResource( 2 )]
-material = SubResource( 4 )
+[node name="Close" parent="Panel" instance=ExtResource( 2 )]
+material = SubResource( 1 )
 margin_left = 54.0
 margin_top = 2.0
 margin_right = 61.0
 texture = ExtResource( 4 )
 
-[node name="ExtractorUpgrade" parent="." instance=ExtResource( 7 )]
+[node name="TooltipTrigger" parent="Panel/Close" instance=ExtResource( 9 )]
+margin_right = 7.0
+tooltip_text = "Close this dialog"
+
+[node name="ExtractorUpgrade" parent="Panel" instance=ExtResource( 7 )]
 margin_left = 2.0
 margin_top = 10.0
 margin_right = 62.0
 margin_bottom = 20.0
 mouse_filter = 1
 
-[node name="Icon" parent="ExtractorUpgrade" index="0"]
+[node name="Icon" parent="Panel/ExtractorUpgrade" index="0"]
 texture = ExtResource( 5 )
 hframes = 12
 frame = 3
 
-[node name="PurchaseButton" parent="ExtractorUpgrade" index="2"]
-material = SubResource( 1 )
+[node name="Price" parent="Panel/ExtractorUpgrade/PurchaseButton" index="1"]
+margin_left = 0.0
+margin_top = -4.0
+margin_right = 25.0
+margin_bottom = 10.0
 
-[node name="Sprite" type="Sprite" parent="ExtractorUpgrade"]
+[node name="UpgradeTypeTooltip" parent="Panel/ExtractorUpgrade" index="3"]
+tooltip_text = "Extractor efficiency +25%"
+
+[node name="Sprite" type="Sprite" parent="Panel/ExtractorUpgrade"]
 position = Vector2( 21, 5 )
 texture = ExtResource( 5 )
 hframes = 12
 frame = 2
 
-[node name="Sprite2" type="Sprite" parent="ExtractorUpgrade"]
+[node name="Sprite2" type="Sprite" parent="Panel/ExtractorUpgrade"]
 position = Vector2( 13, 5 )
 texture = ExtResource( 5 )
 hframes = 12
 frame = 1
 
-[node name="Sprite3" type="Sprite" parent="ExtractorUpgrade"]
+[node name="Sprite3" type="Sprite" parent="Panel/ExtractorUpgrade"]
 position = Vector2( 5, 5 )
 texture = ExtResource( 5 )
 hframes = 12
 
-[node name="ProcessorUpgrade" parent="." instance=ExtResource( 7 )]
+[node name="ProcessorUpgrade" parent="Panel" instance=ExtResource( 7 )]
 margin_left = 2.0
 margin_top = 21.0
 margin_right = 62.0
@@ -110,21 +106,27 @@ margin_bottom = 31.0
 mouse_filter = 1
 upgrade_type = 1
 
-[node name="Icon" parent="ProcessorUpgrade" index="0"]
+[node name="Icon" parent="Panel/ProcessorUpgrade" index="0"]
 texture = ExtResource( 5 )
 hframes = 12
 frame = 8
 
-[node name="PurchaseButton" parent="ProcessorUpgrade" index="2"]
-material = SubResource( 2 )
+[node name="Price" parent="Panel/ProcessorUpgrade/PurchaseButton" index="1"]
+margin_left = 0.0
+margin_top = -4.0
+margin_right = 25.0
+margin_bottom = 10.0
 
-[node name="Sprite" type="Sprite" parent="ProcessorUpgrade"]
+[node name="UpgradeTypeTooltip" parent="Panel/ProcessorUpgrade" index="3"]
+tooltip_text = "Processor  efficiency +25%"
+
+[node name="Sprite" type="Sprite" parent="Panel/ProcessorUpgrade"]
 position = Vector2( 19, 5 )
 texture = ExtResource( 5 )
 hframes = 12
 frame = 7
 
-[node name="AssemblyUpgrade" parent="." instance=ExtResource( 7 )]
+[node name="AssemblyUpgrade" parent="Panel" instance=ExtResource( 7 )]
 margin_left = 2.0
 margin_top = 32.0
 margin_right = 62.0
@@ -132,21 +134,27 @@ margin_bottom = 42.0
 mouse_filter = 1
 upgrade_type = 2
 
-[node name="Icon" parent="AssemblyUpgrade" index="0"]
+[node name="Icon" parent="Panel/AssemblyUpgrade" index="0"]
 texture = ExtResource( 5 )
 hframes = 12
 frame = 10
 
-[node name="PurchaseButton" parent="AssemblyUpgrade" index="2"]
-material = SubResource( 3 )
+[node name="Price" parent="Panel/AssemblyUpgrade/PurchaseButton" index="1"]
+margin_left = 0.0
+margin_top = -4.0
+margin_right = 25.0
+margin_bottom = 10.0
 
-[node name="Sprite" type="Sprite" parent="AssemblyUpgrade"]
+[node name="UpgradeTypeTooltip" parent="Panel/AssemblyUpgrade" index="3"]
+tooltip_text = "Build  efficiency +25%"
+
+[node name="Sprite" type="Sprite" parent="Panel/AssemblyUpgrade"]
 position = Vector2( 19, 5 )
 texture = ExtResource( 5 )
 hframes = 12
 frame = 9
 
-[node name="FactoryUpgrade" parent="." instance=ExtResource( 7 )]
+[node name="FactoryUpgrade" parent="Panel" instance=ExtResource( 7 )]
 margin_left = 2.0
 margin_top = 43.0
 margin_right = 62.0
@@ -154,8 +162,20 @@ margin_bottom = 53.0
 mouse_filter = 1
 upgrade_type = 3
 
-[editable path="ExtractorUpgrade"]
+[node name="Price" parent="Panel/FactoryUpgrade/PurchaseButton" index="1"]
+margin_left = 0.0
+margin_top = -4.0
+margin_right = 25.0
+margin_bottom = 10.0
 
-[editable path="ProcessorUpgrade"]
+[node name="UpgradeTypeTooltip" parent="Panel/FactoryUpgrade" index="3"]
+tooltip_text = "Factory size +25%
+More equipment"
 
-[editable path="AssemblyUpgrade"]
+[editable path="Panel/ExtractorUpgrade"]
+
+[editable path="Panel/ProcessorUpgrade"]
+
+[editable path="Panel/AssemblyUpgrade"]
+
+[editable path="Panel/FactoryUpgrade"]

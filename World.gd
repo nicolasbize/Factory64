@@ -15,7 +15,7 @@ const VendorTile = preload("res://Tiles/Equipment/VendorTile.tscn")
 const WireCutterTile = preload("res://Tiles/OreProcessing/WireCutterTile.tscn")
 
 onready var camera := $Camera2D
-onready var cursor := $UI/CustomCursor
+onready var cursor := $TopUI/CustomCursor
 onready var factory_base := $"Factory-Base"
 onready var factory_upgrade_1 := $"Factory-Upgrade-1"
 onready var factory_upgrade_2 := $"Factory-Upgrade-2"
@@ -24,6 +24,7 @@ onready var factory_upgrade_4 := $"Factory-Upgrade-4"
 onready var game_tiles := $Tiles
 onready var selector := $Selector
 onready var ui := $UI
+onready var top_ui := $TopUI
 
 enum Size {Small, Medium, Large}
 
@@ -33,6 +34,7 @@ export (Size) var size := Size.Small
 var active_tile_position: Vector2 = Vector2.ZERO
 var world_start := Vector2(0, 15)
 var world_end := Vector2.ZERO
+var in_game := false
 
 func _ready() -> void:
 	randomize()
@@ -43,15 +45,18 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	update_mouse()
-	if (is_mouse_over_top_bar() or cursor.is_dragging or ui.showing_upgrades) and active_tile_position == Vector2.ZERO:
+	if not in_game:
 		selector.visible = false
-	elif not ui.is_active:
-		update_selector()
-		if Input.is_action_just_pressed("ui_select") and is_valid_tile(selector.position):
-			camera.move_to(selector.position)
-			show_tile_menu()
-		if Input.is_action_just_pressed("reverse") and is_valid_tile(selector.position):
-			WorldTiles.reverse(selector.position)
+	else:
+		if (is_mouse_over_top_bar() or cursor.is_dragging or ui.showing_upgrades) and active_tile_position == Vector2.ZERO:
+			selector.visible = false
+		elif not ui.is_active:
+			update_selector()
+			if Input.is_action_just_pressed("ui_select") and is_valid_tile(selector.position):
+				camera.move_to(selector.position)
+				show_tile_menu()
+			if Input.is_action_just_pressed("reverse") and is_valid_tile(selector.position):
+				WorldTiles.reverse(selector.position)
 
 func is_mouse_over_top_bar() -> bool:
 	return get_viewport().get_mouse_position().y < 9

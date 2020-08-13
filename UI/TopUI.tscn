@@ -1,0 +1,119 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://UI/CustomCursor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/TopBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/Tooltip.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI.gd" type="Script" id=7]
+[ext_resource path="res://UI/Grayscale.shader" type="Shader" id=8]
+
+[sub_resource type="Animation" id=16]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tooltip:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -25 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tooltip:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -25 ), Vector2( 0, 8 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_tooltip_slide_down_complete"
+} ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tooltip:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8 ), Vector2( 0, -25 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_tooltip_slide_up_complete"
+} ]
+}
+
+[sub_resource type="ShaderMaterial" id=19]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/grayscale = false
+
+[sub_resource type="ShaderMaterial" id=20]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/grayscale = false
+
+[node name="TopUI" type="CanvasLayer"]
+script = ExtResource( 7 )
+
+[node name="TooltipAnimator" type="AnimationPlayer" parent="."]
+autoplay = "Pending"
+anims/Pending = SubResource( 16 )
+anims/SlideDown = SubResource( 17 )
+anims/SlideUp = SubResource( 18 )
+
+[node name="Tooltip" parent="." instance=ExtResource( 6 )]
+margin_top = -25.0
+margin_bottom = -1.0
+
+[node name="TopBar" parent="." instance=ExtResource( 4 )]
+
+[node name="UpgradeButton" parent="TopBar" index="4"]
+material = SubResource( 19 )
+
+[node name="OptionsButton" parent="TopBar" index="5"]
+material = SubResource( 20 )
+
+[node name="CustomCursor" parent="." instance=ExtResource( 2 )]
+[connection signal="click" from="TopBar/UpgradeButton" to="." method="_on_UpgradeButton_click"]
+
+[editable path="TopBar"]

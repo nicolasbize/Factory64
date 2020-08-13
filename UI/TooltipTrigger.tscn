@@ -3,10 +3,8 @@
 [ext_resource path="res://UI/TooltipTrigger.gd" type="Script" id=1]
 
 [node name="TooltipTrigger" type="Control"]
-margin_left = 11.0
-margin_top = 16.0
-margin_right = 51.0
-margin_bottom = 56.0
+margin_right = 34.0
+margin_bottom = 7.0
 mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {

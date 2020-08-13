@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/UpgradePanel.gd" type="Script" id=1]
 [ext_resource path="res://UI/buy-button.png" type="Texture" id=2]
 [ext_resource path="res://UI/expand-icon.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/bitmap_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://UI/ClickableButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/TooltipTrigger.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "Disable"
 length = 0.1
 loop = true
@@ -40,7 +41,7 @@ tracks/0/keys = {
 "values": [ Color( 0.905882, 1, 0.882353, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Pending"
 length = 0.1
 loop = true
@@ -71,9 +72,9 @@ texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Pending"
-anims/Disable = SubResource( 3 )
+anims/Disable = SubResource( 1 )
 anims/Enable = SubResource( 2 )
-anims/Pending = SubResource( 4 )
+anims/Pending = SubResource( 3 )
 
 [node name="PurchaseButton" parent="." instance=ExtResource( 5 )]
 margin_left = 34.0
@@ -94,4 +95,12 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PurchaseTooltip" parent="PurchaseButton" instance=ExtResource( 6 )]
+margin_right = 24.0
+margin_bottom = 9.0
+
+[node name="UpgradeTypeTooltip" parent="." instance=ExtResource( 6 )]
+margin_top = 1.0
+margin_bottom = 10.0
 [connection signal="click" from="PurchaseButton" to="." method="_on_PurchaseButton_click"]
