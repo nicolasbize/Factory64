@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/bitmap_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/HighScore.gd" type="Script" id=2]
+
+[node name="HighScore" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.141176, 0.141176, 0.141176, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_top = 5.0
+margin_right = 63.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Congrats,
+you are now a
+milllionnaire!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeTaken" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 31.0
+margin_right = 62.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.12549, 0.909804, 0.192157, 1 )
+text = "Score: 3y 8mo"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Thanks" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 44.0
+margin_right = 62.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 1 )
+text = "Thanks for
+playing!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

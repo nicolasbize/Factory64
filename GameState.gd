@@ -3,6 +3,7 @@
 extends Node
 
 const MAX_UPGRADES := 5
+const MONEY_TO_WIN := 1005
 
 # stats
 var money := 1000
@@ -12,6 +13,10 @@ var nb_cutters := 0
 var nb_factories := 0
 var nb_assemblies := 0
 var nb_sellers := 0
+var has_won := false
+var current_month := 0
+var current_year := 70
+var months_taken := 0
 
 # limits -- can be upgraded
 var max_extractors := 10
@@ -31,6 +36,7 @@ var upgrades := {
 
 signal money_change
 signal upgraded
+signal game_won
 
 func upgrade(type: int) -> void:
 	var level = upgrades[type]
@@ -60,3 +66,7 @@ func get_next_price() -> int:
 func income(cash: int) -> void:
 	money += cash
 	emit_signal("money_change")
+	if money > MONEY_TO_WIN and not has_won:
+		has_won = true
+		yield(get_tree().create_timer(2.0), "timeout")
+		emit_signal("game_won")

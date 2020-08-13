@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Music/Factory-1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://Music/Factory-2.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Music/Factory-4.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Music/Factory-3.ogg" type="AudioStream" id=4]
 [ext_resource path="res://MusicPlayer.gd" type="Script" id=5]
+[ext_resource path="res://Music/Factory-5.ogg" type="AudioStream" id=6]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
 script = ExtResource( 5 )
 song_list = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ]
+end_song = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

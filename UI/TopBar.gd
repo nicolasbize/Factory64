@@ -11,8 +11,6 @@ onready var money_tooltip = $Money/MoneyTooltip
 onready var money_trend = $MoneyTrend
 onready var timer = $GameTimer
 
-var current_month := 0
-var current_year := 70
 var months := ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 var prev_tick_money := GameState.money
 var months_before_retirement := 50 * 12
@@ -31,19 +29,20 @@ func refresh_money() -> void:
 	money_tooltip.tooltip_text = "$" + str(GameState.money) + "\nReach 1M to win"
 
 func refresh_date() -> void:
-	date.text = months[current_month] + str(current_year)
+	date.text = months[GameState.current_month] + str(GameState.current_year)
 	months_before_retirement -= 1
 	var years_left := months_before_retirement / 12
 	var months_left := months_before_retirement - years_left * 12	
 	date_tooltip.tooltip_text = "%d yr %d mo before retirement!" % [years_left, months_left]
 
 func _on_GameTimer_timeout() -> void:
-	current_month += 1
-	if current_month == months.size():
-		current_month = 0
-		current_year += 1
-	if current_year == 100:
-		current_year = 0
+	GameState.months_taken += 1
+	GameState.current_month += 1
+	if GameState.current_month == months.size():
+		GameState.current_month = 0
+		GameState.current_year += 1
+	if GameState.current_year == 100:
+		GameState.current_year = 0
 	refresh_date()
 	pay_factory_cost()
 	update_money()
