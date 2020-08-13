@@ -6,29 +6,12 @@
 [ext_resource path="res://Music/Factory-3.ogg" type="AudioStream" id=4]
 [ext_resource path="res://MusicPlayer.gd" type="Script" id=5]
 
-[node name="MusicPlayer" type="Node"]
+[node name="MusicPlayer" type="AudioStreamPlayer"]
 script = ExtResource( 5 )
+song_list = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
-
-[node name="Music" type="Node" parent="."]
-
-[node name="Music1" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource( 1 )
-volume_db = -5.0
-
-[node name="Music2" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource( 2 )
-
-[node name="Music3" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource( 4 )
-
-[node name="Music4" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource( 3 )
+[connection signal="finished" from="." to="." method="_on_MusicPlayer_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="finished" from="Music/Music1" to="." method="_on_music_finished"]
-[connection signal="finished" from="Music/Music2" to="." method="_on_music_finished"]
-[connection signal="finished" from="Music/Music3" to="." method="_on_music_finished"]
-[connection signal="finished" from="Music/Music4" to="." method="_on_music_finished"]

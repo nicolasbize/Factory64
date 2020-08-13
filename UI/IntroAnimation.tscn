@@ -1,0 +1,267 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://UI/intro/intro.png" type="Texture" id=1]
+[ext_resource path="res://UI/intro/letter-y.png" type="Texture" id=2]
+[ext_resource path="res://UI/intro/letter-r.png" type="Texture" id=3]
+[ext_resource path="res://UI/intro/letter-c.png" type="Texture" id=4]
+[ext_resource path="res://UI/intro/letter-o.png" type="Texture" id=5]
+[ext_resource path="res://UI/intro/letter-t.png" type="Texture" id=6]
+[ext_resource path="res://UI/intro/littlebig.png" type="Texture" id=7]
+[ext_resource path="res://UI/intro/letter-a.png" type="Texture" id=8]
+[ext_resource path="res://UI/intro/letter-f.png" type="Texture" id=9]
+[ext_resource path="res://Fonts/bitmap_font.tres" type="DynamicFont" id=10]
+[ext_resource path="res://UI/ClickableButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/menu-button.png" type="Texture" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Intro"
+length = 2.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 20 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Start"
+length = 5.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Logo/LittleBig:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.45, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -27 ), Vector2( 0, -27 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Logo/R:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.6, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 46, -12 ), Vector2( 46, -12 ), Vector2( 46, 16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Logo/F:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.5, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, -12 ), Vector2( 1, -12 ), Vector2( 1, 16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Logo/C:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.45, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 19, -12 ), Vector2( 19, -12 ), Vector2( 19, 16 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Logo/T:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 2.65, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 28, -12 ), Vector2( 28, -12 ), Vector2( 28, 16 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Logo/Y:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2.55, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 55, -12 ), Vector2( 55, -12 ), Vector2( 55, 16 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Logo/A:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 2.6, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 10, -12 ), Vector2( 10, -12 ), Vector2( 10, 16 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Logo/O:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 2.5, 2.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 37, -12 ), Vector2( 37, -12 ), Vector2( 37, 16 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("NewGameButton:rect_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 4.1, 4.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 66, 45 ), Vector2( 66, 45 ), Vector2( 4, 45 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("TutorialButton:rect_position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 4, 4.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 66, 32 ), Vector2( 66, 32 ), Vector2( 4, 32 ) ]
+}
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+vframes = 3
+hframes = 7
+frame = 5
+
+[node name="BackgroundAnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Intro"
+anims/Intro = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Start"
+anims/Start = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 11.0
+margin_top = 56.0
+margin_right = 63.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 10 )
+text = "By Nicolas Bize"
+
+[node name="Logo" type="Node2D" parent="."]
+
+[node name="LittleBig" type="Sprite" parent="Logo"]
+texture = ExtResource( 7 )
+centered = false
+
+[node name="F" type="Sprite" parent="Logo"]
+position = Vector2( 1, 16 )
+texture = ExtResource( 9 )
+centered = false
+
+[node name="A" type="Sprite" parent="Logo"]
+position = Vector2( 10, 16 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="C" type="Sprite" parent="Logo"]
+position = Vector2( 19, 16 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="T" type="Sprite" parent="Logo"]
+position = Vector2( 28, 16 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="O" type="Sprite" parent="Logo"]
+position = Vector2( 37, 16 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="R" type="Sprite" parent="Logo"]
+position = Vector2( 46, 16 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Y" type="Sprite" parent="Logo"]
+position = Vector2( 55, 16 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="TutorialButton" parent="." instance=ExtResource( 11 )]
+margin_left = 4.0
+margin_top = 32.0
+margin_right = 60.0
+margin_bottom = 42.0
+texture = ExtResource( 12 )
+
+[node name="Label2" type="Label" parent="TutorialButton"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 55.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0.0588235, 0.176471, 0.239216, 1 )
+text = "HOW TO PLAY"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGameButton" parent="." instance=ExtResource( 11 )]
+margin_left = 4.0
+margin_top = 45.0
+margin_right = 60.0
+margin_bottom = 55.0
+texture = ExtResource( 12 )
+
+[node name="Label2" type="Label" parent="NewGameButton"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 55.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0.0588235, 0.176471, 0.239216, 1 )
+text = "NEW GAME"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

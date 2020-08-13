@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://UI/CustomCursor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/TopBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/Tooltip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI.gd" type="Script" id=7]
@@ -112,8 +111,6 @@ material = SubResource( 19 )
 
 [node name="OptionsButton" parent="TopBar" index="5"]
 material = SubResource( 20 )
-
-[node name="CustomCursor" parent="." instance=ExtResource( 2 )]
 [connection signal="click" from="TopBar/UpgradeButton" to="." method="_on_UpgradeButton_click"]
 
 [editable path="TopBar"]

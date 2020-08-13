@@ -2,7 +2,6 @@
 class_name TopUI
 extends CanvasLayer
 
-onready var custom_cursor := $CustomCursor
 onready var tooltip_animator := $TooltipAnimator
 onready var tooltip_text := $Tooltip/ColorRect/ColorRect/TooltipText
 

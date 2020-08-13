@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://GameCursor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/IntroAnimation.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MusicPlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://LittleBigFactory.gd" type="Script" id=5]
+
+[node name="LittleBigFactory" type="Node"]
+script = ExtResource( 5 )
+
+[node name="World" parent="." instance=ExtResource( 2 )]
+
+[node name="GameCursor" parent="." instance=ExtResource( 1 )]
+layer = 10
+
+[node name="IntroCanvas" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="MainMenu" parent="IntroCanvas" instance=ExtResource( 3 )]
+
+[node name="MusicPlayer" parent="." instance=ExtResource( 4 )]
+[connection signal="click" from="IntroCanvas/MainMenu/NewGameButton" to="." method="_on_NewGameButton_click"]
+
+[editable path="IntroCanvas/MainMenu"]

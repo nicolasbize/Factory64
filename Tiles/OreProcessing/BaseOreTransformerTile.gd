@@ -180,7 +180,7 @@ func create_item_from_object_type(obj_type: int) -> Node:
 	return created_item
 	
 func expulse(item: MovableObject, pos: Vector2) -> void:
-	var main := get_tree().current_scene.find_node("MovingObjects", false, false)
+	var main = get_node("/root/LittleBigFactory/World/MovingObjects")
 	main.add_child(item)
 	main.move_child(item, 0)
 	item.global_position = pos

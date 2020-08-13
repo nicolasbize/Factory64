@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/cursor.png" type="Texture" id=1]
+[ext_resource path="res://Sounds/click.wav" type="AudioStream" id=2]
+[ext_resource path="res://GameCursor.gd" type="Script" id=3]
+
+[node name="GameCursor" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="Sprite"]
+stream = ExtResource( 2 )
