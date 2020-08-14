@@ -1,0 +1,786 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://UI/ClickableButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/tutorial-background.png" type="Texture" id=2]
+[ext_resource path="res://UI/tutorial-left.png" type="Texture" id=3]
+[ext_resource path="res://UI/tutorial-top.png" type="Texture" id=4]
+[ext_resource path="res://UI/tutorial-right.png" type="Texture" id=5]
+[ext_resource path="res://UI/tutorial-help.png" type="Texture" id=6]
+[ext_resource path="res://Fonts/bitmap_font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://UI/equipment.png" type="Texture" id=8]
+[ext_resource path="res://UI/tutorial-recipe-2.png" type="Texture" id=9]
+[ext_resource path="res://UI/objects.png" type="Texture" id=10]
+[ext_resource path="res://UI/tutorial-belts.png" type="Texture" id=11]
+[ext_resource path="res://UI/upgrade-btn.png" type="Texture" id=12]
+[ext_resource path="res://UI/Tutorial.gd" type="Script" id=13]
+[ext_resource path="res://UI/tutorial-menu.png" type="Texture" id=14]
+[ext_resource path="res://UI/TutorialScreen.tscn" type="PackedScene" id=15]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Blink"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopMenu/HelpButton/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[node name="Tutorial" type="CanvasLayer"]
+layer = 3
+script = ExtResource( 13 )
+
+[node name="MainPanel" type="Control" parent="."]
+margin_left = 6.0
+margin_top = 7.0
+margin_right = 58.0
+margin_bottom = 60.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="MainPanel"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Screens" type="Node2D" parent="MainPanel/Background"]
+position = Vector2( -6, -7 )
+
+[node name="TutorialScreen1" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen1"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Welcome to LittleBig Factory!
+
+Let's learn how to play!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialScreen2" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label" type="Label" parent="MainPanel/Background/Screens/TutorialScreen2"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Try to move the camera with A,S,D,W.
+
+You can also drag with the middle button"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialScreen3" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen3"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Use the right click to get helpful context.
+
+Try it on the top bar!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialScreen4" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen4"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "This is your factory. It's small and you are poor so things can't really get any worst..."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialScreen5" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen5"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "You make money by selling products. Let's try it out!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialScreen6" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen6"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
+text = "Click on an empty space and build an Iron Ore Extractor"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen6"]
+position = Vector2( 30, 51 )
+texture = ExtResource( 8 )
+hframes = 12
+
+[node name="TutorialScreen7" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen7"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "You can rotate a tile using the mouse wheel. Let's face down!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen7"]
+position = Vector2( 43, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+
+[node name="TutorialScreen8" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen8"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
+text = "The red dots indicate where material will come out."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen8"]
+position = Vector2( 43, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+
+[node name="TutorialScreen9" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen9"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
+text = "Place a belt below to transport the raw material"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen9"]
+position = Vector2( 32, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 4
+
+[node name="TutorialScreen10" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen10"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
+text = "You can change the direction of a belt by right clicking it"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen10"]
+position = Vector2( 32, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 4
+
+[node name="TutorialScreen11" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen11"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
+text = "We need to process the ore into something we can sell."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialScreen12" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen12"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "Ore can be turned into plates or wires through a furnace and a wirecutter"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite3" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen12"]
+position = Vector2( 24, 55 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 7
+
+[node name="Sprite4" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen12"]
+position = Vector2( 36, 55 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 8
+
+[node name="TutorialScreen13" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen13"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
+text = "Place a furnace after the belt. Rotate it properly."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen13"]
+position = Vector2( 32, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 7
+
+[node name="TutorialScreen14" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen14"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
+text = "Place another belt below to transport the plates"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen14"]
+position = Vector2( 32, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 4
+
+[node name="TutorialScreen15" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen15"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
+text = "Place a reseller on the receiving end to sell the plates!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen15"]
+position = Vector2( 32, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 11
+
+[node name="TutorialScreen16" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen16"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "Good job, you're making money!
+
+Well, not a whole lot..."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen16"]
+visible = false
+position = Vector2( 32, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 11
+
+[node name="TutorialScreen17" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen17"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 7 )
+text = "Let's build something more expensive!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen17"]
+visible = false
+position = Vector2( 32, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 11
+
+[node name="TutorialScreen18" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen18"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "Pick a spot in the factory that has room around and build a Factory"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen18"]
+position = Vector2( 48, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 9
+
+[node name="TutorialScreen19" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen19"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "Factories require 2 specific components. Notice the 2 entries?"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen19"]
+position = Vector2( 48, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 9
+
+[node name="TutorialScreen20" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen20"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "Click on it to open it up.
+
+Remember to right click everywhere!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen20"]
+visible = false
+position = Vector2( 48, 51 )
+rotation = 1.5708
+texture = ExtResource( 8 )
+hframes = 12
+frame = 9
+
+[node name="TutorialScreen21" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen21"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Capacitors are worth $160! Let's make some!
+
+Select        as the output"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen21"]
+position = Vector2( 39, 46 )
+rotation = 1.5708
+texture = ExtResource( 10 )
+vframes = 4
+hframes = 8
+frame = 13
+
+[node name="TutorialScreen22" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen22"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 7 )
+text = "Inventory is shown above each input in green:"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen22"]
+position = Vector2( 32, 46 )
+texture = ExtResource( 9 )
+
+[node name="TutorialScreen23" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+hide_on_click = true
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen23"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "Homework time! Build and sell 1 capacitor for some sweet money!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen23"]
+visible = false
+position = Vector2( 32, 46 )
+texture = ExtResource( 9 )
+
+[node name="TutorialScreen24" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen24"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Nice job!
+
+Your factory is idle most of the time, which isn't great..."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen24"]
+visible = false
+position = Vector2( 32, 46 )
+texture = ExtResource( 9 )
+
+[node name="TutorialScreen25" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen25"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 7 )
+text = "You can connect additional material lines using T-belts"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen25"]
+position = Vector2( 46, 53 )
+texture = ExtResource( 11 )
+
+[node name="TutorialScreen26" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen26"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "With enough money, you can upgrade your factory by clicking     in the top left corner"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen26"]
+position = Vector2( 50, 40 )
+texture = ExtResource( 12 )
+
+[node name="TutorialScreen27" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen27"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Spend your cash wisely.
+
+Machines will start costing money every month."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen27"]
+visible = false
+position = Vector2( 50, 40 )
+texture = ExtResource( 12 )
+
+[node name="TutorialScreen28" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen28"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "You're ready to get started!
+This game was so fun to build, I hope you enjoy it!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen28"]
+visible = false
+position = Vector2( 50, 40 )
+texture = ExtResource( 12 )
+
+[node name="TutorialScreen29" parent="MainPanel/Background/Screens" instance=ExtResource( 15 )]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="MainPanel/Background/Screens/TutorialScreen29"]
+visible = false
+position = Vector2( 50, 40 )
+texture = ExtResource( 12 )
+
+[node name="MainMenuButton" parent="MainPanel/Background/Screens/TutorialScreen29" instance=ExtResource( 1 )]
+margin_left = 12.0
+margin_top = 37.0
+margin_right = 53.0
+margin_bottom = 46.0
+texture = ExtResource( 14 )
+
+[node name="Label2" type="Label" parent="MainPanel/Background/Screens/TutorialScreen29/MainMenuButton"]
+margin_left = 4.0
+margin_top = 1.0
+margin_right = 38.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 7 )
+text = "Main Menu"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="MainPanel/Background/Screens/TutorialScreen29"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 57.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 7 )
+text = "Make $10M to retire and win the game!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopMenu" type="Sprite" parent="."]
+position = Vector2( 44, 0 )
+z_index = 20
+texture = ExtResource( 4 )
+centered = false
+
+[node name="HelpButton" parent="TopMenu" instance=ExtResource( 1 )]
+margin_left = 7.0
+margin_right = 13.0
+margin_bottom = 7.0
+
+[node name="Sprite" type="Sprite" parent="TopMenu/HelpButton"]
+texture = ExtResource( 6 )
+centered = false
+hframes = 2
+
+[node name="LeftButton" parent="TopMenu" instance=ExtResource( 1 )]
+margin_right = 6.0
+margin_bottom = 7.0
+texture = ExtResource( 3 )
+
+[node name="RightButton" parent="TopMenu" instance=ExtResource( 1 )]
+margin_left = 14.0
+margin_right = 20.0
+margin_bottom = 7.0
+texture = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="ButtonAnimator" type="AnimationPlayer" parent="."]
+autoplay = "Blink"
+anims/Blink = SubResource( 1 )
+[connection signal="gui_input" from="MainPanel" to="." method="_on_MainPanel_gui_input"]
+[connection signal="click" from="MainPanel/Background/Screens/TutorialScreen29/MainMenuButton" to="." method="_on_MainMenuButton_click"]
+[connection signal="click" from="TopMenu/HelpButton" to="." method="_on_HelpButton_click"]
+[connection signal="click" from="TopMenu/LeftButton" to="." method="_on_LeftButton_click"]
+[connection signal="click" from="TopMenu/RightButton" to="." method="_on_RightButton_click"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen2"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen3"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen4"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen5"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen6"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen7"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen8"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen9"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen10"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen11"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen12"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen13"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen14"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen15"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen16"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen17"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen18"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen19"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen20"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen21"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen22"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen23"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen24"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen25"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen26"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen27"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen28"]
+
+[editable path="MainPanel/Background/Screens/TutorialScreen29"]

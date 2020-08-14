@@ -127,8 +127,10 @@ drag_margin_bottom = 0.0
 script = ExtResource( 6 )
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
+layer = 2
 
 [node name="TopUI" parent="." instance=ExtResource( 8 )]
+layer = 2
 script = ExtResource( 9 )
 
 [node name="UpgradeButton" parent="TopUI/TopBar" index="4"]

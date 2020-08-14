@@ -11,16 +11,14 @@ var flow_areas := []
 
 func _ready() -> void:
 	is_operational = true
-	if global_belt_timer.connect("timeout", self, "_on_global_belt_timer") != OK:
-		push_error("Tile could not subscribe to global timer event")
+	global_belt_timer.connect("timeout", self, "_on_global_belt_timer")
 	
 func _on_global_belt_timer() -> void:
 	is_anim_playing = true
 	global_belt_timer.disconnect("timeout", self, "_on_global_belt_timer")
 
-func _on_TileTimer_timeout() -> void:
+func tile_tick() -> void:
 	move_objects()
-	tile_timer.start(get_tile_speed())
 
 func move_objects() -> void:
 	for flow in flow_areas:

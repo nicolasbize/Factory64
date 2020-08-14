@@ -2,6 +2,11 @@ extends Node
 
 var objects := {}
 
+func reset() -> void:
+	for obj in objects.values():
+		obj.queue_free()
+	objects = {}
+
 func add(obj: MovableObject, position: Vector2) -> void:
 	var id := get_id(position)
 	if objects.has(id):

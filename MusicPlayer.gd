@@ -24,7 +24,6 @@ func play_next():
 
 func _on_Timer_timeout():
 	play_next()
-	print("playing next")
 
 func _on_MusicPlayer_finished():
 	if not has_won:

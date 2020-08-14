@@ -5,6 +5,11 @@ extends Node
 var tiles: Dictionary = {}
 # tile ids are cell numbers (8x8 cells)
 
+func reset() -> void:
+	for tile in tiles.values():
+		tile.queue_free()
+	tiles = {}
+
 func add(tile: Tile, position: Vector2) -> void:
 	var tile_id := get_id(position)
 	if tiles.has(tile_id):

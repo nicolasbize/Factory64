@@ -2,7 +2,7 @@
 class_name VendorTile
 extends "res://Tiles/OreProcessing/BaseOreTransformerTile.gd"
 
-func _on_TileTimer_timeout() -> void:
+func tile_tick() -> void:
 	store_contents()
 
 func store_contents() -> void:

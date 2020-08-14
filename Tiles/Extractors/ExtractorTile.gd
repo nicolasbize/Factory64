@@ -3,11 +3,18 @@
 class_name ExtractorTile
 extends "res://Tiles/Tile.gd"
 
+var extract_counter := 0
+
 func _process(_delta: float) -> void:
 	animationPlayer.play("Enabled")
 
-func _on_TileTimer_timeout() -> void:
-	tile_timer.start(get_tile_speed())
+func tile_tick() -> void:
+	extract_counter += 1
+	if extract_counter > 4 - power:
+		extract_counter = 0
+		extract_ore()
+
+func extract_ore() -> void:
 	var target_tile: Tile = null
 	if direction == Facing.RIGHT:
 		target_tile = WorldTiles.get_at(global_position + Vector2(8, 0))

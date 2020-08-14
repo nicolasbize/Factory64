@@ -2,7 +2,7 @@
 class_name Tile
 extends Node2D
 
-const BASE_SPEED = 0.5
+const TILE_SPEED = 0.1
 
 onready var animationPlayer := $AnimationPlayer
 onready var audio_timer := $AudioTimer
@@ -20,7 +20,7 @@ var type : int = Constants.TileType.NONE
 var is_operational : bool = false
 
 func _ready() -> void:
-	tile_timer.start(get_tile_speed())
+	tile_timer.start(TILE_SPEED)
 	audio_timer.start()
 	place_sound.play()
 
@@ -33,7 +33,7 @@ func rotate(angle: float) -> void:
 
 # Virtual
 func is_valid_obj_pos(_pos) -> bool:
-	push_error("providing valid placement must be defined by inheritance")
+	push_error("providing valid placement must be defined by inheritance: " + str(type))
 	return false
 
 # virtual
@@ -41,9 +41,12 @@ func reverse() -> void:
 	push_error("reverse must be defined by inheritance")
 	pass
 
-# Virtual
+
 func _on_TileTimer_timeout() -> void:
-	push_error("tile timeout must defined by inheritance")
+	tile_tick()
+
+func tile_tick() -> void:
+	push_error("tile_tick needs to be defined by parent")
 	pass
 
 func clear() -> void:
@@ -58,9 +61,6 @@ func destroy() -> void:
 	var tile : Tile = WorldTiles.get_at(global_position)
 	WorldTiles.destroy(tile)
 	queue_free()
-
-func get_tile_speed() -> float:
-	return BASE_SPEED - power * 0.1
 
 func set_power(pwr: int) -> void:
 	power = pwr

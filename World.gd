@@ -45,10 +45,12 @@ func _ready() -> void:
 
 func start() -> void:
 	game_started = true
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if not game_started:
+		return
+	if GameState.tutorial_focused:
 		return
 	if (is_mouse_over_top_bar() or cursor.is_dragging or ui.showing_upgrades) and active_tile_position == Vector2.ZERO:
 		selector.visible = false
@@ -64,6 +66,8 @@ func is_mouse_over_top_bar() -> bool:
 	return get_viewport().get_mouse_position().y < 9
 
 func _input(event: InputEvent) -> void:
+	if GameState.tutorial_focused:
+		return
 	if event is InputEventMouseButton and event.pressed and is_valid_tile(selector.position):
 		if event.button_index == BUTTON_WHEEL_UP :
 			WorldTiles.rotate(selector.position, -90)

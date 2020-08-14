@@ -62,7 +62,7 @@ func _process(_delta: float) -> void:
 	elif status == Status.BUSY:
 		animationPlayer.play("Busy")
 
-func _on_TileTimer_timeout() -> void:
+func tile_tick() -> void:
 	if status == Status.PENDING:
 		store_contents()
 
@@ -78,7 +78,6 @@ func _on_TileTimer_timeout() -> void:
 			use_ingredients_for_recipe(type_to_create)
 			currently_processing = type_to_create
 			status = Status.POWERUP
-	tile_timer.start(get_tile_speed())
 
 func get_recipe_match() -> int:
 	var outputs := get_list_valid_outputs()
@@ -209,8 +208,12 @@ func destroy_obj(item: MovableObject) -> void:
 
 func _on_PowerUp_done() -> void:
 	status = Status.BUSY
-	process_timer.start(get_tile_speed())
+	process_timer.start(get_processing_speed())
 	operating_sound.play()
+
+func get_processing_speed() -> float:
+	push_error("should be implemented by parent " + str(type))
+	return 0.0
 
 func _on_PowerDown_done() -> void:
 	status = Status.PENDING

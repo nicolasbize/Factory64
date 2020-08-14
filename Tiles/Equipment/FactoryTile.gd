@@ -12,5 +12,5 @@ func _ready() -> void:
 func get_list_valid_outputs() -> Array:
 	return [active_recipe]
 
-func get_tile_speed() -> float:
-	return BASE_SPEED - GameState.upgrades[Constants.UpgradeType.ASSEMBLERS] * 0.1
+func get_processing_speed() -> float:
+	return 1.7 - GameState.upgrades[Constants.UpgradeType.ASSEMBLERS] * 0.4

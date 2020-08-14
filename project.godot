@@ -203,6 +203,12 @@ GlobalBeltTimer="*res://Objects/GlobalBeltTimer.tscn"
 GameState="*res://GameState.gd"
 Recipe="*res://Recipe.gd"
 
+[debug]
+
+gdscript/warnings/unused_argument=false
+gdscript/warnings/return_value_discarded=false
+gdscript/warnings/integer_division=false
+
 [display]
 
 window/size/width=64

@@ -90,5 +90,6 @@ margin_bottom = 5.0
 tooltip_text = "Game options"
 
 [node name="GameTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
+autostart = true
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

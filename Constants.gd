@@ -2,6 +2,10 @@
 ## Autoloaded
 extends Node
 
+const FREE_MACHINES = 20
+const MAX_UPGRADES := 5
+const MONEY_TO_WIN := 1000000
+
 enum TileType {NONE=-1, IRON, SILVER, SILICON, GOLD, BELT, LBELT, TBELT, FURNACE, CUTTER, FACTORY, ASSEMBLY, RESELLER}
 var TileCosts := [30,   30,     30,      30,   0,    0,     0,     80,      80,     100,     200,      200]
 var TileTooltips := [
@@ -87,10 +91,10 @@ var ItemName := [
 
 enum UpgradeType {EXTRACTORS, PROCESSORS, ASSEMBLERS, FACTORY}
 var UpgradePrices = [
-	[1500, 3000, 10000, 50000], # extractors
-	[1500, 3000, 10000, 50000], # processors
-	[1500, 3000, 10000, 50000], # assemblers
-	[20000, 50000, 100000, 200000], # factory
+	[3000, 8000, 20000, 50000], # extractors
+	[3000, 8000, 20000, 50000], # processors
+	[3000, 8000, 20000, 50000], # assemblers
+	[5000, 20000, 50000, 100000], # factory
 ]
 
 

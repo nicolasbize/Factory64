@@ -2,8 +2,6 @@
 class_name TopBar
 extends Control
 
-const SECS_BETWEEN_MONTHS = 5
-
 onready var date = $Date
 onready var date_tooltip = $Date/DateTooltip
 onready var money = $Money
@@ -18,15 +16,16 @@ var months_before_retirement := 50 * 12
 signal game_tick
 
 func _ready() -> void:
-	timer.start(SECS_BETWEEN_MONTHS)
 	refresh_money()
 	refresh_date()
-	if GameState.connect("money_change", self, "refresh_money") != OK:
-		push_error("TopBar could not connect to GameState")
+	GameState.connect("money_change", self, "refresh_money")
 
 func refresh_money() -> void:
 	money.text = Utils.usd_to_str(GameState.money)
-	money_tooltip.tooltip_text = "$" + str(GameState.money) + "\nReach 1M to win"
+	var diff := GameState.money - prev_tick_money
+	var monthly_income := Utils.usd_to_str(diff)
+	var signed := "-" if diff < 0 else "+"
+	money_tooltip.tooltip_text = signed + monthly_income + "/mo\nReach 1M to win"
 
 func refresh_date() -> void:
 	date.text = months[GameState.current_month] + str(GameState.current_year)
@@ -43,13 +42,13 @@ func _on_GameTimer_timeout() -> void:
 		GameState.current_year += 1
 	if GameState.current_year == 100:
 		GameState.current_year = 0
-	refresh_date()
-	pay_factory_cost()
 	update_money()
-	timer.start(SECS_BETWEEN_MONTHS)
+	refresh_date()
 	emit_signal("game_tick")
+	prev_tick_money = GameState.money
 
 func update_money() -> void:
+	pay_factory_cost()
 	money_trend.visible = true
 	if GameState.money > prev_tick_money:
 		money_trend.frame = 0
@@ -58,14 +57,12 @@ func update_money() -> void:
 		money_trend.frame = 1
 		money.set("custom_colors/font_color", Color("ba3e3e"))
 	else:
-		money_trend.visible = false	
+		money_trend.visible = false
 	refresh_money()
 	
 func pay_factory_cost() -> void:
-	var nb_machines := GameState.get_nb_machines()
-	if nb_machines > 10:
-		var cost := 0
-		for i in range(GameState.get_nb_machines() - 9):
-			cost += i
-		GameState.money -= cost
+	var cost := 0
+	for i in range(GameState.get_next_price()):
+		cost += i
+	GameState.money -= cost
 
