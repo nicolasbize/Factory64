@@ -8,6 +8,9 @@ var current_screen := 0
 var hidden_pos := Vector2(-500,7)
 var shown_pos := Vector2(6, 7)
 
+func hide():
+	help.rect_position = hidden_pos
+	
 func _on_LeftButton_click(el: ClickableButton) -> void:
 	current_screen -= 1
 	if current_screen < 0:

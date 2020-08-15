@@ -13,4 +13,3 @@ visible = false
 [node name="OperatingSound" parent="." index="4"]
 stream = ExtResource( 3 )
 volume_db = -5.0
-bus = "Belts"

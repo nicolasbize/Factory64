@@ -35,20 +35,21 @@ func refresh_date() -> void:
 	date_tooltip.tooltip_text = "%d yr %d mo before retirement!" % [years_left, months_left]
 
 func _on_GameTimer_timeout() -> void:
-	GameState.months_taken += 1
-	GameState.current_month += 1
-	if GameState.current_month == months.size():
-		GameState.current_month = 0
-		GameState.current_year += 1
-	if GameState.current_year == 100:
-		GameState.current_year = 0
-	update_money()
-	refresh_date()
-	emit_signal("game_tick")
-	prev_tick_money = GameState.money
+	if GameState.game_started:
+		GameState.months_taken += 1
+		GameState.current_month += 1
+		if GameState.current_month == months.size():
+			GameState.current_month = 0
+			GameState.current_year += 1
+		if GameState.current_year == 100:
+			GameState.current_year = 0
+		update_money()
+		refresh_date()
+		emit_signal("game_tick")
+		prev_tick_money = GameState.money
 
 func update_money() -> void:
-	pay_factory_cost()
+#	pay_factory_cost()
 	money_trend.visible = true
 	if GameState.money > prev_tick_money:
 		money_trend.frame = 0
@@ -60,9 +61,9 @@ func update_money() -> void:
 		money_trend.visible = false
 	refresh_money()
 	
-func pay_factory_cost() -> void:
-	var cost := 0
-	for i in range(GameState.get_next_price()):
-		cost += i
-	GameState.money -= cost
+#func pay_factory_cost() -> void:
+#	var cost := 0
+#	for i in range(GameState.get_next_price()):
+#		cost += i
+#	GameState.money -= cost
 

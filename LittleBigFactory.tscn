@@ -14,6 +14,7 @@ script = ExtResource( 5 )
 [node name="World" parent="." instance=ExtResource( 2 )]
 
 [node name="GameCursor" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
 layer = 10
 
 [node name="Tutorial" parent="." instance=ExtResource( 7 )]

@@ -39,4 +39,3 @@ centered = false
 [node name="TooltipTrigger" parent="." instance=ExtResource( 2 )]
 margin_right = 8.0
 margin_bottom = 10.0
-[connection signal="frame_changed" from="ObjectSprite" to="." method="_on_ObjectSprite_frame_changed"]

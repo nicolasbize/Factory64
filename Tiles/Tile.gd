@@ -33,12 +33,12 @@ func rotate(angle: float) -> void:
 
 # Virtual
 func is_valid_obj_pos(_pos) -> bool:
-	push_error("providing valid placement must be defined by inheritance: " + str(type))
+#	push_error("providing valid placement must be defined by inheritance: " + str(type))
 	return false
 
 # virtual
 func reverse() -> void:
-	push_error("reverse must be defined by inheritance")
+#	push_error("reverse must be defined by inheritance")
 	pass
 
 
@@ -46,7 +46,7 @@ func _on_TileTimer_timeout() -> void:
 	tile_tick()
 
 func tile_tick() -> void:
-	push_error("tile_tick needs to be defined by parent")
+#	push_error("tile_tick needs to be defined by parent")
 	pass
 
 func clear() -> void:

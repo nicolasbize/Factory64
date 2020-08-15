@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://UI/PauseMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/TopUI.gd" type="Script" id=2]
 [ext_resource path="res://UI/TopBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/Tooltip.tscn" type="PackedScene" id=6]
-[ext_resource path="res://UI.gd" type="Script" id=7]
 [ext_resource path="res://UI/Grayscale.shader" type="Shader" id=8]
 
 [sub_resource type="Animation" id=1]
@@ -92,7 +93,7 @@ shader = ExtResource( 8 )
 shader_param/grayscale = false
 
 [node name="TopUI" type="CanvasLayer"]
-script = ExtResource( 7 )
+script = ExtResource( 2 )
 
 [node name="TooltipAnimator" type="AnimationPlayer" parent="."]
 autoplay = "Pending"
@@ -111,6 +112,11 @@ material = SubResource( 4 )
 
 [node name="OptionsButton" parent="TopBar" index="5"]
 material = SubResource( 5 )
+
+[node name="PauseMenu" parent="." instance=ExtResource( 1 )]
+margin_left = -100.0
+margin_right = -100.0
 [connection signal="click" from="TopBar/UpgradeButton" to="." method="_on_UpgradeButton_click"]
+[connection signal="click" from="TopBar/OptionsButton" to="." method="_on_OptionsButton_click"]
 
 [editable path="TopBar"]

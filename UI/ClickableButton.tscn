@@ -20,6 +20,7 @@ __meta__ = {
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Sounds"
 [connection signal="gui_input" from="." to="." method="_on_ClickableButton_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_ClickableButton_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_ClickableButton_mouse_exited"]

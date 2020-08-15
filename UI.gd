@@ -39,8 +39,12 @@ func _on_TileSelectorCloseButton_click(_el: ClickableButton) -> void:
 
 func _on_TileSelectorAcceptButton_click(_el: ClickableButton) -> void:
 	if not tile_selector_modal.is_disabled:
+		var type : int = tile_selector_modal.current_type
 		selector_animator.play("SlideDown")
-		emit_signal("create_tile", tile_selector_modal.current_type)
+		var price := GameState.get_next_price()
+		if type == Constants.TileType.BELT or type == Constants.TileType.LBELT or type == Constants.TileType.TBELT:
+			price = 0
+		emit_signal("create_tile", type, price)
 
 # View modal
 func show_view_modal(tile: Tile) -> void:
@@ -79,4 +83,3 @@ func _on_Lab_Close_click(_el: ClickableButton) -> void:
 
 func _on_UpgradeButton_click(_el: ClickableButton) -> void:
 	show_lab()
-	

@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/game_theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/radio.png" type="Texture" id=2]
+[ext_resource path="res://UI/ClickableButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/menu-button.png" type="Texture" id=4]
+[ext_resource path="res://UI/PauseMenu.gd" type="Script" id=5]
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuLabel" type="Label" parent="Panel"]
+margin_left = 16.0
+margin_top = -2.0
+margin_right = 46.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.027451, 0.227451, 0.313726, 1 )
+text = "Pause"
+
+[node name="MusicButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 15.0
+margin_top = 14.0
+margin_right = 49.0
+margin_bottom = 24.0
+move_on_click = false
+
+[node name="Sprite" type="Sprite" parent="Panel/MusicButton"]
+position = Vector2( -1, 1 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( 4, 2 )
+hframes = 2
+frame = 1
+
+[node name="MusicLabel" type="Label" parent="Panel/MusicButton"]
+margin_left = 9.0
+margin_top = -3.0
+margin_right = 39.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.027451, 0.227451, 0.313726, 1 )
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 15.0
+margin_top = 24.0
+margin_right = 49.0
+margin_bottom = 34.0
+move_on_click = false
+
+[node name="Sprite" type="Sprite" parent="Panel/SoundButton"]
+position = Vector2( -1, 1 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( 4, 2 )
+hframes = 2
+frame = 1
+
+[node name="Label" type="Label" parent="Panel/SoundButton"]
+margin_left = 9.0
+margin_top = -3.0
+margin_right = 39.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.027451, 0.227451, 0.313726, 1 )
+text = "Sound"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EncyclopediaButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 4.0
+margin_top = 37.0
+margin_right = 63.0
+margin_bottom = 47.0
+
+[node name="Sprite" type="Sprite" parent="Panel/EncyclopediaButton"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Label" type="Label" parent="Panel/EncyclopediaButton"]
+margin_top = -4.0
+margin_right = 58.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.984314, 0.984314, 0.984314, 1 )
+text = "Encyclopedia"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReturnToGameButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 4.0
+margin_top = 50.0
+margin_right = 63.0
+margin_bottom = 60.0
+
+[node name="Sprite" type="Sprite" parent="Panel/ReturnToGameButton"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Label" type="Label" parent="Panel/ReturnToGameButton"]
+margin_top = -4.0
+margin_right = 58.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.984314, 0.984314, 0.984314, 1 )
+text = "Back to Game"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="click" from="Panel/MusicButton" to="." method="_on_MusicButton_click"]
+[connection signal="click" from="Panel/SoundButton" to="." method="_on_SoundButton_click"]
+[connection signal="click" from="Panel/ReturnToGameButton" to="." method="_on_ReturnToGameButton_click"]

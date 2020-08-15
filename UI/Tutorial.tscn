@@ -167,7 +167,7 @@ margin_top = 8.0
 margin_right = 57.0
 margin_bottom = 47.0
 custom_fonts/font = ExtResource( 7 )
-text = "You can rotate a tile using the mouse wheel. Let's face down!"
+text = "You can rotate a tile using the mouse wheel or the R key. Let's face down!"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

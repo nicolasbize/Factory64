@@ -11,7 +11,6 @@ script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-hframes = 9
 
 [node name="ValidArea" parent="." index="3"]
 polygon = PoolVector2Array( -2, -4, -2, -2, -4, -2, -4, 2, -2, 2, -2, 4, 2, 4, 2, -4, -2, -4 )
@@ -22,6 +21,3 @@ position = Vector2( -0.5, 0 )
 [node name="OperatingSound" parent="." index="6"]
 stream = ExtResource( 4 )
 volume_db = 0.0
-bus = "Master"
-[connection signal="timeout" from="TileTimer" to="." method="_on_TileTimer_timeout"]
-[connection signal="timeout" from="AudioTimer" to="." method="_on_AudioTimer_timeout"]

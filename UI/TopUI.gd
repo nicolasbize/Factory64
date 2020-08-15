@@ -2,6 +2,7 @@
 class_name TopUI
 extends CanvasLayer
 
+onready var pause_menu := $PauseMenu
 onready var tooltip_animator := $TooltipAnimator
 onready var tooltip_text := $Tooltip/ColorRect/ColorRect/TooltipText
 
@@ -24,3 +25,6 @@ func _on_tooltip_slide_down_complete() -> void:
 	
 func _on_tooltip_slide_up_complete() -> void:
 	tooltip_animator.stop(true)
+
+func _on_OptionsButton_click(el):
+	pause_menu.show_pause()

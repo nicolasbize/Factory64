@@ -205,6 +205,7 @@ margin_right = 28.0
 margin_bottom = 13.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "DESTR"
+align = 1
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -245,3 +246,5 @@ tooltip_text = "Clears the tile from its contents"
 [connection signal="click" from="InfoPanel/PowerMeter/Lvl-4Button" to="." method="_on_LvlButton_click"]
 [connection signal="click" from="InfoPanel/PowerMeter/Lvl-5Button" to="." method="_on_LvlButton_click"]
 [connection signal="change_recipe" from="InfoPanel/RecipeSelector" to="." method="_on_RecipeSelector_change_recipe"]
+[connection signal="click" from="InfoPanel/DestroyButton" to="." method="_on_DestroyButton_click"]
+[connection signal="click" from="InfoPanel/ClearButton" to="." method="_on_ClearButton_click"]

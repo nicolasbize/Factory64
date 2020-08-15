@@ -29,15 +29,18 @@ func refresh_ui() -> void:
 	visual_queue.frame = current_type
 	quantity_label.visible = true
 	is_disabled = false
-	var price := GameState.get_next_price()
-	if price == 0:
-		item_price.text = "Free"
-	else:
-		item_price.text = "$%d/mo" % [price]
+#	var price := GameState.get_next_price()
+#	if price == 0:
+#		item_price.text = "Free"
+#	else:
+#		item_price.text = "$%d/mo" % [price]
+	var price = GameState.get_next_price()
+	item_price.text = Utils.usd_to_str(price)
 	match current_type:
 		Constants.TileType.BELT, Constants.TileType.LBELT, Constants.TileType.TBELT:
 			quantity_label.visible = false
-			item_price.text = "Free"
+			price = 0
+			item_price.text = "FREE"
 		Constants.TileType.ASSEMBLY:
 			quantity_label.text = "%d/%d" % [GameState.nb_assemblies, GameState.max_assemblies]
 			is_disabled = GameState.nb_assemblies == GameState.max_assemblies
@@ -56,9 +59,13 @@ func refresh_ui() -> void:
 		Constants.TileType.RESELLER:
 			quantity_label.text = "%d/%d" % [GameState.nb_sellers, GameState.max_sellers]
 			is_disabled = GameState.nb_sellers == GameState.max_sellers
-	if is_disabled:
+	
+	if is_disabled or price > GameState.money:
 		animation_player.play("Disabled")
-		ok_tooltip.tooltip_text = "You need to upgrade your factory."
+		if price > GameState.money:
+			ok_tooltip.tooltip_text = "Not enough money."
+		else:
+			ok_tooltip.tooltip_text = "You need to upgrade your factory."
 	else:
 		animation_player.play("Enabled")
 		ok_tooltip.tooltip_text = "Click to Build."

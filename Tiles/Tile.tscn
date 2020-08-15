@@ -16,16 +16,20 @@ hframes = 9
 wait_time = 0.2
 
 [node name="OperatingSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = -4.0
 max_distance = 30.0
+bus = "Sounds"
 
 [node name="AudioTimer" type="Timer" parent="."]
 wait_time = 2.0
 
 [node name="PlaceTileSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "Sounds"
 
 [node name="DestroyTileSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Sounds"
 [connection signal="tree_exiting" from="." to="." method="_on_Tile_tree_exiting"]
 [connection signal="timeout" from="TileTimer" to="." method="_on_TileTimer_timeout"]
 [connection signal="timeout" from="AudioTimer" to="." method="_on_AudioTimer_timeout"]

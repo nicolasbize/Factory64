@@ -3,7 +3,7 @@
 extends Node
 
 # stats
-var money := 1
+var money := 1000
 var nb_extractors := 0
 var nb_burners := 0
 var nb_cutters := 0
@@ -24,6 +24,7 @@ var max_assemblies := 5
 var max_sellers := 3
 
 var tutorial_focused := false
+var game_started := false
 
 # lab upgrades
 var upgrades := {
@@ -38,7 +39,7 @@ signal upgraded
 signal game_won
 
 func reset() -> void:
-	money = 1
+	money = 1000
 	nb_extractors = 0
 	nb_burners = 0
 	nb_cutters = 0
@@ -64,6 +65,7 @@ func reset() -> void:
 	}
 	WorldObjects.reset()
 	WorldTiles.reset()
+	game_started = false
 
 func upgrade(type: int) -> void:
 	var level = upgrades[type]
@@ -85,10 +87,7 @@ func get_nb_machines() -> int:
 		nb_assemblies + nb_sellers
 
 func get_next_price() -> int:
-	var nb = get_nb_machines()
-	if nb < Constants.FREE_MACHINES:
-		return 0
-	return (nb-Constants.FREE_MACHINES)
+	return (1+get_nb_machines()) * 10
 
 func income(cash: int) -> void:
 	money += cash

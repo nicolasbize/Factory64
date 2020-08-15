@@ -32,7 +32,6 @@ export (Size) var size := Size.Small
 
 var active_tile_position: Vector2 = Vector2.ZERO
 var cursor: GameCursor = null
-var game_started := false
 var world_start := Vector2(0, 15)
 var world_end := Vector2.ZERO
 
@@ -43,12 +42,9 @@ func _ready() -> void:
 	GameState.connect("upgraded", self, "_on_upgrade_purchased")
 	refresh_world_tiles()
 
-func start() -> void:
-	game_started = true
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if not game_started:
+	if not GameState.game_started:
 		return
 	if GameState.tutorial_focused:
 		return
@@ -57,10 +53,13 @@ func _process(_delta: float) -> void:
 	elif not ui.is_active:
 		update_selector()
 		if Input.is_action_just_pressed("ui_select") and is_valid_tile(selector.position):
-			camera.move_to(selector.position)
-			show_tile_menu()
+			if not is_mouse_over_top_bar() and not ui.showing_upgrades:
+				camera.move_to(selector.position)
+				show_tile_menu()
 		if Input.is_action_just_pressed("reverse") and is_valid_tile(selector.position):
 			WorldTiles.reverse(selector.position)
+		if Input.is_action_just_pressed("rotate_cw") and is_valid_tile(selector.position):
+			WorldTiles.rotate(selector.position, -90)
 
 func is_mouse_over_top_bar() -> bool:
 	return get_viewport().get_mouse_position().y < 9
@@ -69,7 +68,7 @@ func _input(event: InputEvent) -> void:
 	if GameState.tutorial_focused:
 		return
 	if event is InputEventMouseButton and event.pressed and is_valid_tile(selector.position):
-		if event.button_index == BUTTON_WHEEL_UP :
+		if event.button_index == BUTTON_WHEEL_UP:
 			WorldTiles.rotate(selector.position, -90)
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			WorldTiles.rotate(selector.position, 90)
@@ -85,7 +84,7 @@ func is_valid_tile(pos: Vector2) -> bool:
 	return pos.x > world_start.x and pos.x < world_end.x and pos.y > world_start.y and pos.y < world_end.y
 
 func show_tile_menu() -> void:
-	if not ui.showing_upgrades:
+	if not ui.showing_upgrades and not is_mouse_over_top_bar():
 		active_tile_position = selector.position
 		var tile = WorldTiles.get_at(active_tile_position)
 		if tile == null:
@@ -93,7 +92,7 @@ func show_tile_menu() -> void:
 		else:
 			ui.show_view_modal(tile)
 
-func _on_UI_create_tile(tile_type: int) -> void:
+func _on_UI_create_tile(tile_type: int, price: int) -> void:
 	if WorldTiles.can_add(active_tile_position):
 		var tile = null
 		match tile_type:
@@ -132,6 +131,7 @@ func _on_UI_create_tile(tile_type: int) -> void:
 		tile.global_position = active_tile_position + Vector2.ONE * 4
 		tile.type = tile_type
 		WorldTiles.add(tile, active_tile_position)
+		GameState.income(-price)
 
 func _on_upgrade_purchased(type, level):
 	match type:
