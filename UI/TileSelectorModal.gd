@@ -3,6 +3,7 @@ class_name TileSelectorModal
 extends Control
 
 onready var animation_player := $AnimationPlayer
+onready var accept_button := $SelectionPanel/Panel/AcceptButton
 onready var item_price := $SelectionPanel/Panel/AcceptButton/ItemPrice
 onready var left_button := $SelectionPanel/Panel/LeftButton
 onready var quantity_label := $SelectionPanel/Panel/QuantityLabel
@@ -62,11 +63,13 @@ func refresh_ui() -> void:
 	
 	if is_disabled or price > GameState.money:
 		animation_player.play("Disabled")
+		accept_button.disable()
 		if price > GameState.money:
 			ok_tooltip.tooltip_text = "Not enough money."
 		else:
 			ok_tooltip.tooltip_text = "You need to upgrade your factory."
 	else:
+		accept_button.enable()
 		animation_player.play("Enabled")
 		ok_tooltip.tooltip_text = "Click to Build."
 			

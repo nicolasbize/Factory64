@@ -14,7 +14,7 @@ func add(obj: MovableObject, position: Vector2) -> void:
 	objects[id] = obj
 
 func get_id(position: Vector2) -> String:
-	return str(position.x) + "," + str(position.y)
+	return "%d,%d" % [position.x, position.y]
 
 func has_at(position: Vector2) -> bool:
 	return objects.has(get_id(position))

@@ -682,7 +682,7 @@ margin_top = 8.0
 margin_right = 57.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 7 )
-text = "Make $10M to retire and win the game!"
+text = "Make $1M to retire and win the game!"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

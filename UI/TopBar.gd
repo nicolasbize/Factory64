@@ -70,7 +70,7 @@ func refresh_money_text() -> void:
 	var diff := history_trend_avg
 	var monthly_income := Utils.usd_to_str(diff)
 	var signed := "-" if diff < 0 else "+"
-	money_tooltip.tooltip_text = signed + monthly_income + "/mo\nReach 1M to win"
+	money_tooltip.tooltip_text = signed + monthly_income + "/mo avg\nReach 1M to win"
 
 #func pay_factory_cost() -> void:
 #	var cost := 0
