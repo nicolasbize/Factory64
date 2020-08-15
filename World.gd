@@ -39,6 +39,8 @@ func _ready() -> void:
 	randomize()
 	cursor = get_node("/root/LittleBigFactory/GameCursor")
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	WorldTiles.init()
+	WorldObjects.init()
 	GameState.connect("upgraded", self, "_on_upgrade_purchased")
 	refresh_world_tiles()
 
@@ -136,19 +138,36 @@ func _on_UI_create_tile(tile_type: int, price: int) -> void:
 func _on_upgrade_purchased(type, level):
 	match type:
 		Constants.UpgradeType.PROCESSORS:
-			for tile in WorldTiles.tiles.values():
-				if tile.type == Constants.TileType.FURNACE or \
-				tile.type == Constants.TileType.CUTTER:
-					tile.set_power(level)
+			for row in WorldTiles.tiles:
+				for tile in row:
+					if tile != null and (tile.type == Constants.TileType.FURNACE or \
+					tile.type == Constants.TileType.CUTTER):
+						tile.set_power(level)
 		Constants.UpgradeType.EXTRACTORS:
-			for tile in WorldTiles.tiles.values():
-				if tile.type == Constants.TileType.GOLD or \
-				tile.type == Constants.TileType.IRON or \
-				tile.type == Constants.TileType.SILICON or \
-				tile.type == Constants.TileType.SILVER:
-					tile.set_power(level)
+			for row in WorldTiles.tiles:
+				for tile in row:
+					if tile != null and (tile.type == Constants.TileType.GOLD or \
+					tile.type == Constants.TileType.IRON or \
+					tile.type == Constants.TileType.SILICON or \
+					tile.type == Constants.TileType.SILVER):
+						tile.set_power(level)
 		Constants.UpgradeType.FACTORY:
 			refresh_world_tiles()
+#	match type:
+#		Constants.UpgradeType.PROCESSORS:
+#			for tile in WorldTiles.tiles.values():
+#				if tile.type == Constants.TileType.FURNACE or \
+#				tile.type == Constants.TileType.CUTTER:
+#					tile.set_power(level)
+#		Constants.UpgradeType.EXTRACTORS:
+#			for tile in WorldTiles.tiles.values():
+#				if tile.type == Constants.TileType.GOLD or \
+#				tile.type == Constants.TileType.IRON or \
+#				tile.type == Constants.TileType.SILICON or \
+#				tile.type == Constants.TileType.SILVER:
+#					tile.set_power(level)
+#		Constants.UpgradeType.FACTORY:
+#			refresh_world_tiles()
 			 
 func refresh_world_tiles():
 	var upgrade : int = GameState.upgrades[Constants.UpgradeType.FACTORY]
@@ -160,3 +179,16 @@ func refresh_world_tiles():
 	world_end = Vector2(size_x, size_y)
 	camera.limit_right = (200 + 40 * upgrade)
 	camera.limit_bottom = (160 + 40 * upgrade)
+	if Constants.DEBUG:
+		WorldObjects.init()
+		WorldTiles.init()
+		AudioServer.set_bus_mute(1, true)
+		AudioServer.set_bus_mute(2, true)
+		GameState.upgrades[Constants.UpgradeType.EXTRACTORS] = 4
+		GameState.game_started = true
+		for i in range(14):
+			active_tile_position = Vector2(8, 16 + i*8)
+			_on_UI_create_tile(0, 0)
+			for j in range(18):
+				active_tile_position = Vector2(16 + j * 8, 16 + i * 8)
+				_on_UI_create_tile(4, 0)

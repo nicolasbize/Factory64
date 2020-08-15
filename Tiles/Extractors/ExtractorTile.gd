@@ -4,6 +4,10 @@ class_name ExtractorTile
 extends "res://Tiles/Tile.gd"
 
 var extract_counter := 0
+var container : Node = null
+
+func _ready() -> void:
+	container = get_node("/root/LittleBigFactory/World/MovingObjects")
 
 func _process(_delta: float) -> void:
 	animationPlayer.play("Enabled")

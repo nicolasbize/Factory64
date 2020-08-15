@@ -5,6 +5,7 @@ extends Node
 const FREE_MACHINES = 20
 const MAX_UPGRADES := 5
 const MONEY_TO_WIN := 1000000
+const DEBUG := false
 
 enum TileType {NONE=-1, IRON, SILVER, SILICON, GOLD, BELT, LBELT, TBELT, FURNACE, CUTTER, FACTORY, ASSEMBLY, RESELLER}
 var TileCosts := [30,   30,     30,      30,   0,    0,     0,     80,      80,     100,     200,      200]

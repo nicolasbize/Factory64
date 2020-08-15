@@ -23,7 +23,10 @@ func _ready() -> void:
 	history.push_front(GameState.money)
 
 func refresh_date_text() -> void:
-	date.text = months[GameState.current_month] + str(GameState.current_year)
+	var year := str(GameState.current_year)
+	if year.length() == 1:
+		year = "0" + year
+	date.text = months[GameState.current_month] + year
 	months_before_retirement -= 1
 	var years_left := months_before_retirement / 12
 	var months_left := months_before_retirement - years_left * 12	

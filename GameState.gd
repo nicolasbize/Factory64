@@ -51,7 +51,7 @@ func reset() -> void:
 	current_year = 70
 	months_taken = 0
 	max_extractors = 20
-	max_burners = 10
+	max_burners = 15
 	max_cutters = 10
 	max_factories = 10
 	max_assemblies = 5
@@ -75,7 +75,7 @@ func upgrade(type: int) -> void:
 	if upgrades[type] < 5:
 		upgrades[type] += 1
 	max_extractors = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 20
-	max_burners = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 10
+	max_burners = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 15
 	max_cutters = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 10
 	max_factories = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 10
 	max_assemblies = (upgrades[Constants.UpgradeType.FACTORY] + 1) * 5
