@@ -24,18 +24,22 @@ __meta__ = {
 }
 
 [node name="MenuLabel" type="Label" parent="Panel"]
-margin_left = 16.0
-margin_top = -2.0
-margin_right = 46.0
-margin_bottom = 12.0
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 61.0
+margin_bottom = 15.0
 custom_colors/font_color = Color( 0.027451, 0.227451, 0.313726, 1 )
-text = "Pause"
+text = "GAME PAUSED"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MusicButton" parent="Panel" instance=ExtResource( 3 )]
 margin_left = 15.0
-margin_top = 14.0
+margin_top = 19.0
 margin_right = 49.0
-margin_bottom = 24.0
+margin_bottom = 29.0
 move_on_click = false
 
 [node name="Sprite" type="Sprite" parent="Panel/MusicButton"]
@@ -59,9 +63,9 @@ __meta__ = {
 
 [node name="SoundButton" parent="Panel" instance=ExtResource( 3 )]
 margin_left = 15.0
-margin_top = 24.0
+margin_top = 29.0
 margin_right = 49.0
-margin_bottom = 34.0
+margin_bottom = 39.0
 move_on_click = false
 
 [node name="Sprite" type="Sprite" parent="Panel/SoundButton"]
@@ -83,32 +87,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EncyclopediaButton" parent="Panel" instance=ExtResource( 3 )]
-margin_left = 4.0
-margin_top = 37.0
-margin_right = 63.0
-margin_bottom = 47.0
-
-[node name="Sprite" type="Sprite" parent="Panel/EncyclopediaButton"]
-texture = ExtResource( 4 )
-centered = false
-
-[node name="Label" type="Label" parent="Panel/EncyclopediaButton"]
-margin_top = -4.0
-margin_right = 58.0
-margin_bottom = 10.0
-custom_colors/font_color = Color( 0.984314, 0.984314, 0.984314, 1 )
-text = "Encyclopedia"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ReturnToGameButton" parent="Panel" instance=ExtResource( 3 )]
 margin_left = 4.0
-margin_top = 50.0
+margin_top = 46.0
 margin_right = 63.0
-margin_bottom = 60.0
+margin_bottom = 56.0
 
 [node name="Sprite" type="Sprite" parent="Panel/ReturnToGameButton"]
 texture = ExtResource( 4 )

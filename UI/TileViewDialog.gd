@@ -75,9 +75,5 @@ func _on_storage_change(tile: Tile, contents: Array) -> void:
 func _on_ClearButton_click(_el: ClickableButton) -> void:
 	active_tile.clear()
 
-func _on_DestroyButton_click(_el: ClickableButton) -> void:
-	active_tile.clear()
-	active_tile.destroy()
-
 func _on_RecipeSelector_change_recipe(type: int) -> void:
 	active_tile.active_recipe = type

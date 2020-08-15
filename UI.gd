@@ -83,3 +83,9 @@ func _on_Lab_Close_click(_el: ClickableButton) -> void:
 
 func _on_UpgradeButton_click(_el: ClickableButton) -> void:
 	show_lab()
+
+func _on_DestroyTileButton_click(el: ClickableButton) -> void:
+	tile_view_modal.active_tile.clear()
+	tile_view_modal.active_tile.destroy()
+	view_animator.play("SlideRight")
+	

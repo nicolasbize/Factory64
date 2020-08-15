@@ -353,7 +353,7 @@ material = SubResource( 12 )
 [node name="Lvl-1Button" parent="TileViewDialog/InfoPanel/PowerMeter" index="1"]
 material = SubResource( 13 )
 
-[node name="SellButton" parent="TileViewDialog/InfoPanel" index="3"]
+[node name="DestroyButton" parent="TileViewDialog/InfoPanel" index="3"]
 material = SubResource( 20 )
 
 [node name="ClearButton" parent="TileViewDialog/InfoPanel" index="4"]
@@ -376,7 +376,7 @@ material = SubResource( 19 )
 [connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/CloseButton" to="." method="_on_TileSelectorCloseButton_click"]
 [connection signal="click" from="TileSelectorModal/SelectionPanel/Panel/AcceptButton" to="." method="_on_TileSelectorAcceptButton_click"]
 [connection signal="click" from="TileViewDialog/InfoPanel/CloseButton" to="." method="_on_TileViewCloseButton_click"]
-[connection signal="click" from="TileViewDialog/InfoPanel/ClearButton" to="TileViewDialog" method="_on_ClearButton_click"]
+[connection signal="click" from="TileViewDialog/InfoPanel/DestroyButton" to="." method="_on_DestroyTileButton_click"]
 [connection signal="click" from="Lab/Panel/Close" to="." method="_on_Lab_Close_click"]
 
 [editable path="TileSelectorModal"]
